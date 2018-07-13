@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,16 @@ class Disponibilite
      * @ORM\Column(type="boolean")
      */
     private $archive;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PrestationClient", mappedBy="disponibilite")
+     */
+    private $prestationsClient;
+
+    public function __construct()
+    {
+        $this->prestationsClient = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -102,6 +114,37 @@ class Disponibilite
     public function setArchive(bool $archive): self
     {
         $this->archive = $archive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PrestationClient[]
+     */
+    public function getPrestationsClient(): Collection
+    {
+        return $this->prestationsClient;
+    }
+
+    public function addPrestationsClient(PrestationClient $prestationsClient): self
+    {
+        if (!$this->prestationsClient->contains($prestationsClient)) {
+            $this->prestationsClient[] = $prestationsClient;
+            $prestationsClient->setDisponibilite($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrestationsClient(PrestationClient $prestationsClient): self
+    {
+        if ($this->prestationsClient->contains($prestationsClient)) {
+            $this->prestationsClient->removeElement($prestationsClient);
+            // set the owning side to null (unless already changed)
+            if ($prestationsClient->getDisponibilite() === $this) {
+                $prestationsClient->setDisponibilite(null);
+            }
+        }
 
         return $this;
     }
