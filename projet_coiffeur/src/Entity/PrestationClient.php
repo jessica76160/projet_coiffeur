@@ -37,6 +37,12 @@ class PrestationClient
      */
     private $disponibilite;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\PrestationComposee", inversedBy="prestationsClient")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $prestationComposee;
+
     public function getId()
     {
         return $this->id;
@@ -86,6 +92,18 @@ class PrestationClient
     public function setDisponibilite(?Disponibilite $disponibilite): self
     {
         $this->disponibilite = $disponibilite;
+
+        return $this;
+    }
+
+    public function getPrestationComposee(): ?PrestationComposee
+    {
+        return $this->prestationComposee;
+    }
+
+    public function setPrestationComposee(?PrestationComposee $prestationComposee): self
+    {
+        $this->prestationComposee = $prestationComposee;
 
         return $this;
     }
