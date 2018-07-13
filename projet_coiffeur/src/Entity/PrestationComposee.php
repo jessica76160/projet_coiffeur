@@ -44,10 +44,16 @@ class PrestationComposee
      */
     private $coiffeurs;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Prestation", mappedBy="prestationsComposee")
+     */
+    private $prestations;
+
     public function __construct()
     {
         $this->prestationsClient = new ArrayCollection();
         $this->coiffeurs = new ArrayCollection();
+        $this->prestations = new ArrayCollection();
     }
 
     public function getId()
@@ -145,6 +151,34 @@ class PrestationComposee
         if ($this->coiffeurs->contains($coiffeur)) {
             $this->coiffeurs->removeElement($coiffeur);
             $coiffeur->removePrestationsComposee($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Prestation[]
+     */
+    public function getPrestations(): Collection
+    {
+        return $this->prestations;
+    }
+
+    public function addPrestation(Prestation $prestation): self
+    {
+        if (!$this->prestations->contains($prestation)) {
+            $this->prestations[] = $prestation;
+            $prestation->addPrestationsComposee($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrestation(Prestation $prestation): self
+    {
+        if ($this->prestations->contains($prestation)) {
+            $this->prestations->removeElement($prestation);
+            $prestation->removePrestationsComposee($this);
         }
 
         return $this;

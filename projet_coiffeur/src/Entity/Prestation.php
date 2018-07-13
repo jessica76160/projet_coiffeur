@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,22 @@ class Prestation
      * @ORM\Column(type="decimal", precision=6, scale=2)
      */
     private $tarif;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Etape", mappedBy="prestation")
+     */
+    private $etapes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\PrestationComposee", inversedBy="prestations")
+     */
+    private $prestationsComposee;
+
+    public function __construct()
+    {
+        $this->etapes = new ArrayCollection();
+        $this->prestationsComposee = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -68,6 +86,63 @@ class Prestation
     public function setTarif($tarif): self
     {
         $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Etape[]
+     */
+    public function getEtapes(): Collection
+    {
+        return $this->etapes;
+    }
+
+    public function addEtape(Etape $etape): self
+    {
+        if (!$this->etapes->contains($etape)) {
+            $this->etapes[] = $etape;
+            $etape->setPrestation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtape(Etape $etape): self
+    {
+        if ($this->etapes->contains($etape)) {
+            $this->etapes->removeElement($etape);
+            // set the owning side to null (unless already changed)
+            if ($etape->getPrestation() === $this) {
+                $etape->setPrestation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PrestationComposee[]
+     */
+    public function getPrestationsComposee(): Collection
+    {
+        return $this->prestationsComposee;
+    }
+
+    public function addPrestationsComposee(PrestationComposee $prestationsComposee): self
+    {
+        if (!$this->prestationsComposee->contains($prestationsComposee)) {
+            $this->prestationsComposee[] = $prestationsComposee;
+        }
+
+        return $this;
+    }
+
+    public function removePrestationsComposee(PrestationComposee $prestationsComposee): self
+    {
+        if ($this->prestationsComposee->contains($prestationsComposee)) {
+            $this->prestationsComposee->removeElement($prestationsComposee);
+        }
 
         return $this;
     }

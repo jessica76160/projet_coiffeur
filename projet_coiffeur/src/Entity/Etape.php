@@ -31,6 +31,12 @@ class Etape
      */
     private $ressource;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prestation", inversedBy="etapes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $prestation;
+
     public function getId()
     {
         return $this->id;
@@ -68,6 +74,18 @@ class Etape
     public function setRessource(bool $ressource): self
     {
         $this->ressource = $ressource;
+
+        return $this;
+    }
+
+    public function getPrestation(): ?Prestation
+    {
+        return $this->prestation;
+    }
+
+    public function setPrestation(?Prestation $prestation): self
+    {
+        $this->prestation = $prestation;
 
         return $this;
     }
