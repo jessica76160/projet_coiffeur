@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,16 @@ class Reservation
      * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="reservations")
      */
     private $client;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PrestationClient", mappedBy="reservation")
+     */
+    private $prestationsClient;
+
+    public function __construct()
+    {
+        $this->prestationsClient = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -85,6 +97,37 @@ class Reservation
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PrestationClient[]
+     */
+    public function getPrestationsClient(): Collection
+    {
+        return $this->prestationsClient;
+    }
+
+    public function addPrestationsClient(PrestationClient $prestationsClient): self
+    {
+        if (!$this->prestationsClient->contains($prestationsClient)) {
+            $this->prestationsClient[] = $prestationsClient;
+            $prestationsClient->setReservation($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrestationsClient(PrestationClient $prestationsClient): self
+    {
+        if ($this->prestationsClient->contains($prestationsClient)) {
+            $this->prestationsClient->removeElement($prestationsClient);
+            // set the owning side to null (unless already changed)
+            if ($prestationsClient->getReservation() === $this) {
+                $prestationsClient->setReservation(null);
+            }
+        }
 
         return $this;
     }

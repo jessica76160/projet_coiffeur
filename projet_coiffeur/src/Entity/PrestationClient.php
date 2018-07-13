@@ -26,6 +26,11 @@ class PrestationClient
      */
     private $heure_fin;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="prestationsClient")
+     */
+    private $reservation;
+
     public function getId()
     {
         return $this->id;
@@ -51,6 +56,18 @@ class PrestationClient
     public function setHeureFin(\DateTimeInterface $heure_fin): self
     {
         $this->heure_fin = $heure_fin;
+
+        return $this;
+    }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->reservation;
+    }
+
+    public function setReservation(?Reservation $reservation): self
+    {
+        $this->reservation = $reservation;
 
         return $this;
     }
