@@ -48,6 +48,12 @@ class Disponibilite
      */
     private $prestationsClient;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Coiffeur", inversedBy="disponibilites")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $coiffeur;
+
     public function __construct()
     {
         $this->prestationsClient = new ArrayCollection();
@@ -145,6 +151,18 @@ class Disponibilite
                 $prestationsClient->setDisponibilite(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCoiffeur(): ?Coiffeur
+    {
+        return $this->coiffeur;
+    }
+
+    public function setCoiffeur(?Coiffeur $coiffeur): self
+    {
+        $this->coiffeur = $coiffeur;
 
         return $this;
     }

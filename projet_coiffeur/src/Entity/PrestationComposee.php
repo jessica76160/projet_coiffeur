@@ -39,9 +39,15 @@ class PrestationComposee
      */
     private $salon;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Coiffeur", mappedBy="prestationsComposee")
+     */
+    private $coiffeurs;
+
     public function __construct()
     {
         $this->prestationsClient = new ArrayCollection();
+        $this->coiffeurs = new ArrayCollection();
     }
 
     public function getId()
@@ -112,6 +118,34 @@ class PrestationComposee
     public function setSalon(?Salon $salon): self
     {
         $this->salon = $salon;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Coiffeur[]
+     */
+    public function getCoiffeurs(): Collection
+    {
+        return $this->coiffeurs;
+    }
+
+    public function addCoiffeur(Coiffeur $coiffeur): self
+    {
+        if (!$this->coiffeurs->contains($coiffeur)) {
+            $this->coiffeurs[] = $coiffeur;
+            $coiffeur->addPrestationsComposee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoiffeur(Coiffeur $coiffeur): self
+    {
+        if ($this->coiffeurs->contains($coiffeur)) {
+            $this->coiffeurs->removeElement($coiffeur);
+            $coiffeur->removePrestationsComposee($this);
+        }
 
         return $this;
     }
