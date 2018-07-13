@@ -59,7 +59,7 @@ class Client
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="client",cascade={"persist"})
      */
     private $reservations;
 

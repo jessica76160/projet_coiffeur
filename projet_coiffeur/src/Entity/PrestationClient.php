@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,21 +29,26 @@ class PrestationClient
     private $heure_fin;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="prestationsClient")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="prestationsClient",cascade={"persist"})
      */
     private $reservation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Disponibilite", inversedBy="prestationsClient")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Disponibilite", inversedBy="prestationsClient",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $disponibilite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PrestationComposee", inversedBy="prestationsClient")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity="App\Entity\PrestationComposee", inversedBy="prestationClients")
      */
-    private $prestationComposee;
+    private $prestationsComposee;
+
+    public function __construct()
+    {
+        $this->prestationsComposee = new ArrayCollection();
+    }
+
 
     public function getId()
     {
@@ -96,15 +103,31 @@ class PrestationClient
         return $this;
     }
 
-    public function getPrestationComposee(): ?PrestationComposee
+    /**
+     * @return Collection|PrestationComposee[]
+     */
+    public function getPrestationsComposee(): Collection
     {
-        return $this->prestationComposee;
+        return $this->prestationsComposee;
     }
 
-    public function setPrestationComposee(?PrestationComposee $prestationComposee): self
+    public function addPrestationsComposee(PrestationComposee $prestationsComposee): self
     {
-        $this->prestationComposee = $prestationComposee;
+        if (!$this->prestationsComposee->contains($prestationsComposee)) {
+            $this->prestationsComposee[] = $prestationsComposee;
+        }
 
         return $this;
     }
+
+    public function removePrestationsComposee(PrestationComposee $prestationsComposee): self
+    {
+        if ($this->prestationsComposee->contains($prestationsComposee)) {
+            $this->prestationsComposee->removeElement($prestationsComposee);
+        }
+
+        return $this;
+    }
+
+
 }

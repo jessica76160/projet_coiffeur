@@ -28,10 +28,6 @@ class PrestationComposee
      */
     private $tarif;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PrestationClient", mappedBy="prestationComposee",cascade={"persist"})
-     */
-    private $prestationsClient;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Salon", inversedBy="prestationsComposee",cascade={"persist"})
@@ -49,11 +45,17 @@ class PrestationComposee
      */
     private $prestations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\PrestationClient", mappedBy="prestationsComposee")
+     */
+    private $prestationClients;
+
     public function __construct()
     {
         $this->prestationsClient = new ArrayCollection();
         $this->coiffeurs = new ArrayCollection();
         $this->prestations = new ArrayCollection();
+        $this->prestationClients = new ArrayCollection();
     }
 
     public function getId()
@@ -81,37 +83,6 @@ class PrestationComposee
     public function setTarif($tarif): self
     {
         $this->tarif = $tarif;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|PrestationClient[]
-     */
-    public function getPrestationsClient(): Collection
-    {
-        return $this->prestationsClient;
-    }
-
-    public function addPrestationsClient(PrestationClient $prestationsClient): self
-    {
-        if (!$this->prestationsClient->contains($prestationsClient)) {
-            $this->prestationsClient[] = $prestationsClient;
-            $prestationsClient->setPrestationComposee($this);
-        }
-
-        return $this;
-    }
-
-    public function removePrestationsClient(PrestationClient $prestationsClient): self
-    {
-        if ($this->prestationsClient->contains($prestationsClient)) {
-            $this->prestationsClient->removeElement($prestationsClient);
-            // set the owning side to null (unless already changed)
-            if ($prestationsClient->getPrestationComposee() === $this) {
-                $prestationsClient->setPrestationComposee(null);
-            }
-        }
 
         return $this;
     }
@@ -179,6 +150,34 @@ class PrestationComposee
         if ($this->prestations->contains($prestation)) {
             $this->prestations->removeElement($prestation);
             $prestation->removePrestationsComposee($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PrestationClient[]
+     */
+    public function getPrestationClients(): Collection
+    {
+        return $this->prestationClients;
+    }
+
+    public function addPrestationClient(PrestationClient $prestationClient): self
+    {
+        if (!$this->prestationClients->contains($prestationClient)) {
+            $this->prestationClients[] = $prestationClient;
+            $prestationClient->addPrestationsComposee($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrestationClient(PrestationClient $prestationClient): self
+    {
+        if ($this->prestationClients->contains($prestationClient)) {
+            $this->prestationClients->removeElement($prestationClient);
+            $prestationClient->removePrestationsComposee($this);
         }
 
         return $this;

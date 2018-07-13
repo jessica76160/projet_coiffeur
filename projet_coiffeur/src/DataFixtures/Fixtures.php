@@ -4,18 +4,23 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Etape;
 use App\Entity\Prestation;
 use App\Entity\Salon;
 use App\Entity\PrestationComposee;
 use App\Entity\Coiffeur;
+use App\Entity\Disponibilite;
+use App\Entity\Client;
+use App\Entity\PrestationClient;
+use App\Entity\Reservation;
 
 class Fixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
 
-        // enregistrement salon
+        // enregistrement salon ------------------------------------------------------------------------
 
             $salon1 = new Salon();
             $salon1->setNom('salon1');
@@ -129,6 +134,79 @@ class Fixtures extends Fixture
             $manager->persist($salon1);
             $manager->flush();
 
+        // enregistrement dispos ------------------------------------------------------------------------------------
+
+            $dispo1=new Disponibilite;
+            $dispo1->SetDate(new \DateTime('2018-07-13'));
+            $dispo1->SetHeureDebut(new \DateTime('14:30:00'));
+            $dispo1->SetHeureFin(new \DateTime('15:30:00'));
+            $dispo1->SetEtat('disponible');
+            $dispo1->SetArchive(false);
+            $dispo1->SetCoiffeur($coiffeur1);
+
+            $manager->persist($dispo1);
+            $manager->flush();
+
+            $dispo2=new Disponibilite;
+            $dispo2->SetDate(new \DateTime('2018-07-13'));
+            $dispo2->SetHeureDebut(new \DateTime('14:45:00'));
+            $dispo2->SetHeureFin(new \DateTime('17:30:00'));
+            $dispo2->SetEtat('disponible');
+            $dispo2->SetArchive(false);
+            $dispo2->SetCoiffeur($coiffeur2);
+
+            $manager->persist($dispo2);
+            $manager->flush();
+
+        
+        // enregistrement des clients --------------------------------------------------------------------------------
+
+            $client1=new Client;
+            $client1->SetNom('rolland');
+            $client1->SetPrenom('jessica');
+            $client1->SetEmail('jess11590@live.fr');
+            $client1->SetTelephone('0783382525');
+            $client1->SetAdresse('50b rue victor hugo');
+            $client1->SetCodePostale('76520');
+            $client1->SetVille('franqueville-saint-pierre');
+            $client1->SetPassword('alex181187');
+
+            $manager->persist($client1);
+            $manager->flush();
+
+        // enregistrement de prestations clients / reservations ---------------------------------------------------------
+
+            $prestationClient1=new PrestationClient;
+            $prestationClient1->SetHeureDebut(new \DateTime('15:00:00'));
+            $prestationClient1->SetHeureFin(new \DateTime('16:30:00'));
+            $prestationClient1->addPrestationsComposee($prestationComposee2);
+            $prestationClient1->addPrestationsComposee($prestationComposee1);
+            $prestationClient1->SetDisponibilite($dispo2);
+
+            $manager->persist($prestationClient1);
+            $manager->flush();
+
+            $prestationClient2=new PrestationClient;
+            $prestationClient2->SetHeureDebut(new \DateTime('14:40:00'));
+            $prestationClient2->SetHeureFin(new \DateTime('15:10:00'));
+            $prestationClient2->addPrestationsComposee($prestationComposee1);
+            $prestationClient2->SetDisponibilite($dispo1);
+
+            $manager->persist($prestationClient2);
+            $manager->flush();
+
+            // reservation
+
+            $resa1=new Reservation;
+            $resa1->SetNumero('XXX-13072018-001');
+            $resa1->SetTarif(170.00);
+            $resa1->setCreatedAt(new \DateTime("now"));
+            $resa1->SetClient($client1);
+            $resa1->addPrestationsClient($prestationClient1);
+            $resa1->addPrestationsClient($prestationClient2);
+
+            $manager->persist($resa1);
+            $manager->flush();
 
 
         

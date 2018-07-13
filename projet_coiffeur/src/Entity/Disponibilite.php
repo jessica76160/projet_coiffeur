@@ -44,13 +44,13 @@ class Disponibilite
     private $archive;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PrestationClient", mappedBy="disponibilite")
+     * @ORM\OneToMany(targetEntity="App\Entity\PrestationClient", mappedBy="disponibilite",cascade={"persist"})
      */
     private $prestationsClient;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Coiffeur", inversedBy="disponibilites")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Coiffeur", inversedBy="disponibilites",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $coiffeur;
 
