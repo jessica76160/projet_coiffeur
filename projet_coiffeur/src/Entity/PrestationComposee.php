@@ -33,6 +33,12 @@ class PrestationComposee
      */
     private $prestationsClient;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salon", inversedBy="prestationsComposee")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $salon;
+
     public function __construct()
     {
         $this->prestationsClient = new ArrayCollection();
@@ -94,6 +100,18 @@ class PrestationComposee
                 $prestationsClient->setPrestationComposee(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSalon(): ?Salon
+    {
+        return $this->salon;
+    }
+
+    public function setSalon(?Salon $salon): self
+    {
+        $this->salon = $salon;
 
         return $this;
     }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -65,6 +67,16 @@ class Salon
      * @ORM\Column(type="string", length=255)
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PrestationComposee", mappedBy="salon")
+     */
+    private $prestationsComposee;
+
+    public function __construct()
+    {
+        $this->prestationsComposee = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -187,6 +199,37 @@ class Salon
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PrestationComposee[]
+     */
+    public function getPrestationsComposee(): Collection
+    {
+        return $this->prestationsComposee;
+    }
+
+    public function addPrestationsComposee(PrestationComposee $prestationsComposee): self
+    {
+        if (!$this->prestationsComposee->contains($prestationsComposee)) {
+            $this->prestationsComposee[] = $prestationsComposee;
+            $prestationsComposee->setSalon($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrestationsComposee(PrestationComposee $prestationsComposee): self
+    {
+        if ($this->prestationsComposee->contains($prestationsComposee)) {
+            $this->prestationsComposee->removeElement($prestationsComposee);
+            // set the owning side to null (unless already changed)
+            if ($prestationsComposee->getSalon() === $this) {
+                $prestationsComposee->setSalon(null);
+            }
+        }
 
         return $this;
     }
