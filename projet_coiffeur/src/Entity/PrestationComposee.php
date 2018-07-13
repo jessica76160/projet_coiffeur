@@ -29,23 +29,23 @@ class PrestationComposee
     private $tarif;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PrestationClient", mappedBy="prestationComposee")
+     * @ORM\OneToMany(targetEntity="App\Entity\PrestationClient", mappedBy="prestationComposee",cascade={"persist"})
      */
     private $prestationsClient;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Salon", inversedBy="prestationsComposee")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salon", inversedBy="prestationsComposee",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $salon;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Coiffeur", mappedBy="prestationsComposee")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Coiffeur", mappedBy="prestationsComposee",cascade={"persist"})
      */
     private $coiffeurs;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Prestation", mappedBy="prestationsComposee")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Prestation", mappedBy="prestationsComposee",cascade={"persist"})
      */
     private $prestations;
 

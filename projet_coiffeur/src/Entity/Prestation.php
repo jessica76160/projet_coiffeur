@@ -34,7 +34,7 @@ class Prestation
     private $tarif;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Etape", mappedBy="prestation")
+     * @ORM\OneToMany(targetEntity="App\Entity\Etape", mappedBy="prestation",cascade={"persist"})
      */
     private $etapes;
 

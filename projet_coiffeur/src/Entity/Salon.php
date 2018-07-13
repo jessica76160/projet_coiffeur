@@ -69,13 +69,19 @@ class Salon
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PrestationComposee", mappedBy="salon")
+     * @ORM\OneToMany(targetEntity="App\Entity\PrestationComposee", mappedBy="salon",cascade={"persist"})
      */
     private $prestationsComposee;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Coiffeur", mappedBy="salon",cascade={"persist"})
+     */
+    private $coiffeurs;
 
     public function __construct()
     {
         $this->prestationsComposee = new ArrayCollection();
+        $this->coiffeurs = new ArrayCollection();
     }
 
     public function getId()
@@ -228,6 +234,37 @@ class Salon
             // set the owning side to null (unless already changed)
             if ($prestationsComposee->getSalon() === $this) {
                 $prestationsComposee->setSalon(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Coiffeur[]
+     */
+    public function getCoiffeurs(): Collection
+    {
+        return $this->coiffeurs;
+    }
+
+    public function addCoiffeur(Coiffeur $coiffeur): self
+    {
+        if (!$this->coiffeurs->contains($coiffeur)) {
+            $this->coiffeurs[] = $coiffeur;
+            $coiffeur->setSalon($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoiffeur(Coiffeur $coiffeur): self
+    {
+        if ($this->coiffeurs->contains($coiffeur)) {
+            $this->coiffeurs->removeElement($coiffeur);
+            // set the owning side to null (unless already changed)
+            if ($coiffeur->getSalon() === $this) {
+                $coiffeur->setSalon(null);
             }
         }
 

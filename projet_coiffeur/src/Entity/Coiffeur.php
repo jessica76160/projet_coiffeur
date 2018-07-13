@@ -33,6 +33,11 @@ class Coiffeur
      */
     private $prestationsComposee;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Salon", inversedBy="coiffeurs")
+     */
+    private $salon;
+
     public function __construct()
     {
         $this->disponibilites = new ArrayCollection();
@@ -109,6 +114,18 @@ class Coiffeur
         if ($this->prestationsComposee->contains($prestationsComposee)) {
             $this->prestationsComposee->removeElement($prestationsComposee);
         }
+
+        return $this;
+    }
+
+    public function getSalon(): ?Salon
+    {
+        return $this->salon;
+    }
+
+    public function setSalon(?Salon $salon): self
+    {
+        $this->salon = $salon;
 
         return $this;
     }

@@ -32,8 +32,8 @@ class Etape
     private $ressource;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Prestation", inversedBy="etapes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prestation", inversedBy="etapes",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $prestation;
 
