@@ -31,6 +31,11 @@ class Reservation
      */
     private $tarif;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="reservations")
+     */
+    private $client;
+
     public function getId()
     {
         return $this->id;
@@ -68,6 +73,18 @@ class Reservation
     public function setTarif($tarif): self
     {
         $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
