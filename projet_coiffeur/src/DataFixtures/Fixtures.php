@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Etape;
 use App\Entity\Prestation;
 use App\Entity\Salon;
@@ -17,19 +19,25 @@ use App\Entity\Reservation;
 
 class Fixtures extends Fixture
 {
+    private $passwordEncoder;
+ 
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
     public function load(ObjectManager $manager)
     {
 
         // enregistrement salon ------------------------------------------------------------------------
 
             $salon1 = new Salon();
-            $salon1->setNom('salon1');
+            $salon1->setUsername('salon1');
             $salon1->setEmail('jess11590@live.fr');
             $salon1->setTelephone('0783382525');
             $salon1->setAdresse('50b rue victor hugo');
             $salon1->setCodePostale('76520');
             $salon1->setVille('franqueville-saint-pierre');
-            $salon1->setPassword('alex181187');
+            $salon1->setPassword($this->passwordEncoder->encodePassword($salon1, 'alex181187'));
             $salon1->setNote(0);
             $salon1->setHoraire('du lundi au vendredi de 9h à 18h');
 
