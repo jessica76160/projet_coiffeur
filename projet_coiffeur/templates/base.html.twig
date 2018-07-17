@@ -11,13 +11,16 @@
     <body class="container-fluid">
         {% block header %}
             <header class="row">
-                <div class="col-2">
+                <div class="col-2 bouton_coiffeur">
                     <button type="button" class="btn btn-outline-primary" id="coiffeur">Coiffeur</button>
+                </div>
+                <div class="col-1">
+                    <a href="/accueil">Accueil</a>
                 </div>
                 <div class="col-1">
                    <img src="{{asset('img/Calque4.png')}}" width="100%"> 
                 </div>
-                <div class="offset-7 col-2">
+                <div class="offset-6 col-2 bouton_client">
                     <button type="button" class="btn btn-outline-primary" id="client">Client</button>
                 </div>
             </header>
@@ -28,15 +31,16 @@
 
 
         {% block footer %}
-            <footer class="row">
+            <footer class="row footer">
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">FAQ</div>
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">CGV</div>
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">Crédits</div>
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">Contact</div>
-                <div class="offset-sm-4 col-sm-1" id="coiffeur"><i class="fab fa-facebook-square"></i></div>
+                <div class="offset-sm-4 col-sm-1"><i class="fab fa-facebook-square"></i></div>
                 <div class="col-sm-1"><i class="fab fa-twitter"></i></div>
                 <div class="col-sm-1"><i class="fab fa-instagram"></i></div>
-                <div class="col-sm-1"><i class="fab fa-google-plus-g"></i></div>
+                <div class="col-sm-1"><i class="fab fa-google-plus-g"></i>
+                </div>
             </footer>
         {% endblock %}
 
