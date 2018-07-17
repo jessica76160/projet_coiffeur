@@ -54,14 +54,14 @@ class Client
     private $ville;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="client",cascade={"persist"})
      */
     private $reservations;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="client", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -195,6 +195,24 @@ class Client
             if ($reservation->getClient() === $this) {
                 $reservation->setClient(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newClient = $user === null ? null : $this;
+        if ($newClient !== $user->getClient()) {
+            $user->setClient($newClient);
         }
 
         return $this;

@@ -64,11 +64,6 @@ class Salon
     private $perimetre;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\PrestationComposee", mappedBy="salon",cascade={"persist"})
      */
     private $prestationsComposee;
@@ -77,6 +72,11 @@ class Salon
      * @ORM\OneToMany(targetEntity="App\Entity\Coiffeur", mappedBy="salon",cascade={"persist"})
      */
     private $coiffeurs;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="salon", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -266,6 +266,24 @@ class Salon
             if ($coiffeur->getSalon() === $this) {
                 $coiffeur->setSalon(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newSalon = $user === null ? null : $this;
+        if ($newSalon !== $user->getSalon()) {
+            $user->setSalon($newSalon);
         }
 
         return $this;
