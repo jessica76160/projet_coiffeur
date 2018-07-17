@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SalonRepository")
+ * @UniqueEntity(fields="email", message="Email déjà pris")
  */
 class Salon
 {
@@ -20,31 +21,39 @@ class Salon
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * 
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=5)
+     * @Assert\NotBlank()
      */
     private $code_postale;
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank()
      */
     private $ville;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank()
      */
     private $telephone;
 
@@ -55,6 +64,7 @@ class Salon
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank()
      */
     private $horaire;
 
