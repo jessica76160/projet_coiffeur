@@ -74,9 +74,10 @@ class Salon
     private $coiffeurs;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="salon", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
      */
     private $user;
+
 
     public function __construct()
     {
@@ -279,12 +280,6 @@ class Salon
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newSalon = $user === null ? null : $this;
-        if ($newSalon !== $user->getSalon()) {
-            $user->setSalon($newSalon);
-        }
 
         return $this;
     }

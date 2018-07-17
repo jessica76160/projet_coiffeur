@@ -59,9 +59,10 @@ class Client
     private $reservations;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="client", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist", "remove"})
      */
     private $user;
+
 
     public function __construct()
     {
@@ -209,12 +210,7 @@ class Client
     {
         $this->user = $user;
 
-        // set (or unset) the owning side of the relation if necessary
-        $newClient = $user === null ? null : $this;
-        if ($newClient !== $user->getClient()) {
-            $user->setClient($newClient);
-        }
-
         return $this;
     }
+
 }

@@ -28,16 +28,6 @@ class User implements UserInterface, \Serializable
     private $password;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Client", inversedBy="user", cascade={"persist", "remove"})
-     */
-    private $client;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Salon", inversedBy="user", cascade={"persist", "remove"})
-     */
-    private $salon;
-
-    /**
      * @ORM\Column(type="array", nullable=true)
      */
     private $roles;
@@ -73,29 +63,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
-
-    public function setClient(?Client $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    public function getSalon(): ?Salon
-    {
-        return $this->salon;
-    }
-
-    public function setSalon(?Salon $salon): self
-    {
-        $this->salon = $salon;
-
-        return $this;
-    }
     public function getRoles(): array
     {
         $roles = $this->roles;

@@ -31,6 +31,14 @@ class Fixtures extends Fixture
 
         // enregistrement salon ------------------------------------------------------------------------
 
+            $user1=new User();
+            $user1->setUsername('salon1');
+            $user1->setPassword($this->passwordEncoder->encodePassword($user1, 'alex181187'));
+            $user1->setRoles(['SALON']);
+
+            $manager->persist($user1);
+            $manager->flush();
+
             $salon1 = new Salon();
             $salon1->setNom('salon1');
             $salon1->setEmail('jess11590@live.fr');
@@ -40,17 +48,7 @@ class Fixtures extends Fixture
             $salon1->setVille('franqueville-saint-pierre');
             $salon1->setNote(0);
             $salon1->setHoraire('du lundi au vendredi de 9h à 18h');
-
-            // enregistrement user
-
-                $user1=new User();
-                $user1->setUsername('salon1');
-                $user1->setPassword($this->passwordEncoder->encodePassword($user1, 'alex181187'));
-                $user1->setSalon($salon1);
-                $user1->setRoles(['SALON']);
-
-                $manager->persist($user1);
-                $manager->flush();
+            $salon1->SetUser($user1);
 
             // enregistrement de prestations
 
@@ -179,6 +177,14 @@ class Fixtures extends Fixture
 
         
         // enregistrement des clients --------------------------------------------------------------------------------
+           
+            $user2=new User();
+            $user2->setUsername('client1');
+            $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'alex181187'));
+            $user2->setRoles(['CLIENT']);
+
+            $manager->persist($user2);
+            $manager->flush();
 
             $client1=new Client;
             $client1->SetNom('rolland');
@@ -188,18 +194,9 @@ class Fixtures extends Fixture
             $client1->SetAdresse('50b rue victor hugo');
             $client1->SetCodePostale('76520');
             $client1->SetVille('franqueville-saint-pierre');
-            $client1->SetPassword('alex181187');
+            $client1->SetUser($user2);
 
             $manager->persist($client1);
-            $manager->flush();
-
-            $user2=new User();
-            $user2->setUsername('client1');
-            $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'alex181187'));
-            $user2->setClient($client1);
-            $user2->setRoles(['CLIENT']);
-
-            $manager->persist($user2);
             $manager->flush();
 
         // enregistrement de prestations clients / reservations ---------------------------------------------------------
