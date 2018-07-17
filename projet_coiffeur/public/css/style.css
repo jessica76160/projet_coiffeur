@@ -54,7 +54,7 @@ h1 {
     }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 470px) {
     #coiffeur {
         width: 18vw;
         font-size: xx-small;
@@ -130,4 +130,9 @@ a:hover {
     color: white;
     line-height: 10vh;
     font-family: 'Bad Script', sans-serif;
+}
+
+img {
+    line-height: 10vh;
+    height: 10vh;
 }
