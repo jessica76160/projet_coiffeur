@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Bad+Script');
+@import url('https://fonts.googleapis.com/css?family=Nobile');
+header {
+    background-color: black;
+    height: 10vh;
+}
+
+body {
+    background-image: url("../img/fond.jpg");
+    background-size: cover;
+}
+
+.btn-outline-primary {
+    border-color: white;
+}
+
+#coiffeur {
+    color: white;
+}
+
+#client {
+    color: white;
+}
+
+main {
+    height: 88vh;
+}
+
+h1 {
+    font-family: 'Bad Script', sans-serif;
+    margin-top: 10vh;
+    padding-bottom: 5vh;
+}
+
+@media screen and (min-width: 768px) {
+    #choix {
+        margin-right: 50vh;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    img {
+        width: 100%;
+    }
+}
+
+footer {
+    background-color: black;
+    height: 2vh;
+    color: white;
+    line-height: 2vh;
+}
+
+#choix {
+    text-align: center;
+    margin-top: 10vh;
+}
+
+button {
+    font-family: 'Nobile', sans-serif;
+}
+
+#adresse {
+    text-align: center;
+    margin-top: 10vh;
+}
+
+input {
+    border-radius: 5px;
+}
+
+.col-2 {
+    padding: 0;
+}

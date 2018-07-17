@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class ClientController extends Controller
+{
+    /**
+     * @Route("/client", name="client")
+     */
+    public function index()
+    {
+        return $this->render('client/index.html.twig', [
+            'controller_name' => 'ClientController',
+        ]);
+    }
+
+    /**
+     * @Route("/accueil", name="accueil")
+     */
+    public function accueil()
+    {
+        return $this->render('accueil.html.twig');
+    }
+
+    /**
+     * @Route("recherche/adresse", name="adresse")
+     */
+    public function adresse()
+    {
+        return $this->render('recherche/adresse.html.twig');
+    }
+
+    /**
+     * @Route("recherche/personne", name="personne")
+     */
+    public function personne()
+    {
+        return $this->render('personne.html.twig');
+    }
+
+    /**
+     * @Route("recherche/horaire", name="horaire")
+     */
+    public function horaire()
+    {
+        return $this->render('horaire.html.twig');
+    }
+
+    /**
+     * @Route("recherche/prestation", name="prestation")
+     */
+    public function prestation()
+    {
+        return $this->render('prestation.html.twig');
+    }
+}
