@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Etape;
 use App\Entity\Prestation;
 use App\Entity\Salon;
@@ -14,9 +15,17 @@ use App\Entity\Disponibilite;
 use App\Entity\Client;
 use App\Entity\PrestationClient;
 use App\Entity\Reservation;
+use App\Entity\User;
 
 class Fixtures extends Fixture
 {
+    private $passwordEncoder;
+ 
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
 
@@ -29,9 +38,19 @@ class Fixtures extends Fixture
             $salon1->setAdresse('50b rue victor hugo');
             $salon1->setCodePostale('76520');
             $salon1->setVille('franqueville-saint-pierre');
-            $salon1->setPassword('alex181187');
             $salon1->setNote(0);
             $salon1->setHoraire('du lundi au vendredi de 9h à 18h');
+
+            // enregistrement user
+
+                $user1=new User();
+                $user1->setUsername('salon1');
+                $user1->setPassword($this->passwordEncoder->encodePassword($user1, 'alex181187'));
+                $user1->setSalon($salon1);
+                $user1->setRoles(['SALON']);
+
+                $manager->persist($user1);
+                $manager->flush();
 
             // enregistrement de prestations
 
@@ -172,6 +191,15 @@ class Fixtures extends Fixture
             $client1->SetPassword('alex181187');
 
             $manager->persist($client1);
+            $manager->flush();
+
+            $user2=new User();
+            $user2->setUsername('client1');
+            $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'alex181187'));
+            $user2->setClient($client1);
+            $user2->setRoles(['CLIENT']);
+
+            $manager->persist($user2);
             $manager->flush();
 
         // enregistrement de prestations clients / reservations ---------------------------------------------------------

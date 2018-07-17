@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -35,7 +36,12 @@ class User
      * @ORM\OneToOne(targetEntity="App\Entity\Salon", inversedBy="user", cascade={"persist", "remove"})
      */
     private $salon;
-    private $roles = [];
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $roles;
+
 
 
     public function getId()
