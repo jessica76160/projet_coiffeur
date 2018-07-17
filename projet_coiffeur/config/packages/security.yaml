@@ -21,11 +21,11 @@ security:
 
             form_login:
                 # Le nom de la route de la page de connexion
-                check_path: security_login
+                check_path: connexion
                 # Le nom de la route où se trouve le formulaire de connexion
                 # Si un utilisateur tente d'acceder à une page protégée sans en avoir les droits
                 # il sera redirigé sur cette page
-                login_path: security_login
+                login_path: connexion
                 # Securisation des formulaires
                 csrf_token_generator: security.csrf.token_manager
                 # La page par defaut apres une connexion reussie
@@ -33,7 +33,7 @@ security:
 
             logout:
                 # La route où se trouve le process de deconnexion
-                path: security_logout
+                path: deconnexion
                 # La route sur laquelle doit etre rediriger l'utilisateur apres une deconnexion
                 target: index
 
