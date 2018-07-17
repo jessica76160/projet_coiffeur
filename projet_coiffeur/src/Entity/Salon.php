@@ -26,6 +26,12 @@ class Salon implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+
     private $username;
 
     /**
@@ -94,7 +100,17 @@ class Salon implements UserInterface, \Serializable
     {
         return $this->id;
     }
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
 
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
     public function getUsername(): ?string
     {
         return $this->username;

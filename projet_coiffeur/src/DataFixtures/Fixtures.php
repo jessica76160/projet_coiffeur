@@ -31,6 +31,7 @@ class Fixtures extends Fixture
         // enregistrement salon ------------------------------------------------------------------------
 
             $salon1 = new Salon();
+            $salon1->setNom('salon1');
             $salon1->setUsername('salon1');
             $salon1->setEmail('jess11590@live.fr');
             $salon1->setTelephone('0783382525');
