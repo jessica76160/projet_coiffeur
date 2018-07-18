@@ -1,22 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recherche adresse{% endblock %}
-
-       {% block header %}
-                    <div class="col-2 bouton_coiffeur">
-                        <button type="button" class="btn btn-outline-primary" id="coiffeur">Coiffeur</button>
-                    </div>
-                    <div class="col-1">
-                        <a href="/accueil">Accueil</a>
-                    </div>
-                    <div class="offset-2 col-1 logo">
-                        <img src="{{asset('img/Calque4.png')}}"> 
-                    </div>
-                    <div class="offset-4 col-2 bouton_client">
-                        <button type="button" class="btn btn-outline-primary" id="client">Client</button>
-                    </div>
-        {% endblock %}
-
 {% block main %}
     <div id="bandeau"><strong>Lieu</strong> / Nb personnes / Heure / Prestations</div>
 

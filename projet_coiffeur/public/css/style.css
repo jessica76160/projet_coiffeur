@@ -3,7 +3,7 @@
 
 /*base.html.twig*/
 
-header {
+nav {
     background-color: black;
     height: 10vh;
 }
@@ -17,31 +17,38 @@ body {
     border-color: white;
 }
 
-.container-fluid {
-    padding: 0;
-}
-
 #coiffeur {
     color: white;
     height: 10vh;
     font-family: 'Nobile', sans-serif;
-    padding-left: 15%;
 }
 
 #client {
     color: white;
     height: 10vh;
     font-family: 'Nobile', sans-serif;
-    padding-right: 15%;
 }
 
 main {
-    height: 84vh;
+    height: 85vh;
 }
 
 h1 {
     font-family: 'Bad Script', sans-serif;
+    margin-top: 10vh;
     padding-bottom: 5vh;
+}
+
+@media screen and (min-width: 1180px) {
+    #choix {
+        margin-right: 50vh;
+    }
+    #adresse {
+        margin-right: 50vh;
+    }
+    #perimetre {
+        margin-right: 50vh;
+    }
 }
 
 @media screen and (max-width: 200px) {
@@ -60,7 +67,7 @@ h1 {
     #coiffeur {
         width: 18vw;
         font-size: xx-small;
-        padding-left: 25%;
+        padding-left: 15%;
     }
     #client {
         width: 18vw;
@@ -95,7 +102,7 @@ button {
 
 #adresse {
     text-align: center;
-    margin-top: 10vh;
+    margin-top: 2%;
 }
 
 input {
@@ -104,7 +111,6 @@ input {
 
 .bouton_coiffeur {
     padding: 0;
-    border: none;
 }
 
 .bouton_client {
@@ -135,27 +141,12 @@ img {
     height: 10vh;
 }
 
-nav {
-    margin: 0;
-    padding: 0;
-}
-
 
 /* accueil.html.twig */
 
 #choix {
     text-align: center;
     margin-top: 10vh;
-}
-
-@media screen and (min-width: 1180px) {
-    #choix {
-        margin-right: 50vh;
-    }
-}
-
-#trouver_coiffeur_domicile {
-    margin-bottom: 5%;
 }
 
 
@@ -178,7 +169,6 @@ nav {
         margin-right: 30vh;
         margin-left: 20vh;
         width: 60%;
-        height: 56%;
     }
 }
 
