@@ -42,6 +42,7 @@ class ClientController extends Controller
                     $password = $passwordEncoder->encodePassword($user, $user->getPassword());
                     $user->setPassword($password);
                     $user->setRoles(['CLIENT']);
+                    $user->setUsername($client->getEmail());
 
                     //lier user et client
 
@@ -66,5 +67,28 @@ class ClientController extends Controller
             array('form1' => $form1->createView(),'form2' => $form2->createView(),'erreursClient'=>$erreursClient,'erreursUser'=>$erreursUser)
         );
     }
-    
+
+     /**
+     * @Route("/recherche/adresse", name="recherche_adresse")
+     */
+    public function rechercheAdresse(Request $request)
+    {
+
+        return $this->render(
+            'client/adresse.html.twig',
+            array()
+        );
+    }
+
+    /**
+     * @Route("/accueil", name="accueil")
+     */
+    public function accueilAction(Request $request)
+    {
+
+        return $this->render(
+            'accueil.html.twig',
+            array()
+        );
+    }
 }

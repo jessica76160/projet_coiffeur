@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Bad+Script');
+@import url('https://fonts.googleapis.com/css?family=Nobile');
+header {
+    background-color: black;
+    height: 10vh;
+}
+
+body {
+    background-image: url("../img/fond.jpg");
+    background-size: cover;
+}
+
+.btn-outline-primary {
+    border-color: white;
+}
+
+#coiffeur {
+    color: white;
+    height: 10vh;
+    font-family: 'Nobile', sans-serif;
+}
+
+#client {
+    color: white;
+    height: 10vh;
+    font-family: 'Nobile', sans-serif;
+}
+
+main {
+    height: 85vh;
+}
+
+h1 {
+    font-family: 'Bad Script', sans-serif;
+    margin-top: 10vh;
+    padding-bottom: 5vh;
+}
+
+@media screen and (min-width: 1180px) {
+    #choix {
+        margin-right: 50vh;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .footer {
+        box-sizing: none;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    #coiffeur {
+        width: 18vw;
+        font-size: xx-small;
+        padding-left: 15%;
+    }
+    #client {
+        width: 18vw;
+        font-size: xx-small;
+        padding-left: 30%;
+        text-align: left;
+    }
+    .row {
+        flex-wrap: nowrap;
+    }
+    #trouver_coiffeur_domicile {
+        font-size: small;
+    }
+    #rechercher_salon {
+        font-size: small;
+    }
+    h1 {
+        font-size: xx-large;
+    }
+}
+
+footer {
+    background-color: black;
+    height: 5vh;
+    color: white;
+    line-height: 5vh;
+}
+
+#choix {
+    text-align: center;
+    margin-top: 10vh;
+}
+
+button {
+    font-family: 'Nobile', sans-serif;
+}
+
+#adresse {
+    text-align: center;
+    margin-top: 10vh;
+}
+
+input {
+    border-radius: 5px;
+}
+
+.bouton_coiffeur {
+    padding: 0;
+}
+
+.bouton_client {
+    text-align: right;
+    padding: 0;
+}
+
+.col-sm-1 {
+    width: 10%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    line-height: 10vh;
+    font-family: 'Bad Script', sans-serif;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+    line-height: 10vh;
+    font-family: 'Bad Script', sans-serif;
+}
+
+img {
+    line-height: 10vh;
+    height: 10vh;
+}
+
+
+/* page adresse */
+
+#googleMap {
+    width: 100%;
+}
