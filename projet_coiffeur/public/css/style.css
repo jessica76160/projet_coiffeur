@@ -39,18 +39,6 @@ h1 {
     padding-bottom: 5vh;
 }
 
-@media screen and (min-width: 1180px) {
-    #choix {
-        margin-right: 50vh;
-    }
-    #adresse {
-        margin-right: 50vh;
-    }
-    #perimetre {
-        margin-right: 50vh;
-    }
-}
-
 @media screen and (max-width: 200px) {
     img {
         width: 100%;
@@ -149,5 +137,52 @@ img {
     margin-top: 10vh;
 }
 
+@media screen and (min-width: 1180px) {
+    #choix {
+        margin-right: 50vh;
+    }
+}
+
 
 /* adresse.html.twig */
+
+@media screen and (min-width: 1180px) {
+    #adresse {
+        margin-right: 50vh;
+    }
+    #perimetre {
+        margin-right: 50vh;
+    }
+    #map {
+        margin-right: 50vh;
+    }
+}
+
+#perimetre {
+    text-align: center;
+}
+
+#map {
+    margin-top: 5%;
+    border: solid;
+    height: 60%;
+}
+
+@media screen and (min-width: 900px) {
+    #map {
+        margin-right: 30vh;
+        margin-left: 20vh;
+        width: 50%;
+    }
+}
+
+#icone_localisation {
+    width: 5%;
+    height: 5%;
+}
+
+#icone_radar {
+    width: 5%;
+    height: 5%;
+    padding-right: 1%;
+}

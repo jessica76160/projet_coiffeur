@@ -4,10 +4,14 @@
 {% block main %}
 <main>
     <div id="adresse">
-        <input type="text" placeholder="Adresse" name="adresse">
+        <img src="{{asset('img/localisation.png')}}" id="icone_localisation"><input type="text" placeholder="Adresse" name="adresse">
     </div>
+    <br>
     <div id="perimetre">
-        <input type="text" placeholder="Adresse" name="perimetre">
+        <img src="{{asset('img/radar.png')}}" id="icone_radar"><input type="text" placeholder="Périmètre" name="perimetre">
+    </div>
+    <div id="map">
+        <p>Map<p>
     </div>
 </main>
 {% endblock %}
