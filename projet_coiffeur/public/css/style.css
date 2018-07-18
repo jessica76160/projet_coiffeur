@@ -27,7 +27,7 @@ body {
 }
 
 main {
-    height: 88vh;
+    height: 85vh;
 }
 
 h1 {
@@ -82,9 +82,9 @@ h1 {
 
 footer {
     background-color: black;
-    height: 2vh;
+    height: 5vh;
     color: white;
-    line-height: 2vh;
+    line-height: 5vh;
 }
 
 #choix {
