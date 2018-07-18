@@ -33,12 +33,6 @@ main {
     height: 85vh;
 }
 
-h1 {
-    font-family: 'Bad Script', sans-serif;
-    margin-top: 10vh;
-    padding-bottom: 5vh;
-}
-
 @media screen and (min-width: 1180px) {
     #choix {
         margin-right: 50vh;
@@ -144,6 +138,12 @@ img {
 
 /* accueil.html.twig */
 
+h1 {
+    font-family: 'Bad Script', sans-serif;
+    margin-top: 10vh;
+    padding-bottom: 5vh;
+}
+
 #choix {
     text-align: center;
     margin-top: 10vh;
@@ -170,6 +170,10 @@ img {
         margin-left: 20vh;
         width: 60%;
     }
+}
+
+#input_adresse {
+    width: 50%;
 }
 
 #perimetre {
@@ -204,6 +208,8 @@ img {
     color: white;
     height: 5%;
     text-align: center;
+    font-family: 'Nobile', sans-serif;
+    padding-top: 5px;
 }
 
 #etapes {
@@ -212,4 +218,78 @@ img {
 
 #retour {
     position: absolute;
+}
+
+
+/* personne.html.twig */
+
+#logo_homme {
+    padding-right: 3%;
+    padding-left: 3%;
+    width: 12%;
+}
+
+#logo_femme {
+    width: 12%;
+}
+
+#logo_enfant {
+    width: 12%;
+}
+
+#personne_prestation {
+    text-align: center;
+}
+
+#heure {
+    text-align: center;
+}
+
+#bouton_prestation {
+    font-family: 'Nobile', sans-serif;
+    width: 20%;
+    margin-left: 5%;
+    font-size: small;
+}
+
+@media screen and (min-width: 1180px) {
+    #heure {
+        margin-right: 50vh;
+    }
+    #homme {
+        margin-right: 20vh;
+    }
+    #femme {
+        margin-right: 20vh;
+    }
+    #enfant {
+        margin-right: 20vh;
+    }
+    #titre_nombre_personne {
+        margin-right: 50vh;
+    }
+    #bouton_prestation {
+        margin-right: 20vh;
+    }
+}
+
+h1 {
+    margin-top: 1%;
+    padding-bottom: 0;
+}
+
+#femme {
+    padding-top: 1%;
+}
+
+#enfant {
+    padding-top: 1%;
+}
+
+.form-control {
+    width: 10%;
+}
+
+#appt-time {
+    width: 10%;
 }

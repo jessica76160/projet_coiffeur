@@ -1,40 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recherche adresse{% endblock %}
-
-       {% block header %}
-                    <div class="col-2 bouton_coiffeur">
-                        <button type="button" class="btn btn-outline-primary" id="coiffeur">Coiffeur</button>
-                    </div>
-                    <div class="col-1">
-                        <a href="/accueil">Accueil</a>
-                    </div>
-                    <div class="offset-2 col-1 logo">
-                        <img src="{{asset('img/Calque4.png')}}"> 
-                    </div>
-                    <div class="offset-4 col-2 bouton_client">
-                        <button type="button" class="btn btn-outline-primary" id="client">Client</button>
-                    </div>
-        {% endblock %}
-
 {% block main %}
-    <div id="bandeau">Lieu / <strong>Nb personnes</strong> / Heure / Prestations</div>
+    <div id="bandeau">Lieu / <strong>Nb personnes, Heure et Prestations</strong></div>
 
     <span id="retour">
-        <a href="/accueil"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+        <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
+    <div id="personne_prestation">
+        <h1 id="titre_nombre_personne">Nombre de personne(s) et prestation(s) :</h1>
+        <div id="homme">
+            <img src="{{asset('img/homme.png')}}" id="logo_homme"><input type="text" placeholder="Homme" name="adresse">
+            <span id="bouton_prestation">
+                <a href="/recherche/prestations"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
+            </span>
+        </div>
+        <div id="femme">
+            <img src="{{asset('img/femme.png')}}" id="logo_femme"><input type="text" placeholder="Femme" name="adresse">
+            <span id="bouton_prestation">
+                <a href="/recherche/prestations"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
+            </span>
+        </div>
+        <div id="enfant">
+            <img src="{{asset('img/enfant.png')}}" id="logo_enfant"><input type="text" placeholder="Enfant" name="adresse">
+            <span id="bouton_prestation">
+                <a href="/recherche/prestations"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
+            </span>
+        </div>
+    </div>
+    
+    <div id="heure">
+        <h1 id="titre_heure">Heure :</h1>
+        <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
+    </div>
 
-    <div id="adresse">
-        <img src="{{asset('img/localisation.png')}}" id="icone_localisation"><input type="text" placeholder="Adresse" name="adresse">
-    </div>
-    <br>
-    <div id="perimetre">
-        <img src="{{asset('img/radar.png')}}" id="icone_radar"><input type="text" placeholder="Périmètre" name="perimetre">
-    </div>
-    <div id="map">
-        <p>Map<p>
-    </div>
     <div class="bouton_suivant">
-        <a href="/recherche/personne"><button type="button" class="btn btn-secondary btn-lg" id="rechercher_salon">Suivant</button></a>
+        <a href="/recherche/horaire"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Suivant</button></a>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+            <script type="text/javascript">
+                $('.clockpicker').clockpicker();
+            </script>
 {% endblock %}

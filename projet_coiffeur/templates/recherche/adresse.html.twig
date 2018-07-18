@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <div id="bandeau"><strong>Lieu</strong> / Nb personnes / Heure / Prestations</div>
+    <div id="bandeau"><strong>Lieu</strong> / Nb personnes, Heure et Prestations</div>
 
     <span id="retour">
         <a href="/accueil"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
 
     <div id="adresse">
-        <img src="{{asset('img/localisation.png')}}" id="icone_localisation"><input type="text" placeholder="Adresse" name="adresse">
+        <img src="{{asset('img/localisation.png')}}" id="icone_localisation"><input type="text" placeholder="Adresse" name="adresse" id="input_adresse">
     </div>
     <br>
     <div id="perimetre">
