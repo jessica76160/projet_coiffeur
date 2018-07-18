@@ -56,4 +56,12 @@ class ClientController extends Controller
     {
         return $this->render('prestation.html.twig');
     }
+
+    /**
+     * @Route("/reservation", name="reservation")
+     */
+    public function reservation()
+    {
+        return $this->render('reservation/reservation.html.twig');
+    }
 }

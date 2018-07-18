@@ -6,23 +6,26 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
         {% endblock %}
+        <link href="{{asset('css/reset.css')}}" rel="stylesheet">
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
+        
     </head>
-    <body class="container-fluid">
-     <header class="row">
+     <header>
         {% block header %}
-                    <div class="col-2 bouton_coiffeur">
-                        <button type="button" class="btn btn-outline-primary" id="coiffeur">Coiffeur</button>
-                    </div>
-                    <nav class="col-1">
-                        <a href="/accueil">Accueil</a>
-                    </nav>
-                    <div class="offset-2 col-1 logo">
-                        <img src="{{asset('img/Calque4.png')}}"> 
-                    </div>
-                    <div class="offset-4 col-2 bouton_client">
-                        <button type="button" class="btn btn-outline-primary" id="client">Client</button>
-                    </div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark row">
+                <ul class="navbar-nav" style="width:100%">
+                        <li class="nav-item col-sm-4">
+                            <a class="nav-link text-white" href="#">espace coiffeur</a>
+                        </li>
+                        <li class="nav-item col-sm-4" style="text-align:center">
+                            <img class="mr-auto ml-auto pt-1 pb-1" src="{{asset('img/Calque4.png')}}">
+                        </li>
+                        <li class="nav-item col-sm-4" style="text-align:right">
+                            <a class="nav-link text-white" href="#">espace client</a>
+                        </li>
+                </ul>
+            </nav>
+
         {% endblock %}
     </header>
 
@@ -30,7 +33,7 @@
         {% block main %}{% endblock %}
     </main>
 
-    <footer class="row footer">
+    <footer class="row footer bg-dark">
         {% block footer %}
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">FAQ</div>
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">CGV</div>
@@ -51,5 +54,4 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
         {% endblock %}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    </body>
 </html>

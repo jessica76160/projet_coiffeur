@@ -3,7 +3,7 @@
 
 /*base.html.twig*/
 
-header {
+nav {
     background-color: black;
     height: 10vh;
 }
@@ -147,6 +147,15 @@ img {
 #choix {
     text-align: center;
     margin-top: 10vh;
+}
+
+#staticEmail2 {
+    text-align: center;
+}
+
+#idreservation {
+    width: 80%;
+    margin: 0px 50px;
 }
 
 
