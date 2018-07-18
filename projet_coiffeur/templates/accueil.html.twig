@@ -6,9 +6,9 @@
 <br>
     <div id="choix">
         <h1>Réservez votre coiffeur aujourd'hui</h1>
-        <button type="button" class="btn btn-secondary btn-lg" id="trouver_coiffeur_domicile">Trouver un coiffeur à domicile</button>
+        <a href="{{path('recherche_adresse')}}"><button type="button" class="btn btn-secondary btn-lg" id="trouver_coiffeur_domicile">Trouver un coiffeur à domicile</button></a>
         <br>
         <br>
-        <a href="/recherche/adresse"><button type="button" class="btn btn-secondary btn-lg" id="rechercher_salon">Rechercher un salon</button></a>
+        <a href="{{path('recherche_adresse')}}"><button type="button" class="btn btn-secondary btn-lg" id="rechercher_salon">Rechercher un salon</button></a>
     </div>
 {% endblock %}

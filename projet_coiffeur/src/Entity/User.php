@@ -40,9 +40,8 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank()
      */
     private $password;
-
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="array")
      */
     private $roles;
 
