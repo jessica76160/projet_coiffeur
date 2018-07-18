@@ -17,25 +17,30 @@ body {
     border-color: white;
 }
 
+.container-fluid {
+    padding: 0;
+}
+
 #coiffeur {
     color: white;
     height: 10vh;
     font-family: 'Nobile', sans-serif;
+    padding-left: 15%;
 }
 
 #client {
     color: white;
     height: 10vh;
     font-family: 'Nobile', sans-serif;
+    padding-right: 15%;
 }
 
 main {
-    height: 85vh;
+    height: 84vh;
 }
 
 h1 {
     font-family: 'Bad Script', sans-serif;
-    margin-top: 10vh;
     padding-bottom: 5vh;
 }
 
@@ -55,7 +60,7 @@ h1 {
     #coiffeur {
         width: 18vw;
         font-size: xx-small;
-        padding-left: 15%;
+        padding-left: 25%;
     }
     #client {
         width: 18vw;
@@ -99,6 +104,7 @@ input {
 
 .bouton_coiffeur {
     padding: 0;
+    border: none;
 }
 
 .bouton_client {
@@ -129,6 +135,11 @@ img {
     height: 10vh;
 }
 
+nav {
+    margin: 0;
+    padding: 0;
+}
+
 
 /* accueil.html.twig */
 
@@ -141,6 +152,10 @@ img {
     #choix {
         margin-right: 50vh;
     }
+}
+
+#trouver_coiffeur_domicile {
+    margin-bottom: 5%;
 }
 
 
@@ -156,24 +171,26 @@ img {
     #map {
         margin-right: 50vh;
     }
+    .bouton_suivant {
+        margin-right: 50vh;
+    }
+    #map {
+        margin-right: 30vh;
+        margin-left: 20vh;
+        width: 60%;
+    }
 }
 
 #perimetre {
     text-align: center;
+    margin-bottom: 2%;
 }
 
 #map {
-    margin-top: 5%;
     border: solid;
     height: 60%;
-}
-
-@media screen and (min-width: 900px) {
-    #map {
-        margin-right: 30vh;
-        margin-left: 20vh;
-        width: 50%;
-    }
+    text-align: center;
+    margin: 0 5% 0 5%;
 }
 
 #icone_localisation {
@@ -185,4 +202,8 @@ img {
     width: 5%;
     height: 5%;
     padding-right: 1%;
+}
+
+.bouton_suivant {
+    text-align: center;
 }

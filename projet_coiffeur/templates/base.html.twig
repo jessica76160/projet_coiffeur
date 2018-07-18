@@ -9,14 +9,15 @@
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
     </head>
     <body class="container-fluid">
-     <header class="row">
+     <header>
+     <nav class="row">
         {% block header %}
                     <div class="col-2 bouton_coiffeur">
                         <button type="button" class="btn btn-outline-primary" id="coiffeur">Coiffeur</button>
                     </div>
-                    <nav class="col-1">
+                    <div class="col-1">
                         <a href="/accueil">Accueil</a>
-                    </nav>
+                    </div>
                     <div class="offset-2 col-1 logo">
                         <img src="{{asset('img/Calque4.png')}}"> 
                     </div>
@@ -24,6 +25,7 @@
                         <button type="button" class="btn btn-outline-primary" id="client">Client</button>
                     </div>
         {% endblock %}
+        </nav>
     </header>
 
     <main>
