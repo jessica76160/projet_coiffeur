@@ -178,6 +178,7 @@ nav {
         margin-right: 30vh;
         margin-left: 20vh;
         width: 60%;
+        height: 56%;
     }
 }
 
@@ -188,7 +189,7 @@ nav {
 
 #map {
     border: solid;
-    height: 60%;
+    height: 50%;
     text-align: center;
     margin: 0 5% 0 5%;
 }
@@ -206,4 +207,19 @@ nav {
 
 .bouton_suivant {
     text-align: center;
+}
+
+#bandeau {
+    background-color: grey;
+    color: white;
+    height: 5%;
+    text-align: center;
+}
+
+#etapes {
+    line-height: 5%;
+}
+
+#retour {
+    position: absolute;
 }

@@ -38,7 +38,7 @@ class ClientController extends Controller
      */
     public function personne()
     {
-        return $this->render('personne.html.twig');
+        return $this->render('recherche/personne.html.twig');
     }
 
     /**
@@ -46,14 +46,14 @@ class ClientController extends Controller
      */
     public function horaire()
     {
-        return $this->render('horaire.html.twig');
+        return $this->render('recherche/horaire.html.twig');
     }
 
     /**
-     * @Route("recherche/prestation", name="prestation")
+     * @Route("recherche/prestations", name="prestations")
      */
-    public function prestation()
+    public function prestations()
     {
-        return $this->render('prestation.html.twig');
+        return $this->render('recherche/prestations.html.twig');
     }
 }
