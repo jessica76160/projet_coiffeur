@@ -64,4 +64,12 @@ class ClientController extends Controller
     {
         return $this->render('reservation/reservation.html.twig');
     }
+
+    /**
+     * @Route("/confirmation", name="confirmation")
+     */
+    public function confirmation()
+    {
+        return $this->render('reservation/confirmation.html.twig');
+    }
 }

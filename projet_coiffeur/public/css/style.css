@@ -149,6 +149,9 @@ img {
     margin-top: 10vh;
 }
 
+
+/* reservation */
+
 #staticEmail2 {
     text-align: center;
 }
@@ -159,4 +162,18 @@ img {
 }
 
 
-/* adresse.html.twig */
+/* confirmation.html.twig */
+
+#confirmation {
+    text-align: center;
+}
+
+#confirmation2 {
+    background-color: #dededa;
+}
+
+@media screen and (max-width: 1140px) {
+    .card-text {
+        font-size: x-large;
+    }
+}
