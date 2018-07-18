@@ -9,8 +9,8 @@
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
     </head>
     <body class="container-fluid">
+     <header class="row">
         {% block header %}
-            <header class="row">
                     <div class="col-2 bouton_coiffeur">
                         <button type="button" class="btn btn-outline-primary" id="coiffeur">Coiffeur</button>
                     </div>
@@ -23,15 +23,15 @@
                     <div class="offset-4 col-2 bouton_client">
                         <button type="button" class="btn btn-outline-primary" id="client">Client</button>
                     </div>
-            </header>
         {% endblock %}
+    </header>
 
-
+    <main>
         {% block main %}{% endblock %}
+    </main>
 
-
+    <footer class="row footer">
         {% block footer %}
-            <footer class="row footer">
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">FAQ</div>
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">CGV</div>
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block" id="faq">Crédits</div>
@@ -41,8 +41,8 @@
                 <div class="col-sm-1"><i class="fab fa-instagram"></i></div>
                 <div class="col-sm-1"><i class="fab fa-google-plus-g"></i>
                 </div>
-            </footer>
         {% endblock %}
+    </footer>
 
 
         {% block javascripts %}
