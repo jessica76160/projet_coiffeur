@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<form action="" method="POST" >
+
+    {{ form_widget(form2) }}
+    {{ form_widget(form1) }}
+    
+    <input type="hidden" name="_target_path" value="{{ path('account') }}" />
+    <button class="btn">{{ button_label|default('Save') }}</button>
+</form>
+
+{% endblock %}

@@ -179,7 +179,7 @@ class Fixtures extends Fixture
         // enregistrement des clients --------------------------------------------------------------------------------
            
             $user2=new User();
-            $user2->setUsername('client1');
+            $user2->setUsername('jess11590@live.fr');
             $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'alex181187'));
             $user2->setRoles(['CLIENT']);
 
