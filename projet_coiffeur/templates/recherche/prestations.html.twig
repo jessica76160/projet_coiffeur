@@ -1,40 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recherche adresse{% endblock %}
-
-       {% block header %}
-                    <div class="col-2 bouton_coiffeur">
-                        <button type="button" class="btn btn-outline-primary" id="coiffeur">Coiffeur</button>
-                    </div>
-                    <div class="col-1">
-                        <a href="/accueil">Accueil</a>
-                    </div>
-                    <div class="offset-2 col-1 logo">
-                        <img src="{{asset('img/Calque4.png')}}"> 
-                    </div>
-                    <div class="offset-4 col-2 bouton_client">
-                        <button type="button" class="btn btn-outline-primary" id="client">Client</button>
-                    </div>
-        {% endblock %}
-
 {% block main %}
-    <div id="bandeau">Lieu / Nb personnes / Heure / <strong>Prestations</strong></div>
+    <div id="bandeau">Lieu / <strong>Nb personnes, Heure et Prestations</strong></div>
 
     <span id="retour">
-        <a href="/accueil"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+        <a href="/recherche/personne"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
-
-    <div id="adresse">
-        <img src="{{asset('img/localisation.png')}}" id="icone_localisation"><input type="text" placeholder="Adresse" name="adresse">
-    </div>
-    <br>
-    <div id="perimetre">
-        <img src="{{asset('img/radar.png')}}" id="icone_radar"><input type="text" placeholder="Périmètre" name="perimetre">
-    </div>
-    <div id="map">
-        <p>Map<p>
-    </div>
-    <div class="bouton_suivant">
-        <a href="/recherche/personne"><button type="button" class="btn btn-secondary btn-lg" id="rechercher_salon">Suivant</button></a>
-    </div>
 {% endblock %}

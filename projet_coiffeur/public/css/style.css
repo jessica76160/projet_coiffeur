@@ -17,77 +17,15 @@ body {
     border-color: white;
 }
 
-#coiffeur {
-    color: white;
-    height: 10vh;
-    font-family: 'Nobile', sans-serif;
-}
-
-#client {
-    color: white;
-    height: 10vh;
-    font-family: 'Nobile', sans-serif;
-}
-
 main {
     height: 85vh;
 }
 
-@media screen and (min-width: 1180px) {
-    #choix {
-        margin-right: 50vh;
-    }
-    #adresse {
-        margin-right: 50vh;
-    }
-    #perimetre {
-        margin-right: 50vh;
-    }
-}
-
-@media screen and (max-width: 200px) {
-    img {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 300px) {
-    .footer {
-        box-sizing: none;
-    }
-}
-
-@media screen and (max-width: 470px) {
-    #coiffeur {
-        width: 18vw;
-        font-size: xx-small;
-        padding-left: 15%;
-    }
-    #client {
-        width: 18vw;
-        font-size: xx-small;
-        padding-left: 30%;
-        text-align: left;
-    }
-    .row {
-        flex-wrap: nowrap;
-    }
-    #trouver_coiffeur_domicile {
-        font-size: small;
-    }
-    #rechercher_salon {
-        font-size: small;
-    }
-    h1 {
-        font-size: xx-large;
-    }
-}
-
 footer {
-    background-color: black;
     height: 5vh;
     color: white;
     line-height: 5vh;
+    font-family: 'Bad Script', sans-serif;
 }
 
 button {
@@ -125,14 +63,50 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: white;
     line-height: 10vh;
+    color: white;
     font-family: 'Bad Script', sans-serif;
 }
 
 img {
     line-height: 10vh;
     height: 10vh;
+}
+
+@media screen and (min-width: 1180px) {
+    #choix {
+        margin-right: 50vh;
+    }
+    #adresse {
+        margin-right: 50vh;
+    }
+    #perimetre {
+        margin-right: 50vh;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    img {
+        display: none;
+    }
+    .navbar-nav {
+        flex-direction: row;
+    }
+    .nav-link {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .footer {
+        box-sizing: none;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .row {
+        flex-wrap: nowrap;
+    }
 }
 
 
@@ -149,27 +123,31 @@ h1 {
     margin-top: 10vh;
 }
 
+@media screen and (max-width: 575px) {
+    #trouver_coiffeur_domicile {
+        font-size: small;
+        font-family: 'Nobile', sans-serif;
+    }
+    #rechercher_salon {
+        font-size: small;
+        font-family: 'Nobile', sans-serif;
+    }
+    h1 {
+        font-size: xx-large;
+    }
+}
+
 
 /* adresse.html.twig */
 
-@media screen and (min-width: 1180px) {
-    #adresse {
-        margin-right: 50vh;
-    }
-    #perimetre {
-        margin-right: 50vh;
-    }
-    #map {
-        margin-right: 50vh;
-    }
-    .bouton_suivant {
-        margin-right: 50vh;
-    }
-    #map {
-        margin-right: 30vh;
-        margin-left: 20vh;
-        width: 60%;
-    }
+#bandeau {
+    background-color: grey;
+    color: white;
+    height: 5%;
+    text-align: center;
+    font-family: 'Nobile', sans-serif;
+    padding-top: 5px;
+    font-size: small;
 }
 
 #input_adresse {
@@ -203,15 +181,6 @@ h1 {
     text-align: center;
 }
 
-#bandeau {
-    background-color: grey;
-    color: white;
-    height: 5%;
-    text-align: center;
-    font-family: 'Nobile', sans-serif;
-    padding-top: 5px;
-}
-
 #etapes {
     line-height: 5%;
 }
@@ -220,21 +189,61 @@ h1 {
     position: absolute;
 }
 
+#fleche {
+    width: 5%;
+}
+
+@media screen and (min-width: 1180px) {
+    #adresse {
+        margin-right: 50vh;
+    }
+    #perimetre {
+        margin-right: 50vh;
+    }
+    #map {
+        margin-right: 50vh;
+    }
+    .bouton_suivant {
+        margin-right: 50vh;
+    }
+    #map {
+        margin-right: 30vh;
+        margin-left: 20vh;
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 575px) {
+    #bandeau {
+        font-size: large;
+    }
+}
+
 
 /* personne.html.twig */
 
 #logo_homme {
     padding-right: 3%;
     padding-left: 3%;
-    width: 12%;
+    width: 10%;
 }
 
 #logo_femme {
-    width: 12%;
+    width: 8%;
+    padding-left: 2%;
+}
+
+#input_femme {
+    margin-left: 2%;
 }
 
 #logo_enfant {
-    width: 12%;
+    width: 4%;
+    margin-left: 3%;
+}
+
+#input_enfant {
+    margin-left: 3%;
 }
 
 #personne_prestation {
@@ -250,27 +259,6 @@ h1 {
     width: 20%;
     margin-left: 5%;
     font-size: small;
-}
-
-@media screen and (min-width: 1180px) {
-    #heure {
-        margin-right: 50vh;
-    }
-    #homme {
-        margin-right: 20vh;
-    }
-    #femme {
-        margin-right: 20vh;
-    }
-    #enfant {
-        margin-right: 20vh;
-    }
-    #titre_nombre_personne {
-        margin-right: 50vh;
-    }
-    #bouton_prestation {
-        margin-right: 20vh;
-    }
 }
 
 h1 {
@@ -292,4 +280,25 @@ h1 {
 
 #appt-time {
     width: 10%;
+}
+
+@media screen and (min-width: 1180px) {
+    #heure {
+        margin-right: 50vh;
+    }
+    #homme {
+        margin-right: 20vh;
+    }
+    #femme {
+        margin-right: 20vh;
+    }
+    #enfant {
+        margin-right: 20vh;
+    }
+    #titre_nombre_personne {
+        margin-right: 50vh;
+    }
+    #bouton_prestation {
+        margin-right: 20vh;
+    }
 }

@@ -15,13 +15,13 @@
             </span>
         </div>
         <div id="femme">
-            <img src="{{asset('img/femme.png')}}" id="logo_femme"><input type="text" placeholder="Femme" name="adresse">
+            <img src="{{asset('img/femme.png')}}" id="logo_femme"><input type="text" placeholder="Femme" name="adresse" id="input_femme">
             <span id="bouton_prestation">
                 <a href="/recherche/prestations"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
             </span>
         </div>
         <div id="enfant">
-            <img src="{{asset('img/enfant.png')}}" id="logo_enfant"><input type="text" placeholder="Enfant" name="adresse">
+            <img src="{{asset('img/enfant.png')}}" id="logo_enfant"><input type="text" placeholder="Enfant" name="adresse" id="input_enfant">
             <span id="bouton_prestation">
                 <a href="/recherche/prestations"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
             </span>
@@ -34,15 +34,6 @@
     </div>
 
     <div class="bouton_suivant">
-        <a href="/recherche/horaire"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Suivant</button></a>
+        <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Rechercher</button></a>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-            <script type="text/javascript">
-                $('.clockpicker').clockpicker();
-            </script>
 {% endblock %}

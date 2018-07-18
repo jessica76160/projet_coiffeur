@@ -42,14 +42,6 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("recherche/horaire", name="horaire")
-     */
-    public function horaire()
-    {
-        return $this->render('recherche/horaire.html.twig');
-    }
-
-    /**
      * @Route("recherche/prestations", name="prestations")
      */
     public function prestations()
