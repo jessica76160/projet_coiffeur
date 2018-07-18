@@ -177,3 +177,16 @@ img {
         font-size: x-large;
     }
 }
+
+
+/* connexion.html.twig */
+
+#idconnexion {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#idconnexion1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
