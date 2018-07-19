@@ -50,6 +50,16 @@ class PrestationComposee
      */
     private $prestationClients;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $genre;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $type_cheveux;
+
     public function __construct()
     {
         $this->prestationsClient = new ArrayCollection();
@@ -179,6 +189,30 @@ class PrestationComposee
             $this->prestationClients->removeElement($prestationClient);
             $prestationClient->removePrestationsComposee($this);
         }
+
+        return $this;
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(string $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getTypeCheveux(): ?string
+    {
+        return $this->type_cheveux;
+    }
+
+    public function setTypeCheveux(string $type_cheveux): self
+    {
+        $this->type_cheveux = $type_cheveux;
 
         return $this;
     }

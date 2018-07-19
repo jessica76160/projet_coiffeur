@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div id="bandeau">Lieu / <strong>Nb personnes, Heure et Prestations</strong></div>
+
+    <span id="retour">
+        <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+    </span>
+    <div id="personne_prestation">
+        <h1 id="titre_nombre_personne">Nombre de personne(s) et prestation(s) :</h1>
+        <div id="homme">
+            <img src="{{asset('img/homme.png')}}" id="logo_homme">
+            <select class=form-control>
+                <option value=un>0</option>
+                <option value=un>1</option>
+                <option value=deux>2</option>
+                <option value=trois>3</option>
+            </select>
+            <span id="bouton_prestation">
+                <a href="/recherche/prestations_homme"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
+            </span>
+        </div>
+        <div id="femme">
+            <img src="{{asset('img/femme.png')}}" id="logo_femme">
+            <select class=form-control id="input_femme">
+                <option value=un>0</option>
+                <option value=un>1</option>
+                <option value=deux>2</option>
+                <option value=trois>3</option>
+            </select>
+            <span id="bouton_prestation">
+                <a href="/recherche/prestations_femme"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
+            </span>
+        </div>
+        <div id="enfant">
+            <img src="{{asset('img/enfant.png')}}" id="logo_enfant">
+            <select class=form-control id="input_enfant">
+                <option value=un>0</option>
+                <option value=un>1</option>
+                <option value=deux>2</option>
+                <option value=trois>3</option>
+            </select>
+            <span id="bouton_prestation">
+                <a href="/recherche/prestations_enfant"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
+            </span>
+        </div>
+    </div>
+    
+    <div id="heure">
+        <h1 id="titre_heure">Heure :</h1>
+        <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
+    </div>
+
+    <div class="bouton_suivant">
+        <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Rechercher</button></a>
+    </div>
+{% endblock %}

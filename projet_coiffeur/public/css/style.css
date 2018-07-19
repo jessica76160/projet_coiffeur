@@ -222,83 +222,73 @@ h1 {
 
 /* personne.html.twig */
 
-#logo_homme {
-    padding-right: 3%;
-    padding-left: 3%;
-    width: 10%;
-}
-
-#logo_femme {
-    width: 8%;
-    padding-left: 2%;
-}
-
-#input_femme {
-    margin-left: 2%;
-}
-
-#logo_enfant {
-    width: 4%;
-    margin-left: 3%;
-}
-
-#input_enfant {
-    margin-left: 3%;
-}
-
-#personne_prestation {
+#choix_prestation {
+    height: 30%;
     text-align: center;
+    padding-top: 10%;
+}
+
+h5 {
+    font-family: 'Bad Script', sans-serif;
 }
 
 #heure {
+    margin-bottom: 3%;
+}
+
+#personne {
+    margin-bottom: 3%;
+}
+
+#type_cheveux {
+    margin-bottom: 3%;
+}
+
+.bouton_rechercher {
     text-align: center;
+    padding-top: 30vh;
 }
 
-#bouton_prestation {
-    font-family: 'Nobile', sans-serif;
-    width: 20%;
-    margin-left: 5%;
-    font-size: small;
+@media screen and (min-width: 1050px) {
+    #choix_prestation {
+        margin-right: 50vh;
+    }
+    .bouton_rechercher {
+        margin-right: 50vh;
+    }
 }
 
-h1 {
-    margin-top: 1%;
-    padding-bottom: 0;
+
+/* resultats.html.twig */
+
+#map_resultats {
+    border: solid;
+    height: 50%;
+    text-align: center;
+    margin: 0 5% 0 5%;
+    margin-top: 2%;
 }
 
-#femme {
-    padding-top: 1%;
+#header_resultats {
+    background-color: black;
+    height: 10%;
 }
 
-#enfant {
-    padding-top: 1%;
+#main_resultats {
+    height: 25%;
 }
 
-.form-control {
-    width: 10%;
-}
-
-#appt-time {
-    width: 10%;
+#footer_resultats {
+    height: 5vh;
+    color: white;
+    line-height: 5vh;
+    font-family: 'Bad Script', sans-serif;
 }
 
 @media screen and (min-width: 1180px) {
-    #heure {
-        margin-right: 50vh;
-    }
-    #homme {
-        margin-right: 20vh;
-    }
-    #femme {
-        margin-right: 20vh;
-    }
-    #enfant {
-        margin-right: 20vh;
-    }
-    #titre_nombre_personne {
-        margin-right: 50vh;
-    }
-    #bouton_prestation {
-        margin-right: 20vh;
+    #map_resultats {
+        margin-right: 30vh;
+        margin-left: 20vh;
+        width: 60%;
     }
 }

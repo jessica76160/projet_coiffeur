@@ -1,39 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <div id="bandeau">Lieu / <strong>Nb personnes, Heure et Prestations</strong></div>
+
+    <div id="bandeau">Lieu / <strong>Heure, Personne et Prestation(s)</strong></div>
 
     <span id="retour">
         <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
-    <div id="personne_prestation">
-        <h1 id="titre_nombre_personne">Nombre de personne(s) et prestation(s) :</h1>
-        <div id="homme">
-            <img src="{{asset('img/homme.png')}}" id="logo_homme"><input type="text" placeholder="Homme" name="adresse">
-            <span id="bouton_prestation">
-                <a href="/recherche/prestations"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
-            </span>
-        </div>
-        <div id="femme">
-            <img src="{{asset('img/femme.png')}}" id="logo_femme"><input type="text" placeholder="Femme" name="adresse" id="input_femme">
-            <span id="bouton_prestation">
-                <a href="/recherche/prestations"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
-            </span>
-        </div>
-        <div id="enfant">
-            <img src="{{asset('img/enfant.png')}}" id="logo_enfant"><input type="text" placeholder="Enfant" name="adresse" id="input_enfant">
-            <span id="bouton_prestation">
-                <a href="/recherche/prestations"><button type="button" class="btn btn-secondary btn-lg" id="bouton_prestation">Prestation</button></a>
-            </span>
-        </div>
-    </div>
-    
-    <div id="heure">
-        <h1 id="titre_heure">Heure :</h1>
-        <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
+
+    <div id="choix_prestation">
+        <form method="" action="" class="row">
+            <div id="heure" class="col-sm-12 col-md-2">
+                <h5 id="titre_heure">Heure :</h5>
+                <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
+            </div>
+            <div id="personne" class="col-sm-12 col-md-2">
+                <h5>Personne :</h5>
+                <select class=form-control>
+                    <option value=un>Homme</option>
+                    <option value=deux>Femme</option>
+                    <option value=trois>Enfant</option>
+                </select>
+            </div>
+            <div id="type_cheveux" class="col-sm-12 col-md-3">
+                <h5>Type de cheveux :</h5>
+                <select class=form-control>
+                    <option value=un>Courts</option>
+                    <option value=deux>Longs</option>
+                </select>
+            </div>
+            <div id="prestation" class="col-sm-12 col-md-5">
+                <h5>Prestation(s) :</h5>
+                <select class=form-control>
+                    <option value=un>Catégorie 1</option>
+                    <option value=deux>Catégorie 2</option>
+                </select>
+            </div>
+        </form>
     </div>
 
-    <div class="bouton_suivant">
+
+    <div class="bouton_rechercher">
         <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Rechercher</button></a>
     </div>
 {% endblock %}
