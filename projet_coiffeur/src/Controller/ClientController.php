@@ -35,7 +35,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("recherche/adresse", name="adresse")
+     * @Route("/recherche/adresse", name="adresse")
      */
     public function adresse()
     {
@@ -43,7 +43,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("recherche/personne", name="personne")
+     * @Route("/recherche/personne", name="personne")
      */
     public function personne()
     {
@@ -51,7 +51,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("recherche/resultats", name="resultats")
+     * @Route("/recherche/resultats", name="resultats")
      */
     public function resultats()
     {
@@ -59,23 +59,47 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("salon/{id}", name="salon")
+     * @Route("/salon", name="salon")
      */
-    public function salon($id)
+    public function salon()
     {
-        return $this->render('salon.html.twig', ['id' => $id]);
+        return $this->render('salon.html.twig');
     }
 
     /**
-     * @Route("reservation/reservation", name="reserver")
+     * @Route("/reservation/reservation", name="reserver")
      */
     public function reservation()
     {
         return $this->render('reservation/reservation.html.twig');
     }
 
+    /**
+     * @Route("/reservation/confirmation", name="confirmer")
+     */
+    public function confirmation()
+    {
+        return $this->render('reservation/confirmation.html.twig');
+    }
+
+    /**
+     * @Route("/client/compte", name="client_compte")
+     */
+    public function client_compte()
+    {
+        return $this->render('client/compte.html.twig');
+    }
+
+    /**
+     * @Route("/client/inscription", name="client_inscription")
+     */
+    public function client_inscription()
+    {
+        return $this->render('client/inscription.html.twig');
+    }
+
     // /**
-    //  * @Route("recherche/prestation", name="prestation")
+    //  * @Route("/recherche/prestation", name="prestation")
     //  */
     // public function prestation(Request $request)
     // {

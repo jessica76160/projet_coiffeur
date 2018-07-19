@@ -1,32 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Reservation{% endblock %}
+
 {% block main %}
-<br>
-<br>
+  <span id="retour">
+    <a href="{{ path('resultats') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+  </span>
 
-<div class="col" id="idreservation">
-<div id="choix">
-    
-    <div class="card text-center">
-  <div class="card-header">
-    Recapitulatif client
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">RDV au salon Coiff'heur à 10h15</h5>
-    <p class="card-text">52 rue de Gevres 60000 Beauvais</p>
-  </div>
-  <div class="card-footer text-muted">
-    1 coupe homme Prix : 15 € Total : 15€
-  </div>
+  <div class="col" id="idreservation">
+    <div id="choix">
+      <div class="card text-center">
+        <div class="card-header">
+          Récapitulatif client
+        </div>
+      <div class="card-body">
+        <h5 class="card-title">RDV au salon Coiff'heur à 10h15</h5>
+        <p class="card-text">52 rue de Gevres 60000 Beauvais</p>
+      </div>
+      <div class="card-footer text-muted">
+        1 coupe homme Prix : 15 € Total : 15€
+      </div>
+    </div>
 </div>
-</div>
-  
 
-
-  
-
- <form id="choix">
+<form id="choix">
   <div class="form-group mb-2">
     <label for="staticEmail2" class="sr-only">Email</label>
     <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Votre adresse mail">
@@ -35,15 +32,10 @@
     <label for="inputPassword2" class="sr-only">Password</label>
     <input type="password" class="form-control" id="inputPassword2" placeholder="jean@....">
   </div>
-  <button type="button" class="btn btn-secondary btn-lg" id="trouver_coiffeur_domicile">Validez</button>
+  <a href="{{ path('confirmer') }}">
+    <button type="button" class="btn btn-secondary btn-lg" id="trouver_coiffeur_domicile">Réserver</button>
+  </a>
 </form>
-</div>
-  </div>
-
-
-
-
-
 {% endblock %}
 
 
