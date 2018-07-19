@@ -9,13 +9,20 @@ use App\Form\UserType;
 use App\Form\ClientType;
 use App\Entity\User;
 use App\Entity\Client;
+use App\Entity\PrestationComposee;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Session\Storage\PhpBridgeSessionStorage;
+use App\Form\PrestationClientType;
+use App\Entity\PrestationClient;
 
 class ClientController extends Controller
 {
     /**
-     * @Route("/client/inscription", name="client_inscription")
+     * @Route("/inscription/client", name="client_inscription")
      */
 
     public function inscriptionClient(Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -73,10 +80,25 @@ class ClientController extends Controller
      */
     public function rechercheAdresse(Request $request)
     {
+        $form = $this->createFormBuilder()
+        ->add('perimetre', TextType::class)
+        ->add('adresse', TextType::class)
+        ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() ){
+            $data = $form->getData();
+
+            return $this->redirectToRoute('recherche_detail');
+            
+        }
+
+
 
         return $this->render(
             'client/adresse.html.twig',
-            array()
+            array('form' => $form->createView())
         );
     }
 
@@ -85,10 +107,37 @@ class ClientController extends Controller
      */
     public function accueilAction(Request $request)
     {
-
+        
         return $this->render(
             'accueil.html.twig',
             array()
+        );
+    }
+
+    /**
+     * @Route("/client/moncompte", name="client_moncompte")
+     */
+    public function moncompteAction(Request $request)
+    {
+
+        return $this->render(
+            '/client/moncompte.html.twig',
+            array()
+        );
+    }
+
+     /**
+     * @Route("/recherche/detail", name="recherche_detail")
+     */
+
+    public function rechercheDetail(Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository(PrestationComposee::class);
+        $prestas = $repository->prestasComposees();
+
+        return $this->render(
+            'recherche/detail.html.twig',
+            array('prestas'=>$prestas)
         );
     }
 }

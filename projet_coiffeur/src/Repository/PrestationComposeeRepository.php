@@ -47,4 +47,30 @@ class PrestationComposeeRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findPrestationsComposeByCat($typeCheveux,$genre)
+    {
+        
+        return $this->createQueryBuilder('p')
+            ->select('p.nom')->distinct()
+            ->where('p.genre= :genre')
+            ->andWhere('p.typeCheveux= :type')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
+    public function prestasComposees()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.nom')->distinct()
+            ->addSelect('p.genre')
+            ->addSelect('p.type_cheveux')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
+        
 }

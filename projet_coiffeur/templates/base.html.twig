@@ -15,14 +15,19 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-dark row">
                 <ul class="navbar-nav" style="width:100%">
                         <li class="nav-item col-4">
-                            <a class="nav-link text-white" href="#">espace coiffeur</a>
+                            <a class="nav-link text-white" href="/connexion">espace coiffeur</a>
                         </li>
                         <li class="nav-item col-4" style="text-align:center">
                             <img class="mr-auto ml-auto pt-1 pb-1" src="{{asset('img/Calque4.png')}}">
                         </li>
-                        <li class="nav-item col-4" style="text-align:right">
-                            <a class="nav-link text-white" href="#">espace client</a>
-                        </li>
+                        <div class="navbar-nav col-4">
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link text-white" href="/client/moncompte" >mon compte</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/connexion">espace client</a>
+                            </li>
+                        </div>
                 </ul>
             </nav>
 
@@ -49,9 +54,12 @@
 
 
         {% block javascripts %}
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+            <!-- script jquerry -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <!-- script ajax -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+            <!-- script boostrap -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         {% endblock %}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </html>

@@ -100,11 +100,6 @@ button {
     font-family: 'Nobile', sans-serif;
 }
 
-#adresse {
-    text-align: center;
-    margin-top: 10vh;
-}
-
 input {
     border-radius: 5px;
 }
@@ -150,4 +145,83 @@ img {
 }
 
 
-/* adresse.html.twig */
+/* reservation */
+
+#staticEmail2 {
+    text-align: center;
+}
+
+#idreservation {
+    width: 80%;
+    margin: 0px 50px;
+}
+
+
+/*adresse*/
+
+@media screen and (min-width: 1180px) {
+    #adresse {
+        margin-right: 50vh;
+    }
+    #perimetre {
+        margin-right: 50vh;
+    }
+    #map {
+        margin-right: 50vh;
+    }
+    .bouton_suivant {
+        margin-right: 50vh;
+    }
+    #map {
+        margin-right: 30vh;
+        margin-left: 20vh;
+        width: 60%;
+    }
+}
+
+#perimetre {
+    text-align: center;
+    margin-top: 5vh;
+}
+
+#adresse {
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+#map {
+    border: solid;
+    height: 50%;
+    text-align: center;
+    margin: 0 5% 0 5%;
+}
+
+#icone_localisation {
+    width: 5%;
+    height: 5%;
+}
+
+#icone_radar {
+    width: 5%;
+    height: 5%;
+    padding-right: 1%;
+}
+
+.bouton_suivant {
+    text-align: center;
+}
+
+#bandeau {
+    background-color: grey;
+    color: white;
+    height: 5%;
+    text-align: center;
+}
+
+#etapes {
+    line-height: 5%;
+}
+
+#retour {
+    position: absolute;
+}
