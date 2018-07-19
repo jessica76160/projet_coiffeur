@@ -7,7 +7,7 @@
     <span id="retour">
         <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
-
+    
     <div id="choix_prestation">
         <form method="" action="" class="row">
             <div id="heure" class="col-sm-12 col-md-2">
@@ -32,8 +32,11 @@
             <div id="prestation" class="col-sm-12 col-md-5">
                 <h5>Prestation(s) :</h5>
                 <select class="form-control" id="selectPrestas">
-                    <option value=un>Catégorie 1</option>
-                    <option value=deux>Catégorie 2</option>
+                {% for presta in prestas %}
+
+                    <option value={{presta.nom}}>{{presta.nom}}</option>
+
+                {% endfor %}
                 </select>
             </div>
         </form>
@@ -56,6 +59,8 @@
                 var genre=$('#personne').value;
                 var type=$('#type_cheveux').value;
                 
+
+
                 $('#selectPrestas').html("");
             });
 
