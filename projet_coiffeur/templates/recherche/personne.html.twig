@@ -5,7 +5,7 @@
     <div id="bandeau">Lieu / <strong>Heure, Personne et Prestation(s)</strong></div>
 
     <span id="retour">
-        <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+        <a href="{{ path('adresse') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
 
     <div id="choix_prestation">
@@ -16,7 +16,7 @@
             </div>
             <div id="personne" class="col-sm-12 col-md-2">
                 <h5>Personne :</h5>
-                <select class=form-control>
+                <select class="form-control">
                     <option value=un>Homme</option>
                     <option value=deux>Femme</option>
                     <option value=trois>Enfant</option>
@@ -24,14 +24,14 @@
             </div>
             <div id="type_cheveux" class="col-sm-12 col-md-3">
                 <h5>Type de cheveux :</h5>
-                <select class=form-control>
+                <select class="form-control">
                     <option value=un>Courts</option>
                     <option value=deux>Longs</option>
                 </select>
             </div>
             <div id="prestation" class="col-sm-12 col-md-5">
                 <h5>Prestation(s) :</h5>
-                <select class=form-control>
+                <select class="form-control">
                     <option value=un>Catégorie 1</option>
                     <option value=deux>Catégorie 2</option>
                 </select>
@@ -41,6 +41,6 @@
 
 
     <div class="bouton_rechercher">
-        <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Rechercher</button></a>
+        <a href="{{ path('rechercher') }}"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Rechercher</button></a>
     </div>
 {% endblock %}

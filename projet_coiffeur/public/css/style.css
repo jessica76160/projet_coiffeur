@@ -263,7 +263,7 @@ h5 {
 
 #map_resultats {
     border: solid;
-    height: 50%;
+    height: 250px;
     text-align: center;
     margin: 0 5% 0 5%;
     margin-top: 2%;
@@ -275,14 +275,63 @@ h5 {
 }
 
 #main_resultats {
-    height: 25%;
+    height: 85%;
 }
 
 #footer_resultats {
-    height: 5vh;
+    height: 5%;
     color: white;
     line-height: 5vh;
     font-family: 'Bad Script', sans-serif;
+}
+
+#titre_resultats {
+    text-align: center;
+    margin-top: 2%;
+    padding-bottom: 0;
+}
+
+#aucun_resultat {
+    text-align: center;
+}
+
+#tri {
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+h4 {
+    font-family: 'Bad Script', sans-serif;
+}
+
+#description_resultats {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: grey;
+    color: white;
+    font-family: 'Nobile', sans-serif;
+}
+
+#bouton_infos {
+    font-size: x-small;
+    margin-top: 25%;
+    font-family: 'Nobile', sans-serif;
+}
+
+#a_bouton_infos {
+    line-height: 4vh;
+}
+
+#bouton_reserver {
+    font-size: x-small;
+    margin-bottom: 25%;
+    font-family: 'Nobile', sans-serif;
+}
+
+#a_bouton_reserver {
+    line-height: 4vh;
 }
 
 @media screen and (min-width: 1180px) {
@@ -291,4 +340,158 @@ h5 {
         margin-left: 20vh;
         width: 60%;
     }
+    #titre_resultats {
+        margin-right: 50vh;
+    }
+    #aucun_resultat {
+        margin-right: 50vh;
+    }
+    #tri_categorie {
+        margin-right: 50vh;
+    }
+    #description_resultats {
+        margin-right: 60vh;
+    }
+}
+
+
+/* salon.html.twig */
+
+#div_photo {
+    border: solid;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 20%;
+}
+
+#photo_salon {
+    width: 100%;
+    height: 100%;
+}
+
+#map_infos {
+    height: 250px;
+    border: solid;
+    text-align: center;
+    margin: 0 5% 0 5%;
+}
+
+#prestations_proposees {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: rgb(236, 219, 219);
+    color: black;
+    font-family: 'Nobile', sans-serif;
+}
+
+@media screen and (min-width: 1180px) {
+    #div_photo {
+        margin-right: 60vh;
+    }
+    #map_infos {
+        margin-right: 60vh;
+    }
+    #prestations_proposees {
+        margin-right: 60vh;
+    }
+}
+
+
+/* reservation.html.twig */
+
+#staticEmail2 {
+    text-align: center;
+}
+
+#idreservation {
+    width: 80%;
+    margin: 0px 50px;
+}
+
+
+/* confirmation.html.twig */
+
+#confirmation {
+    text-align: center;
+}
+
+#confirmation2 {
+    background-color: #dededa;
+}
+
+@media screen and (max-width: 1140px) {
+    .card-text {
+        font-size: x-large;
+    }
+}
+
+
+/* connexion.html.twig */
+
+#idconnexion {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#idconnexion1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+
+/* inscription.html.twig */
+
+#maili {
+    text-align: center;
+}
+
+#form1 {
+    margin-top: 490px;
+    text-align: center;
+}
+
+#user {
+    width: 74%;
+}
+
+#btni {
+    margin-right: 283px;
+}
+
+@media screen and (max-width: 1140px) {
+    #user {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1140px) {
+    #form2 {
+        width: 100%;
+    }
+}
+
+
+/* compte.html.twig */
+
+@media screen and (max-width: 1140px) {
+    #inputcompte {
+        width: 500px;
+        font-size: x-large;
+    }
+}
+
+#inputcompte {
+    width: 300px;
+}
+
+#bouttoncompte {
+    height: 38px;
+    margin-bottom: 9px;
+    font-size: 16px;
+}
+
+#staticEmail2 {
+    font-size: 20px;
 }

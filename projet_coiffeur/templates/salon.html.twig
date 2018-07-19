@@ -25,91 +25,104 @@
                         </li>
                 </ul>
             </nav>
-
         {% endblock %}
     </header>
 
     <main id="main_resultats">
         {% block main %}
-        
-        <div id="main-resultats">
-    <span id="retour">
-        <a href="/recherche/personne"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
-    </span>
+            <span id="retour">
+                <a href="/recherche/resultats"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+            </span>
 
-    <h4 id="titre_resultats">Résultats de la recherche</h4>
-
-    <p id="aucun_resultat">Aucun résultat trouvé (caché lorsqu'il y a des résultats)</p>
-
-    <div id="map_resultats">
-        <p>Map<p>
-    </div>
-
-    <div class="row" id="tri">
-        <div class="col-3">
-            <h4>Tri par :</h4>
-        </div>
-        <div class="col-7" id="tri_categorie">
-            <select class="form-control">
-                <option value=un>Horaire</option>
-                <option value=deux>Distance</option>
-                <option value=deux>Prix</option>
-                <option value=deux>Note</option>
-            </select>
-        </div>
-    </div>
-
-    <div id="description_resultats" class="row">
-        <div class="col-10">
-            <p><strong>Salon</strong></p>
-        </div>
-        <div class="col-1">
-            <div class="bouton_infos">
-                <a href="{{ path('salon') }}" id="a_bouton_infos">
-                    <button type="button" class="btn btn-secondary btn-lg" id="bouton_infos">+ d'infos</button>
-                </a>
+            <div id="div_photo">
+                <img src="{{asset('img/salon.jpg')}}" id="photo_salon">
             </div>
-        </div>
-        <div class="col-4">
-            <p>10h30</p>
-        </div>
-        <div class="col-8">
-        </div>
-        <div class="col-4">
-            <p>Homme</p>
-        </div>
-        <div class="col-8">
-        </div>
-        <div class="col-4">
-            <p>Cheveux courts</p>
-        </div>
-        <div class="col-8">
-        </div>
-        <div class="col-4">
-            <p>Coupe homme</p>
-        </div>
-        <div class="col-8">
-        </div>
-        <div class="col-4">
-            <p>2 km</p>
-        </div>
-        <div class="col-8">
-        </div>
-        <div class="col-5">
-            <p>Note</p>
-        </div>
-        <div class="col-3">
-            <p><strong>Prix total : 20 €</strong></p>
-        </div>
-        <div class="offset-2 col-1">
-            <div class="bouton_reserver">
-                <a href="{{ path('reserver') }}" id="a_bouton_reserver">
-                    <button type="button" class="btn btn-secondary btn-lg" id="bouton_reserver">Réserver</button>
-                </a>
+            <div id="map_infos">
+                <p>Map<p>
             </div>
-        </div>
-    </div>
-        
+
+            <div id="description_resultats" class="row">
+                <div class="col-12">
+                    <p><strong>Salon</strong></p>
+                </div>
+                <div class="col-4">
+                    <p>10h30</p>
+                </div>
+                <div class="col-8">
+                </div>
+                <div class="col-4">
+                    <p>Homme</p>
+                </div>
+                <div class="col-8">
+                </div>
+                <div class="col-4">
+                    <p>Cheveux courts</p>
+                </div>
+                <div class="col-8">
+                </div>
+                <div class="col-4">
+                    <p>Coupe homme</p>
+                </div>
+                <div class="col-8">
+                </div>
+                <div class="col-4">
+                    <p>2 km</p>
+                </div>
+                <div class="col-8">
+                </div>
+                <div class="col-5">
+                    <p>Note</p>
+                </div>
+                <div class="col-3">
+                    <p><strong>Prix total : 20 €</strong></p>
+                </div>
+                <div class="offset-2 col-1">
+                    <div class="bouton_reserver">
+                        <a href="/recherche/resultats" id="a_bouton_reserver">
+                            <button type="button" class="btn btn-secondary btn-lg" id="bouton_reserver">Réserver</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="prestations_proposees" class="row">
+                <div class="col-10">
+                    <p><strong>Prestations proposées :</strong></p>
+                </div>
+                <div class="col-2">
+                     <p><strong>Tarifs :</strong></p>
+                </div>
+                <div class="col-10">
+                    <p>Coupe homme</p>
+                </div>
+                <div class="col-2">
+                    <p>20 €</p>
+                </div>
+                <div class="col-10">
+                    <p>Coupe homme</p>
+                </div>
+                <div class="col-2">
+                    <p>20 €</p>
+                </div>
+                <div class="col-10">
+                    <p>Coupe homme</p>
+                </div>
+                <div class="col-2">
+                    <p>20 €</p>
+                </div>
+                <div class="col-10">
+                    <p>Coupe homme</p>
+                </div>
+                <div class="col-2">
+                    <p>20 €</p>
+                </div>
+                <div class="col-10">
+                    <p>Coupe homme</p>
+                </div>
+                <div class="col-2">
+                    <p>20 €</p>
+                </div>
+            </div>
         {% endblock %}
     </main>
 
