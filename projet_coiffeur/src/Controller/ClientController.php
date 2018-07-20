@@ -92,7 +92,9 @@ class ClientController extends Controller
 
         if ($form->isSubmitted() ){
             $data = $form->getData();
-            $session->set('adresse', $data['adresse']);
+            $session->set('lat', $data['lat']);
+            $session->set('lng', $data['lng']);
+            $session->set('perimetre', $data['perimetre']);
             return $this->redirectToRoute('recherche_detail');
             
         }
