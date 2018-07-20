@@ -31,7 +31,7 @@
     <main id="main_resultats">
         {% block main %}
             <span id="retour">
-                <a href="/recherche/resultats"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+                <a href="{{ path('resultats') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
             </span>
 
             <div id="div_photo">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="offset-2 col-1">
                     <div class="bouton_reserver">
-                        <a href="/recherche/resultats" id="a_bouton_reserver">
+                        <a href="{{ path('reservation') }}" id="a_bouton_reserver">
                             <button type="button" class="btn btn-secondary btn-lg" id="bouton_reserver">Réserver</button>
                         </a>
                     </div>

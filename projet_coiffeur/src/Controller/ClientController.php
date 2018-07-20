@@ -75,7 +75,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/reservation/reservation", name="reserver")
+     * @Route("/reservation", name="reservation")
      */
     public function reservation()
     {
@@ -83,7 +83,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/reservation/confirmation", name="confirmer")
+     * @Route("/confirmation", name="confirmation")
      */
     public function confirmation()
     {
@@ -91,20 +91,115 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/client/compte", name="client_compte")
+     * @Route("/inscription/client", name="client_inscription")
      */
-    public function client_compte()
+
+    public function inscriptionClient(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        return $this->render('client/compte.html.twig');
+        // generer les formulaires
+
+            $user = new User();
+            $form1 = $this->createForm(UserType::class, $user);
+
+            $client = new Client();
+            $form2 = $this->createForm(ClientType::class, $client);
+
+            $form1->handleRequest($request);
+            $form2->handleRequest($request);
+            $erreursClient=[];
+            $erreursUser=[];
+
+
+        // apres submit :
+
+            if ($form1->isSubmitted() && $form1->isValid() && $form2->isSubmitted() && $form2->isValid()) {
+
+
+                    $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+                    $user->setPassword($password);
+                    $user->setRoles(['CLIENT']);
+                    $user->setUsername($client->getEmail());
+
+                    //lier user et client
+
+                    $client->setUser($user);
+
+                    // On enregistre l'utilisateur dans la base
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($user);
+                    $em->flush();
+
+                    $em->persist($client);
+                    $em->flush();
+
+                    return $this->redirectToRoute('connexion');
+
+            }
+
+        // renvoyer la page d'inscription
+
+        return $this->render(
+            'client/inscription.html.twig',
+            array('form1' => $form1->createView(),'form2' => $form2->createView(),'erreursClient'=>$erreursClient,'erreursUser'=>$erreursUser)
+        );
     }
 
+
     /**
-     * @Route("/client/inscription", name="client_inscription")
+     * @Route("/client/compte", name="compte_client")
      */
-    public function client_inscription()
+
+    public function compteClient(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        return $this->render('client/inscription.html.twig');
+        // generer les formulaires
+
+            $user = new User();
+            $form1 = $this->createForm(UserType::class, $user);
+
+            $client = new Client();
+            $form2 = $this->createForm(ClientType::class, $client);
+
+            $form1->handleRequest($request);
+            $form2->handleRequest($request);
+            $erreursClient=[];
+            $erreursUser=[];
+
+
+        // apres submit :
+
+            if ($form1->isSubmitted() && $form1->isValid() && $form2->isSubmitted() && $form2->isValid()) {
+
+
+                    $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+                    $user->setPassword($password);
+                    $user->setRoles(['CLIENT']);
+                    $user->setUsername($client->getEmail());
+
+                    //lier user et client
+
+                    $client->setUser($user);
+
+                    // On enregistre l'utilisateur dans la base
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($user);
+                    $em->flush();
+
+                    $em->persist($client);
+                    $em->flush();
+
+                    return $this->redirectToRoute('connexion');
+
+            }
+
+        // renvoyer la page d'inscription
+
+        return $this->render(
+            'client/compte.html.twig',
+            array('form1' => $form1->createView(),'form2' => $form2->createView(),'erreursClient'=>$erreursClient,'erreursUser'=>$erreursUser)
+        );
     }
+
+}
 
     // /**
     //  * @Route("/recherche/prestation", name="prestation")
@@ -123,48 +218,48 @@ class ClientController extends Controller
      * @Route("/recherche/detail", name="recherche_detail")
      */
 
-    public function rechercheDetail(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        // generer les formulaires
+//     public function rechercheDetail(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+//     {
+//         // generer les formulaires
 
-            $prestationClient = new PrestationClient();
-            $form1 = $this->createForm(PrestationClientType::class, $prestationClient);
+//             $prestationClient = new PrestationClient();
+//             $form1 = $this->createForm(PrestationClientType::class, $prestationClient);
 
-            $form1->handleRequest($request);
-
-
-        // apres submit :
-
-            // if ($form1->isSubmitted() && $form1->isValid() && $form2->isSubmitted() && $form2->isValid()) {
+//             $form1->handleRequest($request);
 
 
-            //         $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            //         $user->setPassword($password);
-            //         $user->setRoles(['CLIENT']);
-            //         $user->setUsername($client->getEmail());
+//         // apres submit :
 
-            //         //lier user et client
+//             // if ($form1->isSubmitted() && $form1->isValid() && $form2->isSubmitted() && $form2->isValid()) {
 
-            //         $client->setUser($user);
 
-            //         // On enregistre l'utilisateur dans la base
-            //         $em = $this->getDoctrine()->getManager();
-            //         $em->persist($user);
-            //         $em->flush();
+//             //         $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+//             //         $user->setPassword($password);
+//             //         $user->setRoles(['CLIENT']);
+//             //         $user->setUsername($client->getEmail());
 
-            //         $em->persist($client);
-            //         $em->flush();
+//             //         //lier user et client
 
-            //         return $this->redirectToRoute('connexion');
+//             //         $client->setUser($user);
 
-            // }
+//             //         // On enregistre l'utilisateur dans la base
+//             //         $em = $this->getDoctrine()->getManager();
+//             //         $em->persist($user);
+//             //         $em->flush();
 
-        // renvoyer la page d'inscription
+//             //         $em->persist($client);
+//             //         $em->flush();
 
-        return $this->render(
-            'recherche/detail.html.twig',
-            array('form1' => $form1->createView())
-        );
-    }
+//             //         return $this->redirectToRoute('connexion');
 
-}
+//             // }
+
+//         // renvoyer la page d'inscription
+
+//         return $this->render(
+//             'recherche/detail.html.twig',
+//             array('form1' => $form1->createView())
+//         );
+//     }
+
+// }
