@@ -68,6 +68,39 @@ img {
     height: 10vh;
 }
 
+#nom_site_debut {
+    line-height: 10vh;
+    font-family: 'Bad Script', sans-serif;
+    color: white;
+    font-size: medium;
+    text-align: right;
+}
+
+#nom_site_fin {
+    line-height: 10vh;
+    font-family: 'Bad Script', sans-serif;
+    color: white;
+    font-size: medium;
+}
+
+#padding_nom_debut {
+    padding: 0;
+}
+
+#padding_nom_fin {
+    padding: 0;
+}
+
+@media screen and (min-width: 1180px) {
+    #nom_site_debut {
+        font-size: xx-large;
+        text-align: right;
+    }
+    #nom_site_fin {
+        font-size: xx-large;
+    }
+}
+
 @media screen and (max-width: 575px) {
     img {
         display: none;
@@ -612,5 +645,8 @@ h4 {
     #bouton_reserver_domicile {
         font-size: medium;
         margin-bottom: 2%;
+    }
+    #description_coiffeurs_disponibles {
+        margin-right: 70vh;
     }
 }
