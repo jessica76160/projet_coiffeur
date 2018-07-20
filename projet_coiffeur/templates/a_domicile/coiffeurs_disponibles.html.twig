@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div id="bandeau">Adresse / <strong>Heure, Personne et Prestation(s)</strong></div>
+
+    <span id="retour">
+        <a href="{{ path('personne_domicile') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+    </span>
+    <h4 id="titre_resultats">Résultats de la recherche</h4>
+    <p id="aucun_resultat">Aucun résultat trouvé (caché lorsqu'il y a des résultats)</p>
+
+    <div id="description_coiffeurs_disponibles" class="row">
+        <div class="col-12">
+            <p><strong>Christelle</strong></p>
+        </div>
+        <div class="col-12">
+            <p>1 coupe homme : 20 €</p>
+        </div>
+        <div class="col-12">
+            <p>1 couleur : 25 €</p>
+        </div>
+        <div class="offset-4 col-4">
+            <p><strong>Prix total : 45 €</strong></p>
+        </div>
+        <div class="col-4">
+            <a href="{{ path('reservation_domicile') }}">
+                <button type="button" class="btn btn-secondary btn-lg" id="bouton_reserver_domicile">Réserver</button>
+            </a>
+        </div>
+    </div>
+    
+{% endblock %}

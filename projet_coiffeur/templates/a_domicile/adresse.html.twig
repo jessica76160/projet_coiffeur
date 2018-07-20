@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div id="bandeau"><strong>Adresse</strong> / Heure, Personne et Prestation(s)</div>
+
+    <span id="retour">
+        <a href="{{ path('accueil') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+    </span>
+
+    <div id="adresse_domicile">
+        <img src="{{asset('img/localisation.png')}}" id="icone_localisation"><input type="text" placeholder="Adresse" name="adresse" id="input_adresse">
+    </div>
+    <div class="bouton_suivant">
+        <a href="{{ path('personne_domicile') }}"><button type="button" class="btn btn-secondary btn-lg" id="rechercher_salon">Suivant</button></a>
+    </div>
+{% endblock %}

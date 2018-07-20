@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block main %}
+  <span id="retour">
+    <a href="{{ path('coiffeurs_disponibles') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+  </span>
+
+  <div class="col" id="idreservation">
+    <div id="choix">
+      <div class="card text-center">
+        <div class="card-header">
+          Récapitulatif client
+        </div>
+      <div class="card-body">
+        <h5 class="card-title">RDV à votre domicile à 10h15</h5>
+        <p class="card-text">52 rue de Gevres 60000 Beauvais</p>
+        <h5>avec Christelle</h5>
+      </div>
+      <div class="card-footer text-muted">
+        1 coupe homme Prix : 15 € Total : 15€
+      </div>
+    </div>
+</div>
+
+<form id="choix">
+  <div class="form-group mb-2">
+    <label for="staticEmail2" class="sr-only">Email</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Votre adresse mail">
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">Password</label>
+    <input type="password" class="form-control" id="inputPassword2" placeholder="jean@....">
+  </div>
+  <a href="{{ path('confirmation_domicile') }}">
+    <button type="button" class="btn btn-secondary btn-lg" id="trouver_coiffeur_domicile">Réserver</button>
+  </a>
+</form>
+{% endblock %}
+
+
+
+
+  

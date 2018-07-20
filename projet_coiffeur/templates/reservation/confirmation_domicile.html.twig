@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation{% endblock %}
+{% block main %}
+ <div class="row">
+    <div class="col-xl-2">
+    </div>
+    <div class="col-xl-6" id="confirmation">
+      <div class="card">
+        <h3 class="card-header" id="confirmation2">Votre réservation est confirmée</h3>
+        <div class="card">
+          <div class="card-header">
+            <h3>Récapitulatif client</h3>
+            <h5>RDV à votre domicile à 10h15</h5>
+            <h5>52 rue de Gevres 60000 Beauvais</h5>
+            <h5>avec Christelle</h5>
+            <h5>02-32-..-..-..</h5>
+            <h5>1 coupe homme Prix : 15 € Total : 15€</h5>
+            <div class="card text-center" >
+              <div class="card-body">
+                <h4 class="card-title">Cher client(e)(s),</h4>
+                <p class="card-text">
+                  Nous avons le plaisir de vous informer que votre réservation à bien été enregistrée. Vous retrouverez ci-dessus toutes les informations concernant votre réservation.<br>
+                  Vous receverez un Email descriptif de votre commande ainsi qu'un sms 1h avant la prestation.<br>
+                  Voici votre code de confirmation :<br>
+                  <em>M5yT96</em> <br>
+                  Il vous sera demandé pour tout changement d'horaire ou d'annulation ainsi que lors de la prestation dans votre salon.<br>
+                  Merci et à très vite sur Coiff'heur !
+                </p>
+                <a href="{{ path('accueil') }}">
+                  <button type="button" class="btn btn-secondary btn-lg">Retour à la page d'accueil</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="col-xl-4">  
+  </div>
+{% endblock %}

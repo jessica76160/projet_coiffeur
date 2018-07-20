@@ -91,6 +91,54 @@ class ClientController extends Controller
     }
 
     /**
+     * @Route("/a_domicile/adresse", name="adresse_domicile")
+     */
+    public function adresse_domicile()
+    {
+        return $this->render('a_domicile/adresse.html.twig');
+    }
+
+    /**
+     * @Route("/a_domicile/personne", name="personne_domicile")
+     */
+    public function personne_domicile()
+    {
+        return $this->render('a_domicile/personne.html.twig');
+    }
+
+    /**
+     * @Route("/a_domicile/prestation", name="prestation_domicile")
+     */
+    public function prestation_domicile()
+    {
+        return $this->render('a_domicile/prestation.html.twig');
+    }
+
+    /**
+     * @Route("/reservation_domicile", name="reservation_domicile")
+     */
+    public function reservation_domicile()
+    {
+        return $this->render('reservation/reservation_domicile.html.twig');
+    }
+
+    /**
+     * @Route("/confirmation_domicile", name="confirmation_domicile")
+     */
+    public function confirmation_domicile()
+    {
+        return $this->render('reservation/confirmation_domicile.html.twig');
+    }
+
+    /**
+     * @Route("/a_domicile/coiffeurs_disponibles", name="coiffeurs_disponibles")
+     */
+    public function coiffeurs_disponibles()
+    {
+        return $this->render('a_domicile/coiffeurs_disponibles.html.twig');
+    }
+
+    /**
      * @Route("/inscription/client", name="client_inscription")
      */
 

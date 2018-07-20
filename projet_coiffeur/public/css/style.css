@@ -32,11 +32,6 @@ button {
     font-family: 'Nobile', sans-serif;
 }
 
-#adresse {
-    text-align: center;
-    margin-top: 2%;
-}
-
 input {
     border-radius: 5px;
 }
@@ -73,15 +68,6 @@ img {
     height: 10vh;
 }
 
-@media screen and (min-width: 1180px) {
-    #adresse {
-        margin-right: 50vh;
-    }
-    #perimetre {
-        margin-right: 50vh;
-    }
-}
-
 @media screen and (max-width: 575px) {
     img {
         display: none;
@@ -115,9 +101,23 @@ h1 {
     padding-bottom: 5vh;
 }
 
+#adresse {
+    text-align: center;
+    margin-top: 2%;
+}
+
 #choix_accueil {
     text-align: center;
     margin-top: 10vh;
+}
+
+@media screen and (min-width: 1180px) {
+    #adresse {
+        margin-right: 50vh;
+    }
+    #perimetre {
+        margin-right: 50vh;
+    }
 }
 
 @media screen and (max-width: 575px) {
@@ -509,6 +509,7 @@ h4 {
 
 #maili {
     text-align: center;
+    margin-bottom: 2%;
 }
 
 #form1 {
@@ -521,7 +522,12 @@ h4 {
 }
 
 #btni {
-    margin-right: 283px;
+    text-align: center;
+}
+
+#titre_creer_compte {
+    margin-top: 2vh;
+    padding-bottom: 0;
 }
 
 @media screen and (max-width: 1140px) {
@@ -536,8 +542,19 @@ h4 {
     }
 }
 
+@media screen and (min-width: 1180px) {
+    #btni {
+        margin-right: 35vh;
+    }
+}
+
 
 /* compte.html.twig */
+
+#titre_compte_client {
+    margin-top: 2vh;
+    padding-bottom: 0;
+}
 
 @media screen and (max-width: 1140px) {
     #inputcompte {
@@ -558,4 +575,42 @@ h4 {
 
 #staticEmail2 {
     font-size: 20px;
+}
+
+
+/* a_domicile/adresse.html.twig */
+
+#adresse_domicile {
+    text-align: center;
+    line-height: 50vh;
+}
+
+@media screen and (min-width: 1180px) {
+    #adresse_domicile {
+        margin-right: 50vh;
+    }
+}
+
+
+/* a_domicile/coiffeurs_disponibles.html.twig */
+
+#description_coiffeurs_disponibles {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    background-color: grey;
+    color: white;
+    font-family: 'Nobile', sans-serif;
+}
+
+#bouton_reserver_domicile {
+    font-size: x-small;
+    font-family: 'Nobile', sans-serif;
+}
+
+@media screen and (min-width: 1180px) {
+    #bouton_reserver_domicile {
+        font-size: medium;
+        margin-bottom: 2%;
+    }
 }

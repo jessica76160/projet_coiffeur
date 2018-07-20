@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div id="bandeau">Adresse / <strong>Heure, Personne et Prestation(s)</strong></div>
+
+    <span id="retour">
+        <a href="{{ path('adresse_domicile') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+    </span>
+
+    <div id="choix_personne">
+        <form method="" action="" class="row">
+            <div id="heure" class="col-sm-12">
+                <h5 id="titre_heure">Heure :</h5>
+                <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
+            </div>
+            <div id="personne" class="col-sm-4">
+                <h5>Personne :</h5>
+                <select class="form-control">
+                    <option value=un>Homme</option>
+                    <option value=deux>Femme</option>
+                    <option value=trois>Enfant</option>
+                </select>
+            </div>
+            <div id="type_cheveux" class="col-sm-4">
+                <h5>Type de cheveux :</h5>
+                <select class="form-control">
+                    <option value=un>Courts</option>
+                    <option value=deux>Longs</option>
+                </select>
+            </div>
+            <div id="prestation" class="col-sm-4">
+                <a href="{{ path('prestation_domicile') }}"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Prestation</button></a>
+            </div>
+            <div col="col-sm-12">
+                <p>Prestation(s) choisie(s) :</p>
+            </div>
+        </form>
+        <a href="#"><img src="{{asset('img/add.png')}}" id="add"></a>
+    </div>
+
+
+    <div class="bouton_rechercher">
+        <a href="{{ path('coiffeurs_disponibles') }}"><button type="button" class="btn btn-secondary btn-lg" id="rechercher_salon">Rechercher</button></a>
+    </div>
+{% endblock %}
