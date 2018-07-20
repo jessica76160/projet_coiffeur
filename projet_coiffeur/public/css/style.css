@@ -225,10 +225,11 @@ h1 {
 
 /* personne.html.twig */
 
-#choix_prestation {
+#choix_personne {
     height: 30%;
     text-align: center;
-    padding-top: 10%;
+    padding-top: 5%;
+    margin-left: 5vh;
 }
 
 h5 {
@@ -249,14 +250,47 @@ h5 {
 
 .bouton_rechercher {
     text-align: center;
-    padding-top: 30vh;
+    padding-top: 45vh;
+}
+
+#add {
+    height: 5vh;
 }
 
 @media screen and (min-width: 1050px) {
-    #choix_prestation {
+    #choix_personne {
         margin-right: 50vh;
+        margin-left: 10vh;
     }
     .bouton_rechercher {
+        margin-right: 50vh;
+    }
+}
+
+
+/* prestation.html.twig */
+
+#titre_prestation {
+    text-align: center;
+}
+
+#liste_prestations {
+    text-align: center;
+}
+
+.bouton_valider {
+    text-align: center;
+    padding-top: 25vh;
+}
+
+@media screen and (min-width: 1050px) {
+    #titre_prestation {
+        margin-right: 50vh;
+    }
+    #liste_prestations {
+        margin-right: 50vh;
+    }
+    .bouton_valider {
         margin-right: 50vh;
     }
 }

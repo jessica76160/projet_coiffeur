@@ -51,6 +51,14 @@ class ClientController extends Controller
     }
 
     /**
+     * @Route("/recherche/prestation", name="prestation")
+     */
+    public function prestation()
+    {
+        return $this->render('recherche/prestation.html.twig');
+    }
+
+    /**
      * @Route("/recherche/resultats", name="resultats")
      */
     public function resultats()
