@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% form_theme form2 'bootstrap_4_layout.html.twig' %}
+{% form_theme form1 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Compte{% endblock %}
+{% block main %}
+<br>
+<br>
+
+<div class="col-xl-10" id="maili">
+    <p><b>MON COMPTE</b></p>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-2">
+        </div>
+            <div class="col-xl-3" id="confirmation">
+            <form action="" method="POST" id="form2">
+             {{ form_row(form2.nom) }}
+             
+            </div>
+         <div class="col-xl-3" id="confirmation">
+         {{ form_row(form2.prenom) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-2">
+        </div>
+            <div class="col-xl-6" id="maili">
+            {{ form_row(form2.adresse) }}
+            {{ form_row(form2.ville) }}
+               
+                </form>
+            </div>
+        <div class="col-xl-3">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-2">
+        </div>
+            <div class="col-xl-3" id="confirmation">
+            <form action="" method="POST" id="form2">
+             {{ form_row(form2.code_postale) }}
+             
+            </div>
+         <div class="col-xl-3" id="confirmation">
+         {{ form_row(form2.telephone) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-2">
+        </div>
+            <div class="col-xl-6" id="maili">
+                {{ form_row(form2.email) }}
+                <label for="">Ancien mot de passe</label>
+                 <input type="text" class="form-control" />
+               
+                </form>
+            </div>
+        <div class="col-xl-3">
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-2">
+        </div>
+            <div class="col-xl-8" id="maili">
+                {{ form_widget(form1) }}
+                <button class="btn" id="btni">{{ button_label|default('Sauvegarder') }}</button>
+                </form>
+            </div>
+        <div class="col-xl2">
+    </div>
+</div>
+{% endblock %}
