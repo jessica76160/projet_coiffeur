@@ -43,6 +43,16 @@ class Prestation
      */
     private $prestationsComposee;
 
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $genre;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $type_cheveux;
+
     public function __construct()
     {
         $this->etapes = new ArrayCollection();
@@ -143,6 +153,30 @@ class Prestation
         if ($this->prestationsComposee->contains($prestationsComposee)) {
             $this->prestationsComposee->removeElement($prestationsComposee);
         }
+
+        return $this;
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(string $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getTypeCheveux(): ?string
+    {
+        return $this->type_cheveux;
+    }
+
+    public function setTypeCheveux(string $type_cheveux): self
+    {
+        $this->type_cheveux = $type_cheveux;
 
         return $this;
     }
