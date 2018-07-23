@@ -1,47 +1,121 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Personne{% endblock %}
 {% block main %}
 
     <div id="bandeau">Lieu / <strong>Heure, Personne et Prestation(s)</strong></div>
 
     <span id="retour">
-        <a href="{{ path('adresse') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+        <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
-
-    <div id="choix_personne">
-        <form method="" action="" class="row">
-            <div id="heure" class="col-sm-12">
+    
+    <div id="choix_prestation">
+        <form method="" action="">
+            <div id="heure" class="row">
                 <h5 id="titre_heure">Heure :</h5>
                 <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
             </div>
-            <div id="personne" class="col-sm-4">
-                <h5>Personne :</h5>
-                <select class="form-control">
-                    <option value=un>Homme</option>
-                    <option value=deux>Femme</option>
-                    <option value=trois>Enfant</option>
-                </select>
+            <div id='contenu' class="container">
+                
             </div>
-            <div id="type_cheveux" class="col-sm-4">
-                <h5>Type de cheveux :</h5>
-                <select class="form-control">
-                    <option value=un>Courts</option>
-                    <option value=deux>Longs</option>
-                </select>
-            </div>
-            <div id="prestation" class="col-sm-4">
-                <a href="{{ path('prestation') }}"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Prestation</button></a>
-            </div>
-            <div col="col-sm-12">
-                <p>Prestation(s) choisie(s) :</p>
-            </div>
+            <input type='hidden' id='nbrPersonnes' value='1'>
+            <input type='button' value='plus' id='plus'>
         </form>
-        <a href="#"><img src="{{asset('img/add.png')}}" id="add"></a>
     </div>
 
 
     <div class="bouton_rechercher">
-        <a href="{{ path('resultats') }}"><button type="button" class="btn btn-secondary btn-lg">Rechercher</button></a>
+        <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Rechercher</button></a>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+        // generer formulaire
+
+        function genererLigne(){
+
+            nbr=$('#nbrPersonnes').val();
+            i=nbr--;
+
+            $('#contenu').append("<div id='ligne"+i+"' class='row'><div id='personne"+i+"' class='col-sm-12 col-md-2'><h5>Personne :</h5><select id='inputGenre"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+i+"' class='col-sm-12 col-md-3'><h5>Type de cheveux :</h5><select id='inputType"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+i+"' class='col-sm-12 col-md-5'><h5>Prestation(s) :</h5><select multiple id='inputPrestas"+i+"' class='form-control'></select></div><input type='button' id='moins"+i+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>");
+
+            majPrestas(i);
+
+        }
+
+        //node.removeChild(child);
+
+        // sur clic sur - => supprimer une personne
+
+        function supprimerLigne(id){
+
+            //recuperer le numero de la ligne
+
+            var nbr=/([0-9]+)/.exec(id)[0];
+            
+            // supprimer la ligne
+
+            id="ligne"+nbr;
+
+            var parentElement = document.getElementById("contenu");
+            var imgElement = document.getElementById(id);
+            parentElement.removeChild(imgElement);
+
+            //modifier nbr personne
+
+            nbr=$('#nbrPersonnes').val();
+            nbr--;
+            $('#nbrPersonnes').val(nbr);
+        }
+        // sur clic sur + => ajouter une personne
+
+            $('#plus').on('click', function(e) {
+                nbr=$('#nbrPersonnes').val();
+                nbr++;
+                $('#nbrPersonnes').val(nbr);
+                genererLigne();
+
+            });
+
+
+
+
+        // sur changement personne =>tri 
+
+            function majPrestas(id){
+
+                //recuperer le numero de la ligne
+
+                    var nbr=/([0-9]+)/.exec(id)[0];
+
+                // recupere les valeurs des champs
+
+                    idgenre='#inputGenre'+nbr;
+                    idtype='#inputType'+nbr;
+
+                    var genre=$(idgenre).val();
+                    var type=$(idtype).val();
+
+                
+                //tri des prestas a afficher
+
+                
+            }
+
+        // sur changement type cheveux=>tri si pas valeur par def
+
+            $('#type_cheveux').on('change', function(e) {
+
+                
+            });
+
+        
+        genererLigne();
+        
+    
+
+
+    </script>
 {% endblock %}

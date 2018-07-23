@@ -14,6 +14,10 @@ use App\Entity\Client;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 class ClientController extends Controller
 {
     /**
@@ -37,9 +41,32 @@ class ClientController extends Controller
     /**
      * @Route("/recherche/adresse", name="adresse")
      */
-    public function adresse()
+    public function rechercheAdresse(Request $request ,SessionInterface $session)
     {
-        return $this->render('recherche/adresse.html.twig');
+        $form = $this->createFormBuilder()
+        ->add('perimetre', TextType::class)
+        ->add('adresse', TextType::class)
+        ->add('lat', HiddenType::class)
+        ->add('lng', HiddenType::class)
+        ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() ){
+            $data = $form->getData();
+            $session->set('lat', $data['lat']);
+            $session->set('lng', $data['lng']);
+            $session->set('perimetre', $data['perimetre']);
+            return $this->redirectToRoute('recherche_detail');
+
+        }
+
+
+
+        return $this->render(
+            'recherche/adresse.html.twig',
+            array('form' => $form->createView())
+        );
     }
 
     /**
