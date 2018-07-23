@@ -91,6 +91,10 @@ img {
     padding: 0;
 }
 
+#style_client {
+    text-align: right;
+}
+
 @media screen and (min-width: 1180px) {
     #nom_site_debut {
         font-size: xx-large;
@@ -134,23 +138,9 @@ h1 {
     padding-bottom: 5vh;
 }
 
-#adresse {
-    text-align: center;
-    margin-top: 2%;
-}
-
 #choix_accueil {
     text-align: center;
     margin-top: 10vh;
-}
-
-@media screen and (min-width: 1180px) {
-    #adresse {
-        margin-right: 50vh;
-    }
-    #perimetre {
-        margin-right: 50vh;
-    }
 }
 
 @media screen and (max-width: 575px) {
@@ -186,8 +176,9 @@ h1 {
     font-size: small;
 }
 
-#form_adresse {
-    width: 50%;
+#adresse {
+    text-align: center;
+    margin-top: 2%;
 }
 
 #perimetre {
@@ -198,7 +189,7 @@ h1 {
 
 #map {
     border: solid;
-    height: 45%;
+    height: 38%;
     text-align: center;
     margin: 2% 5% 0 5%;
 }
@@ -232,16 +223,14 @@ h1 {
     width: 5%;
 }
 
-#adresse {
-    padding-top: 1%;
-}
-
 @media screen and (min-width: 1180px) {
     #adresse {
-        margin-right: 50vh;
+        margin-right: 60vh;
+        margin-left: 20vh;
     }
     #perimetre {
-        margin-right: 50vh;
+        margin-right: 60vh;
+        margin-left: 20vh;
     }
     .bouton_suivant {
         margin-right: 50vh;
@@ -272,10 +261,13 @@ h1 {
 
 h5 {
     font-family: 'Bad Script', sans-serif;
+    margin-top: 2%;
 }
 
 #heure {
-    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
 }
 
 #personne {
@@ -288,11 +280,32 @@ h5 {
 
 .bouton_rechercher {
     text-align: center;
-    padding-top: 45vh;
+    padding-top: 10vh;
 }
 
 #add {
     height: 5vh;
+}
+
+#plus {
+    margin-left: 10vh;
+    margin-top: 1%;
+    width: 200px;
+}
+
+#ajouter_personne {
+    text-align: center;
+}
+
+#moins1 {
+    margin-top: 2%;
+}
+
+@media only screen and (max-width: 1050px) and (min-width: 760px) {
+    .bouton_rechercher {
+        margin-right: 20vh;
+        padding-top: 17vh;
+    }
 }
 
 @media screen and (min-width: 1050px) {
@@ -302,6 +315,13 @@ h5 {
     }
     .bouton_rechercher {
         margin-right: 50vh;
+        padding-top: 17vh;
+    }
+    #ajouter_personne {
+        margin-right: 50vh;
+    }
+    #form_personne {
+        margin-right: 20vh;
     }
 }
 

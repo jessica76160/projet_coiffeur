@@ -44,8 +44,8 @@ class ClientController extends Controller
     public function rechercheAdresse(Request $request ,SessionInterface $session)
     {
         $form = $this->createFormBuilder()
-        ->add('perimetre', TextType::class)
-        ->add('adresse', TextType::class)
+        ->add('perimetre', TextType::class, array('attr' => array('placeholder' => 'Indiquez un périmètre en km')))
+        ->add('adresse', TextType::class, array('attr' => array('placeholder' => 'Indiquez une adresse')))
         ->add('lat', HiddenType::class)
         ->add('lng', HiddenType::class)
         ->getForm();
@@ -57,7 +57,7 @@ class ClientController extends Controller
             $session->set('lat', $data['lat']);
             $session->set('lng', $data['lng']);
             $session->set('perimetre', $data['perimetre']);
-            return $this->redirectToRoute('recherche_detail');
+            return $this->redirectToRoute('personne');
 
         }
 
