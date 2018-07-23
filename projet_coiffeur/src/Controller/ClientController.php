@@ -70,68 +70,6 @@ class ClientController extends Controller
             array('form' => $form->createView())
         );
     }
-    /**
-     * @Route("/requete/ajax", name="requete_ajax")
-     */
-    public function indexAction(Request $request)
-    {
-        //recuperation des valeurs sous forme de tableau
-
-        $content = $request->getContent();
-        $content=explode ( '&' , $content );
-        $nb_variable = count($content);
-                
-        for ( $i=0; $i< $nb_variable; $i++)
-        {
-            $contenu = explode("=", $content[$i]);
-            
-            if($contenu[0]!=""){
-                $arrayFinal[$contenu[0]]=$contenu[1];
-            }else{
-                $arrayFinal=[];
-            }
-            
-        }
-        $num=[];
-        $liste=[];
-        
-        // recuperation des valeurs qui m'interessent
-
-        foreach($arrayFinal as $key=>$value){
-
-            if(preg_match('/^inputPrestas/',$key,$num)){
-
-                // recuperer id
-                
-                $id=$num[0];
-
-                // recuperer les valeurs des 2 champs correspondants
-                $typeGenre='inputGenre'.$id;
-                $typeType='inputType'.$id;
-                $genre=$contenu[$typeGenre]??"";
-                $type=$contenu[$typeType]??"";
-
-
-                // appel a la fonction
-
-                $liste[$id]=$this->getDoctrine()
-                ->getManager()
-                ->getRepository(PrestationComposee::class)
-                ->findByGenreType($genre,$type);
-                
-
-            }
-        }
-
-        $array=[$content,$liste];
-
-        return new Response(json_encode($array));
-        
-        //return $this->render('recherche/personne.html.twig',['contenu'=>$arrayFinal,'liste'=>$liste]);
-    }
-
-
-
 
     /**
      * @Route("/recherche/personne", name="personne")
@@ -140,6 +78,9 @@ class ClientController extends Controller
     {
         $content=[];
         $liste=[];
+        $html=[];
+        $liste_id=[];
+
 
         // apres submit
         if($request->request->get('rechercher')!= null){
@@ -148,19 +89,18 @@ class ClientController extends Controller
 
         }else{
 
-            
-
             if(isset($request) and $request!="")
             {
-                // renvoyer les données
+                // recuperer les données et les mettres sous forme de tableau asso.
+
                 $content = $request->getContent();
 
-                $content=explode ( '&' , $content );
-                $nb_variable = count($content);
+                $content2=explode ( '&' , $content );
+                $nb_variable = count($content2);
                 
                 for ( $i=0; $i< $nb_variable; $i++)
                 {
-                    $contenu = explode("=", $content[$i]);
+                    $contenu = explode("=", $content2[$i]);
                     
                     if($contenu[0]!=""){
                         $arrayFinal[$contenu[0]]=$contenu[1];
@@ -169,28 +109,33 @@ class ClientController extends Controller
                     }
                     
                 }
+                $tab=$arrayFinal;
                 foreach($arrayFinal as $key=>$value){
-                    if(preg_match('/^inputPrestas/',$key,$num)){
+
+                    
+
+                    if(preg_match('/inputGenre/',$key,$num)){
 
                         // recuperer id
                         
-                        $id=$num[0];
+                        preg_match('/[0-9]/',$key,$numero);
+                        $id=$numero[0];
+                        $liste_id[]=$id;
         
                         // recuperer les valeurs des 2 champs correspondants
                         $typeGenre='inputGenre'.$id;
                         $typeType='inputType'.$id;
-                        $genre=$contenu[$typeGenre]??"";
-                        $type=$contenu[$typeType]??"";
+                        $genre=$arrayFinal[$typeGenre]??"";
+                        $type=$arrayFinal[$typeType]??"";
         
         
                         // appel a la fonction
         
-                        $liste[$id]=$this->getDoctrine()
+                        $liste['inputPrestas'.$id]=$this->getDoctrine()
                         ->getManager()
                         ->getRepository(PrestationComposee::class)
                         ->findByGenreType($genre,$type);
-                        
-        
+
                     }
                 }
             
@@ -198,7 +143,7 @@ class ClientController extends Controller
             }
         }
 
-        return $this->render('recherche/personne.html.twig',['contenu'=>$arrayFinal,'liste'=>$liste]);
+        return $this->render('recherche/personne.html.twig',['contenu'=>$tab,'listeId'=>$liste_id,'liste'=>$liste]);
 
        
     }

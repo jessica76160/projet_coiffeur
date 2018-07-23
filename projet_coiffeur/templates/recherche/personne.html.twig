@@ -17,7 +17,7 @@
             <div id='contenu' class="container">
                 
             </div>
-            <input type="hidden" id="num" value='0'name="num">
+            <input type="hidden" id="num" name="num">
             <input type='hidden' id='nbrPersonnes' value='1' name="nbrPersonnes">
             <input type='button' value='plus' id='plus'>
         </form>
@@ -35,19 +35,11 @@
 
         
 
-        function genererLigne(){
-            // generer ligne
-
-            var num=$('#num').val();
-            num++;
-            $('#num').val(num);
+        function genererLigne(num){
 
             $('#contenu').append("<div id='ligne"+num+"' class='row'><div id='personne"+num+"' class='col-sm-12 col-md-2'><h5>Personne :</h5><select name='inputGenre"+num+"' id='inputGenre"+num+"' class='form-control inputGenre' onchange='majPrestas()'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+num+"' class='col-sm-12 col-md-3'><h5>Type de cheveux :</h5><select name='inputType"+num+"'  id='inputType"+num+"' class='form-control inputType' onchange='majPrestas()'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+num+"' class='col-sm-12 col-md-5'><h5>Prestation(s) :</h5><select multiple name='inputPrestas"+num+"'  id='inputPrestas"+num+"' class='form-control'></select></div><input type='button' id='moins"+num+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>");
-
-
         }
 
-        // sur clic sur - => supprimer une personne
 
         function supprimerLigne(id){
 
@@ -74,10 +66,17 @@
         // sur clic sur + => ajouter une personne
 
             $('#plus').on('click', function(e) {
+
                 nbr=$('#nbrPersonnes').val();
                 nbr++;
                 $('#nbrPersonnes').val(nbr);
-                genererLigne();
+
+                nb=$('#num').val();
+                nb++;
+                genererLigne(nb);
+                
+                $('#num').val(nb);
+
 
             });
 
@@ -92,98 +91,50 @@
 
 
         // au chargement de la page:
-
+            // structure
             
-            // regenerer la structure
-            
-            {% if contenu['nbrPersonnes'] is defined %}
+        {% if contenu is not empty %}
+        
+            {% if listeId is defined and listeId is not empty %}
 
-                
-                nbr={{contenu['nbrPersonnes']}};
+                {% for id in listeId %}
+                    
+                    genererLigne({{id}});
 
-                {% for i in 1..contenu['nbrPersonnes'] %}
-
-                    $('#nbrPersonnes').val({{i}});
-                    genererLigne();
                 {% endfor %}
 
-            {% else %}
-
-                genererLigne();
-
-                
             {% endif %}
 
-
             //remplir
-
-            data={};
 
             {% for element,valeur in contenu %}
 
                     $('#{{element}}').val('{{valeur}}');
-                    
 
             {% endfor %}
+
+            // generer liste
             
-            
+            {% for nameInput,value in liste %}
 
-            liste.foreach(function(item, index) {
+                nameInput={{nameInput}};
+                html=[];
 
-                        $html='';
-                        
-                        $('#inputPrestas'.index).html('');
+                {% for element in value %}
 
-                        item.foreach(function(item, index){
+                    html+='<option value="{{element['id']}}">{{element['nom']}}</option>';
 
-                            $html=$html.'<option value='.item['nom'].'>'.item['nom'].'</option>';
+                {% endfor %}
 
-                        });
+                $('#{{nameInput}}').html(html);
 
-                        $('#inputPrestas'.index).html($html);
-            });
+            {% endfor %}
 
-
-
-            /*$('#form_personne').submit(function(e){
-            //appel ajax
-            
-
-                $.ajax({
-                url : '{{ (path('requete_ajax')) }}',
-                type: 'GET',
-                data : $('#form_personne').serialize(),
-                success: function(liste) {
-
-                    console.log(liste);
-                    /*
-
-                    liste.foreach(function(item, index) {
-
-                        $html='';
-                        
-                        $('#inputPrestas'.index).html('');
-
-                        item.foreach(function(item, index){
-
-                            $html=$html.'<option value='.item['nom'].'>'.item['nom'].'</option>';
-
-                        });
-
-                        $('#inputPrestas'.index).html($html);
-                    });
-                
-                }
-
-                });
-            });
-            */
-
-
+        {% else %}
         
-        
-    
-
-
+            genererLigne(0);
+            $('#num').val(0);
+            $('#nbrPersonnes').val(1);
+        {% endif %}
     </script>
 {% endblock %}
