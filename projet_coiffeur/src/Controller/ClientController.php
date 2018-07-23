@@ -94,7 +94,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/salon", name="salon")
+     * @Route("/salon/{id}", name="salon")
      */
     public function salon()
     {

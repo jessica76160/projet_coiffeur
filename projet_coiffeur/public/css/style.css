@@ -264,6 +264,10 @@ h1 {
     margin-left: 5vh;
 }
 
+#appt-time {
+    height: 35px;
+}
+
 h5 {
     font-family: 'Bad Script', sans-serif;
     margin-top: 2%;

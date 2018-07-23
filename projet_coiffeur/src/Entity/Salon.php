@@ -78,6 +78,16 @@ class Salon
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=0)
+     */
+    private $longitude;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=0)
+     */
+    private $latitude;
+
 
     public function __construct()
     {
@@ -280,6 +290,30 @@ class Salon
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude($longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude($latitude): self
+    {
+        $this->latitude = $latitude;
 
         return $this;
     }
