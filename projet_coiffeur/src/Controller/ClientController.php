@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use App\Form\UserType;
 use App\Entity\PrestationClient;
+use App\Entity\PrestationComposee;
 use App\Form\ClientType;
 use App\Form\PrestationClientType;
 use App\Entity\User;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Response;
 
 class ClientController extends Controller
 {
@@ -68,14 +70,140 @@ class ClientController extends Controller
             array('form' => $form->createView())
         );
     }
+    /**
+     * @Route("/requete/ajax", name="requete_ajax")
+     */
+    public function indexAction(Request $request)
+    {
+        //recuperation des valeurs sous forme de tableau
+
+        $content = $request->getContent();
+        $content=explode ( '&' , $content );
+        $nb_variable = count($content);
+                
+        for ( $i=0; $i< $nb_variable; $i++)
+        {
+            $contenu = explode("=", $content[$i]);
+            
+            if($contenu[0]!=""){
+                $arrayFinal[$contenu[0]]=$contenu[1];
+            }else{
+                $arrayFinal=[];
+            }
+            
+        }
+        $num=[];
+        $liste=[];
+        
+        // recuperation des valeurs qui m'interessent
+
+        foreach($arrayFinal as $key=>$value){
+
+            if(preg_match('/^inputPrestas/',$key,$num)){
+
+                // recuperer id
+                
+                $id=$num[0];
+
+                // recuperer les valeurs des 2 champs correspondants
+                $typeGenre='inputGenre'.$id;
+                $typeType='inputType'.$id;
+                $genre=$contenu[$typeGenre]??"";
+                $type=$contenu[$typeType]??"";
+
+
+                // appel a la fonction
+
+                $liste[$id]=$this->getDoctrine()
+                ->getManager()
+                ->getRepository(PrestationComposee::class)
+                ->findByGenreType($genre,$type);
+                
+
+            }
+        }
+
+        $array=[$content,$liste];
+
+        return new Response(json_encode($array));
+        
+        //return $this->render('recherche/personne.html.twig',['contenu'=>$arrayFinal,'liste'=>$liste]);
+    }
+
+
+
 
     /**
      * @Route("/recherche/personne", name="personne")
      */
-    public function personne()
+    public function personne(Request $request)
     {
-        return $this->render('recherche/personne.html.twig');
+        $content=[];
+        $liste=[];
+
+        // apres submit
+        if($request->request->get('rechercher')!= null){
+
+            // traitement si submit general
+
+        }else{
+
+            
+
+            if(isset($request) and $request!="")
+            {
+                // renvoyer les données
+                $content = $request->getContent();
+
+                $content=explode ( '&' , $content );
+                $nb_variable = count($content);
+                
+                for ( $i=0; $i< $nb_variable; $i++)
+                {
+                    $contenu = explode("=", $content[$i]);
+                    
+                    if($contenu[0]!=""){
+                        $arrayFinal[$contenu[0]]=$contenu[1];
+                    }else{
+                        $arrayFinal=[];
+                    }
+                    
+                }
+                foreach($arrayFinal as $key=>$value){
+                    if(preg_match('/^inputPrestas/',$key,$num)){
+
+                        // recuperer id
+                        
+                        $id=$num[0];
+        
+                        // recuperer les valeurs des 2 champs correspondants
+                        $typeGenre='inputGenre'.$id;
+                        $typeType='inputType'.$id;
+                        $genre=$contenu[$typeGenre]??"";
+                        $type=$contenu[$typeType]??"";
+        
+        
+                        // appel a la fonction
+        
+                        $liste[$id]=$this->getDoctrine()
+                        ->getManager()
+                        ->getRepository(PrestationComposee::class)
+                        ->findByGenreType($genre,$type);
+                        
+        
+                    }
+                }
+            
+                
+            }
+        }
+
+        return $this->render('recherche/personne.html.twig',['contenu'=>$arrayFinal,'liste'=>$liste]);
+
+       
     }
+
+    
 
     /**
      * @Route("/recherche/prestation", name="prestation")

@@ -49,22 +49,21 @@ function onPlaceChanged() {
   document.getElementById('form_lat').value=lat;
   document.getElementById('form_lng').value=lng;
 
-  var france = new google.maps.LatLng(lat,lng);
-  
-  if(document.getElementById('form_perimetre').value!=""){
-    var perimetre=document.getElementById('form_perimetre').value;
-    perimetre=parseFloat(perimetre);
-  }else{
-    var perimetre=0;
-  }
-
-  myMap(france,perimetre);
+  $valeurs=recupValeurs();
+  myMap($valeurs[0],$valeurs[1]);
 
     
 }
 $('#form_perimetre').on('change', function(e) {
 
-  if(document.getElementById('form_lat').value!=""){
+  $valeurs=recupValeurs();
+
+  myMap($valeurs[0],$valeurs[1]);
+});
+
+function recupValeurs(){
+
+if(document.getElementById('form_lat').value!=""){
     var lat=document.getElementById('form_lat').value;
     var lng=document.getElementById('form_lng').value;
   }else{
@@ -78,13 +77,16 @@ $('#form_perimetre').on('change', function(e) {
     if(document.getElementById('form_perimetre').value!=""){
     var perimetre=document.getElementById('form_perimetre').value;
     perimetre=parseFloat(perimetre);
+    perimetre = (perimetre / 6378.1) * 6378100
   }else{
     var perimetre=0;
   }
 
-  myMap(france,perimetre);
-});
+  var valeurs=[france,perimetre];
 
+  return valeurs;
+
+}
 
 function myMap(france,perimetre) {
 

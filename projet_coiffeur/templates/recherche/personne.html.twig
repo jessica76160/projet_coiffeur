@@ -9,7 +9,7 @@
     </span>
     
     <div id="choix_prestation">
-        <form method="" action="">
+        <form method="POST" action="" id="form_personne">
             <div id="heure" class="row">
                 <h5 id="titre_heure">Heure :</h5>
                 <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
@@ -17,14 +17,15 @@
             <div id='contenu' class="container">
                 
             </div>
-            <input type='hidden' id='nbrPersonnes' value='1'>
+            <input type="hidden" id="num" value='0'name="num">
+            <input type='hidden' id='nbrPersonnes' value='1' name="nbrPersonnes">
             <input type='button' value='plus' id='plus'>
         </form>
     </div>
 
 
     <div class="bouton_rechercher">
-        <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Rechercher</button></a>
+       <input type="submit" class="btn btn-secondary btn-lg" id="bouton_suivant" value="rechercher" name="rechercher">
     </div>
 {% endblock %}
 {% block javascripts %}
@@ -32,20 +33,19 @@
 
     <script>
 
-        // generer formulaire
+        
 
         function genererLigne(){
+            // generer ligne
 
-            nbr=$('#nbrPersonnes').val();
-            i=nbr--;
+            var num=$('#num').val();
+            num++;
+            $('#num').val(num);
 
-            $('#contenu').append("<div id='ligne"+i+"' class='row'><div id='personne"+i+"' class='col-sm-12 col-md-2'><h5>Personne :</h5><select id='inputGenre"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+i+"' class='col-sm-12 col-md-3'><h5>Type de cheveux :</h5><select id='inputType"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+i+"' class='col-sm-12 col-md-5'><h5>Prestation(s) :</h5><select multiple id='inputPrestas"+i+"' class='form-control'></select></div><input type='button' id='moins"+i+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>");
+            $('#contenu').append("<div id='ligne"+num+"' class='row'><div id='personne"+num+"' class='col-sm-12 col-md-2'><h5>Personne :</h5><select name='inputGenre"+num+"' id='inputGenre"+num+"' class='form-control inputGenre' onchange='majPrestas()'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+num+"' class='col-sm-12 col-md-3'><h5>Type de cheveux :</h5><select name='inputType"+num+"'  id='inputType"+num+"' class='form-control inputType' onchange='majPrestas()'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+num+"' class='col-sm-12 col-md-5'><h5>Prestation(s) :</h5><select multiple name='inputPrestas"+num+"'  id='inputPrestas"+num+"' class='form-control'></select></div><input type='button' id='moins"+num+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>");
 
-            majPrestas(i);
 
         }
-
-        //node.removeChild(child);
 
         // sur clic sur - => supprimer une personne
 
@@ -69,6 +69,8 @@
             nbr--;
             $('#nbrPersonnes').val(nbr);
         }
+
+
         // sur clic sur + => ajouter une personne
 
             $('#plus').on('click', function(e) {
@@ -80,39 +82,105 @@
             });
 
 
+        // sur changement genre ou type => submit
 
+            function majPrestas(){
 
-        // sur changement personne =>tri 
+                $('#form_personne').submit();
 
-            function majPrestas(id){
-
-                //recuperer le numero de la ligne
-
-                    var nbr=/([0-9]+)/.exec(id)[0];
-
-                // recupere les valeurs des champs
-
-                    idgenre='#inputGenre'+nbr;
-                    idtype='#inputType'+nbr;
-
-                    var genre=$(idgenre).val();
-                    var type=$(idtype).val();
-
-                
-                //tri des prestas a afficher
-
-                
             }
 
-        // sur changement type cheveux=>tri si pas valeur par def
 
-            $('#type_cheveux').on('change', function(e) {
+        // au chargement de la page:
+
+            
+            // regenerer la structure
+            
+            {% if contenu['nbrPersonnes'] is defined %}
 
                 
+                nbr={{contenu['nbrPersonnes']}};
+
+                {% for i in 1..contenu['nbrPersonnes'] %}
+
+                    $('#nbrPersonnes').val({{i}});
+                    genererLigne();
+                {% endfor %}
+
+            {% else %}
+
+                genererLigne();
+
+                
+            {% endif %}
+
+
+            //remplir
+
+            data={};
+
+            {% for element,valeur in contenu %}
+
+                    $('#{{element}}').val('{{valeur}}');
+                    
+
+            {% endfor %}
+            
+            
+
+            liste.foreach(function(item, index) {
+
+                        $html='';
+                        
+                        $('#inputPrestas'.index).html('');
+
+                        item.foreach(function(item, index){
+
+                            $html=$html.'<option value='.item['nom'].'>'.item['nom'].'</option>';
+
+                        });
+
+                        $('#inputPrestas'.index).html($html);
             });
 
+
+
+            /*$('#form_personne').submit(function(e){
+            //appel ajax
+            
+
+                $.ajax({
+                url : '{{ (path('requete_ajax')) }}',
+                type: 'GET',
+                data : $('#form_personne').serialize(),
+                success: function(liste) {
+
+                    console.log(liste);
+                    /*
+
+                    liste.foreach(function(item, index) {
+
+                        $html='';
+                        
+                        $('#inputPrestas'.index).html('');
+
+                        item.foreach(function(item, index){
+
+                            $html=$html.'<option value='.item['nom'].'>'.item['nom'].'</option>';
+
+                        });
+
+                        $('#inputPrestas'.index).html($html);
+                    });
+                
+                }
+
+                });
+            });
+            */
+
+
         
-        genererLigne();
         
     
 

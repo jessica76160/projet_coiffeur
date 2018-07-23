@@ -47,4 +47,44 @@ class PrestationComposeeRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByGenreType($genre,$type)
+    {
+        if($genre!="" and $type!=""){
+
+            return $this->createQueryBuilder('p')
+                ->select('p.id')
+                ->addSelect('p.nom')
+                ->andWhere('p.genre = :genre')
+                ->andWhere('p.type_cheveux = :type')
+                ->setParameter('genre', $genre)
+                ->setParameter('type', $type)
+                ->getQuery()
+                ->getResult()
+            ;
+
+        }elseif($genre=="" and $type!=""){
+
+            return $this->createQueryBuilder('p')
+                ->select('p.id')
+                ->addSelect('p.nom')
+                ->andWhere('p.type_cheveux = :type')
+                ->setParameter('type', $type)
+                ->getQuery()
+                ->getResult()
+            ;
+
+        }elseif($genre!="" and $type==""){
+
+            return $this->createQueryBuilder('p')
+                ->select('p.id')
+                ->addSelect('p.nom')
+                ->andWhere('p.genre = :genre')
+                ->setParameter('genre', $genre)
+                ->getQuery()
+                ->getResult()
+            ;
+
+        }
+    }
 }
