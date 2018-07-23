@@ -95,6 +95,11 @@ img {
     text-align: right;
 }
 
+.col-4 {
+    flex: 0 0 28%;
+    text-align: center;
+}
+
 @media screen and (min-width: 1180px) {
     #nom_site_debut {
         font-size: xx-large;
