@@ -15,7 +15,7 @@ final class Version20180723133746 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE salon ADD longitude NUMERIC(10, 0) NOT NULL');
+        $this->addSql('ALTER TABLE salon ADD longitude NUMERIC(10, 10) NOT NULL');
     }
 
     public function down(Schema $schema) : void

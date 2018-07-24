@@ -80,12 +80,12 @@ class Salon
 
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="string", length=51)
      */
     private $latitude;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="string", length=51)
      */
     private $longitude;
 
@@ -301,7 +301,7 @@ class Salon
         return $this->latitude;
     }
 
-    public function setLatitude($latitude): self
+    public function setLatitude(string $latitude): self
     {
         $this->latitude = $latitude;
 
@@ -313,7 +313,7 @@ class Salon
         return $this->longitude;
     }
 
-    public function setLongitude($longitude): self
+    public function setLongitude(string $longitude): self
     {
         $this->longitude = $longitude;
 
