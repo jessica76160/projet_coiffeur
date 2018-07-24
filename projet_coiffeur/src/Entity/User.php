@@ -69,7 +69,7 @@ class User implements UserInterface, \Serializable
  
         // Afin d'être sûr qu'un user a toujours au moins 1 rôle
         if (empty($roles)) {
-            $roles[] = 'ROLE_USER';
+            $roles[] = 'CLIENT';
         }
  
         return array_unique($roles);
