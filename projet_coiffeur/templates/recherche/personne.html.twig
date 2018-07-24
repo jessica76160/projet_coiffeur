@@ -22,9 +22,14 @@
                             <a class="nav-link text-white" href="{{ path('accueil') }}"><img class="mr-auto ml-auto pt-1 pb-1" src="{{asset('img/Calque4.png')}}"></a>
                         </li>
                         <li class="col-2" id="padding_nom_fin"><p id="nom_site_fin">Heur</p></li>
-                        <li class="nav-item col-4" style="text-align:right">
-                            <a class="nav-link text-white" href="{{ path('security_login') }}">Espace client</a>
-                        </li>
+
+                        {% if app.user %}
+                            <li id="connexion">Bonjour {{app.user.username}} / <a href="{{ path('compte_client') }}">Mon Compte</a> / <a href="{{ path('security_logout') }}">Déconnexion</a></li>
+                        {% else %}
+                            <li class="nav-item col-4" id="style_client">
+                                <a class="nav-link text-white" href="{{ path('security_login') }}">Espace client</a>
+                            </li>
+                        {% endif %}
                 </ul>
             </nav>
 
@@ -38,7 +43,7 @@
     <div id="bandeau">Lieu / <strong>Heure, Personne et Prestation(s)</strong></div>
 
     <span id="retour">
-        <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
+        <a href="{{ path('adresse') }}"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
     
     <div id="choix_prestation">
@@ -55,15 +60,19 @@
             <div id='contenu' class="container">
                 
             </div>
+
+            
             <input type="hidden" id="num" name="num">
             <input type='hidden' id='nbrPersonnes' value='1' name="nbrPersonnes">
-            <input type='button' value='plus' id='plus'>
-        
+            <div id="ajouter_personne">
+                <input type='button' value='Ajouter une personne' id='plus'>
+            </div>
+           
     </div>
 
 
     <div class="bouton_rechercher" id="bt_rechercher">
-       <input type="submit" class="btn btn-secondary btn-lg" id="bouton_suivant" value="rechercher" name="rechercher" >
+       <input type="submit" class="btn btn-secondary btn-lg" id="bouton_suivant" value="Rechercher" name="rechercher" >
     </div>
     </form>
 {% endblock %}
@@ -94,7 +103,7 @@
     console.log({{presta}});
         function genererLigne(num){
 
-            html="<div id='ligne"+num+"' class='row'><div id='personne"+num+"' class='col-sm-12 col-md-6'><h5>Personne :</h5><select name='inputGenre"+num+"' id='inputGenre"+num+"' class='form-control inputGenre' onchange='majPrestas()'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+num+"' class='col-sm-12 col-md-6'><h5>Type de cheveux :</h5><select name='inputType"+num+"'  id='inputType"+num+"' class='form-control inputType' onchange='majPrestas()'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+num+"' class='col-sm-12 col-md-12'><h5>Prestation(s) :</h5><select multiple name='inputPrestas"+num+"[]'  id='inputPrestas"+num+"' class='form-control'></select></div><input type='button' id='moins"+num+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>";
+            html="<div id='ligne"+num+"' class='row'><div id='personne"+num+"' class='col-sm-12 col-md-6'><h5>Personne :</h5><select name='inputGenre"+num+"' id='inputGenre"+num+"' class='form-control inputGenre' onchange='majPrestas()'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+num+"' class='col-sm-12 col-md-6'><h5>Type de cheveux :</h5><select name='inputType"+num+"'  id='inputType"+num+"' class='form-control inputType' onchange='majPrestas()'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+num+"' class='col-sm-12 col-md-12'><h5>Prestation(s) :</h5><select multiple name='inputPrestas"+num+"[]'  id='inputPrestas"+num+"' class='form-control'></select></div><input type='button' id='moins"+num+"' value='Supprimer une personne' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>";
             $('#contenu').append(html);
         }
 

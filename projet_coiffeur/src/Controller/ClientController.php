@@ -33,7 +33,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/accueil", name="accueil")
+     * @Route("/", name="accueil")
      */
     public function accueil()
     {
@@ -306,9 +306,13 @@ class ClientController extends Controller
     /**
      * @Route("/salon", name="salon")
      */
-    public function salon()
+    public function salon(Request $request ,SessionInterface $session)
     {
-        return $this->render('salon.html.twig');
+        $lat = $session->get("lat");
+        $lon = $session->get("lng");
+        $perimetre = $session->get("perimetre");
+
+        return $this->render('salon.html.twig',["lat"=>$lat, "lng"=>$lon,"perimetre"=>$perimetre]);
     }
 
     /**

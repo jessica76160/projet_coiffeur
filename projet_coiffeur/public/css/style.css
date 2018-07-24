@@ -34,6 +34,7 @@ button {
 
 input {
     border-radius: 5px;
+    margin-top: 1%;
 }
 
 .bouton_coiffeur {
@@ -108,7 +109,7 @@ img {
     font-size: x-small;
 }
 
-@media screen and (min-width: 700px) and (max-width: 1179px) {
+@media screen and (min-width: 800px) and (max-width: 1179px) {
     #connexion {
         font-size: small;
     }
@@ -296,7 +297,6 @@ h5 {
 }
 
 #heure {
-    margin-top: 2%;
     margin-bottom: 2%;
 }
 
@@ -324,7 +324,7 @@ h5 {
 #plus {
     margin-left: 10vh;
     margin-top: 1%;
-    width: 200px;
+    width: 192px;
 }
 
 #bt_rechercher {
@@ -339,7 +339,7 @@ h5 {
 @media only screen and (max-width: 1050px) and (min-width: 760px) {
     .bouton_rechercher {
         margin-right: 20vh;
-        padding-top: 17vh;
+        padding-top: 10vh;
     }
 }
 
@@ -350,10 +350,10 @@ h5 {
     }
     .bouton_rechercher {
         margin-right: 50vh;
-        padding-top: 17vh;
+        padding-top: 10vh;
     }
     #ajouter_personne {
-        margin-right: 50vh;
+        margin-right: 20vh;
     }
     #form_personne {
         margin-right: 50vh;
@@ -681,9 +681,28 @@ h4 {
     line-height: 50vh;
 }
 
-@media screen and (min-width: 1180px) {
+#input_adresse {
+    width: 50vh;
+    height: 5vh;
+}
+
+@media screen and (min-width: 800px) {
     #adresse_domicile {
         margin-right: 50vh;
+    }
+}
+
+
+/* a_domicile/adresse.html.twig */
+
+#add {
+    margin-top: 25%;
+}
+
+@media screen and (min-width: 1180px) {
+    #add {
+        margin-right: 20vh;
+        margin-top: 15%;
     }
 }
 
