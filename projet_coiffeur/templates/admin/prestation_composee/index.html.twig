@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PrestationComposee index{% endblock %}
+
+{% block body %}
+    <h1>PrestationComposee index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Tarif</th>
+                <th>Genre</th>
+                <th>Type_cheveux</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prestation_composee in prestation_composees %}
+            <tr>
+                <td>{{ prestation_composee.id }}</td>
+                <td>{{ prestation_composee.nom }}</td>
+                <td>{{ prestation_composee.tarif }}</td>
+                <td>{{ prestation_composee.genre }}</td>
+                <td>{{ prestation_composee.typeCheveux }}</td>
+                <td>
+                    <a href="{{ path('prestation_composee_show', {'id': prestation_composee.id}) }}">show</a>
+                    <a href="{{ path('prestation_composee_edit', {'id': prestation_composee.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('prestation_composee_new') }}">Create new</a>
+{% endblock %}

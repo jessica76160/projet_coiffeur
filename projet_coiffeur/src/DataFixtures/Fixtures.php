@@ -49,8 +49,8 @@ class Fixtures extends Fixture
             $salon1->setNote(0);
             $salon1->setHoraire('du lundi au vendredi de 9h à 18h');
             $salon1->SetUser($user1);
-            $salon1->setLatitude(49.41666799999999);
-            $salon1->setLongitude(2.100671899999952);
+            $salon1->setLatitude("49.41666799999999");
+            $salon1->setLongitude("2.100671899999952");
             
 
             
@@ -1000,8 +1000,8 @@ class Fixtures extends Fixture
             $salon2->setNote(0);
             $salon2->setHoraire('du mardi au samedi de 9h à 18h');
             $salon2->SetUser($user2);
-            $salon2->setLatitude(49.4284634);
-            $salon2->setLongitude(2.083540800000037);
+            $salon2->setLatitude("49.4284634");
+            $salon2->setLongitude("2.083540800000037");
 
             
 
@@ -1866,8 +1866,8 @@ class Fixtures extends Fixture
         $salon3->setNote(0);
         $salon3->setHoraire('du mardi au samedi de 10h à 19h');
         $salon3->SetUser($user4);
-        $salon3->setLatitude(49.4340421);
-        $salon3->setLongitude(2.0881197999999586);
+        $salon3->setLatitude("49.4340421");
+        $salon3->setLongitude("2.0881197999999586");
 
         
 

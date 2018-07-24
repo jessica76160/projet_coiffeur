@@ -285,14 +285,22 @@ h1 {
     height: 35px;
 }
 
+#affichage_heure {
+    text-align: center;
+}
+
 h5 {
     font-family: 'Bad Script', sans-serif;
     margin-top: 2%;
+    text-align: center;
 }
 
 #heure {
     margin-top: 2%;
     margin-bottom: 2%;
+}
+
+#saisie_heure {
     text-align: center;
 }
 
@@ -319,12 +327,13 @@ h5 {
     width: 200px;
 }
 
-#ajouter_personne {
-    text-align: center;
+#bt_rechercher {
+    margin-bottom: 5%;
 }
 
-#moins1 {
-    margin-top: 2%;
+#ajouter_personne {
+    text-align: right;
+    margin-right: 15%;
 }
 
 @media only screen and (max-width: 1050px) and (min-width: 760px) {
@@ -347,6 +356,9 @@ h5 {
         margin-right: 50vh;
     }
     #form_personne {
+        margin-right: 50vh;
+    }
+    #bt_rechercher {
         margin-right: 50vh;
     }
 }

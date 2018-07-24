@@ -45,8 +45,12 @@
         <form method="POST" action="" id="form_personne">
             </br></br></br>
             <div id="heure" class="row">
+                <div class="col-12">
                 <h5 id="titre_heure">Heure :</h5>
+                </div>
+                <div class="col-12" id="affichage_heure">
                 <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
+                </div>
             </div>
             <div id='contenu' class="container">
                 
@@ -58,7 +62,7 @@
     </div>
 
 
-    <div class="bouton_rechercher">
+    <div class="bouton_rechercher" id="bt_rechercher">
        <input type="submit" class="btn btn-secondary btn-lg" id="bouton_suivant" value="rechercher" name="rechercher" >
     </div>
     </form>
@@ -80,7 +84,7 @@
     </footer>
 
 {% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
             <script src="{{asset('js/script.js')}}"></script>
@@ -90,7 +94,7 @@
     console.log({{presta}});
         function genererLigne(num){
 
-            html="<div id='ligne"+num+"' class='row'><div id='personne"+num+"' class='col-sm-12 col-md-2'><h5>Personne :</h5><select name='inputGenre"+num+"' id='inputGenre"+num+"' class='form-control inputGenre' onchange='majPrestas()'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+num+"' class='col-sm-12 col-md-3'><h5>Type de cheveux :</h5><select name='inputType"+num+"'  id='inputType"+num+"' class='form-control inputType' onchange='majPrestas()'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+num+"' class='col-sm-12 col-md-5'><h5>Prestation(s) :</h5><select multiple name='inputPrestas"+num+"[]'  id='inputPrestas"+num+"' class='form-control'></select></div><input type='button' id='moins"+num+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>";
+            html="<div id='ligne"+num+"' class='row'><div id='personne"+num+"' class='col-sm-12 col-md-6'><h5>Personne :</h5><select name='inputGenre"+num+"' id='inputGenre"+num+"' class='form-control inputGenre' onchange='majPrestas()'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+num+"' class='col-sm-12 col-md-6'><h5>Type de cheveux :</h5><select name='inputType"+num+"'  id='inputType"+num+"' class='form-control inputType' onchange='majPrestas()'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+num+"' class='col-sm-12 col-md-12'><h5>Prestation(s) :</h5><select multiple name='inputPrestas"+num+"[]'  id='inputPrestas"+num+"' class='form-control'></select></div><input type='button' id='moins"+num+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>";
             $('#contenu').append(html);
         }
 
@@ -214,5 +218,3 @@
         {% endif %}
     </script>
 {% endblock %}
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-</html>
