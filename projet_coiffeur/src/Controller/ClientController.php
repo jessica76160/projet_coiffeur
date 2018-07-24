@@ -48,7 +48,7 @@ class ClientController extends Controller
     {
         $form = $this->createFormBuilder()
         ->add('perimetre', TextType::class)
-        ->add('adresse', TextType::class)
+        ->add('adresse', TextType::class,array('required' => false,))
         ->add('lat', HiddenType::class)
         ->add('lng', HiddenType::class)
         ->getForm();
