@@ -37,9 +37,11 @@
         {% block main %}
             <div class="col-xl-10" id="maili">
                 <h1 id="titre_creer_compte"><b>Créer son compte</b></h1>
+                <p> {{ erreurs }} </p>
             </div>      
             <div class="row">
                 <div class="col-xl-2">
+                
                 </div>
                 <div class="col-xl-3" id="confirmation">
                     <form action="" method="POST" id="form2">
@@ -57,7 +59,7 @@
                         {{ form_row(form2.adresse) }}
                         {{ form_row(form2.ville) }}
                         
-                            </form>
+                            
                         </div>
                     <div class="col-xl-3">
                 </div>
@@ -67,7 +69,7 @@
                 <div class="col-xl-2">
                     </div>
                         <div class="col-xl-3" id="confirmation">
-                        <form action="" method="POST" id="form2">
+                       
                         {{ form_row(form2.code_postale) }}
                         
                         </div>
@@ -91,7 +93,7 @@
                     </div>
                         <div class="col-xl-8" id="maili">
                             {{ form_widget(form1) }}
-                            <button class="btn" id="btni">{{ button_label|default('Enregistrement') }}</button>
+                            <input type="submit" class="btn" id="btni" value="enregistrer">
                             </form>
                         </div>
                     <div class="col-xl2">

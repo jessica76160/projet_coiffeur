@@ -45,7 +45,7 @@ class ClientController extends Controller
     {
         $form = $this->createFormBuilder()
         ->add('perimetre', TextType::class)
-        ->add('adresse', TextType::class)
+        ->add('adresse', TextType::class,array('required' => false,))
         ->add('lat', HiddenType::class)
         ->add('lng', HiddenType::class)
         ->getForm();
@@ -57,9 +57,11 @@ class ClientController extends Controller
             $session->set('lat', $data['lat']);
             $session->set('lng', $data['lng']);
             $session->set('perimetre', $data['perimetre']);
-            return $this->redirectToRoute('recherche_detail');
+            return $this->redirectToRoute('personne');
 
         }
+
+        
 
 
 
@@ -73,7 +75,7 @@ class ClientController extends Controller
      * @Route("/recherche/personne", name="personne")
      */
     public function personne()
-    {
+    { 
         return $this->render('recherche/personne.html.twig');
     }
 
@@ -82,15 +84,20 @@ class ClientController extends Controller
      */
     public function prestation()
     {
+     
         return $this->render('recherche/prestation.html.twig');
     }
 
     /**
      * @Route("/recherche/resultats", name="resultats")
      */
-    public function resultats()
+    public function resultats(Request $request ,SessionInterface $session)
     {
-        return $this->render('recherche/resultats.html.twig');
+        $lat = $session->get("lat");
+        $lon = $session->get("lng");
+        $perimetre = $session->get("perimetre");
+
+        return $this->render('recherche/resultats.html.twig',["lat"=>$lat, "lng"=>$lon,"perimetre"=>$perimetre]);
     }
 
     /**
@@ -181,13 +188,13 @@ class ClientController extends Controller
 
             $form1->handleRequest($request);
             $form2->handleRequest($request);
-            $erreursClient=[];
-            $erreursUser=[];
+            $erreurs="";
+
 
 
         // apres submit :
 
-            if ($form1->isSubmitted() && $form1->isValid() && $form2->isSubmitted() && $form2->isValid()) {
+            if ($form1->isSubmitted() && $form2->isSubmitted()) {
 
 
                     $password = $passwordEncoder->encodePassword($user, $user->getPassword());
@@ -208,14 +215,12 @@ class ClientController extends Controller
                     $em->flush();
 
                     return $this->redirectToRoute('connexion');
-
             }
-
         // renvoyer la page d'inscription
 
         return $this->render(
             'client/inscription.html.twig',
-            array('form1' => $form1->createView(),'form2' => $form2->createView(),'erreursClient'=>$erreursClient,'erreursUser'=>$erreursUser)
+            array('form1' => $form1->createView(),'form2' => $form2->createView(),'erreurs'=>$erreurs)
         );
     }
 
@@ -274,7 +279,11 @@ class ClientController extends Controller
         );
     }
 
+
 }
+    
+
+
 
     // /**
     //  * @Route("/recherche/prestation", name="prestation")

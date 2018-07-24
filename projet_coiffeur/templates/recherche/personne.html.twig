@@ -1,34 +1,87 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Resultats{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+        {% endblock %}
+        <link href="{{asset('css/reset.css')}}" rel="stylesheet">
+        <link href="{{asset('css/style.css')}}" rel="stylesheet">
+        
+    </head>
+     <header id="header_resultats">
+        {% block header %}
+           <nav class="navbar navbar-expand-sm navbar-light bg-dark row">
+                <ul class="navbar-nav" style="width:100%">
+                        <li class="nav-item col-4">
+                            <a class="nav-link text-white" href="{{ path('security_login') }}">Espace coiffeur</a>
+                        </li>
+                        <li class="col-1" id="padding_nom_debut"><p id="nom_site_debut">Coiff'</p></li>
+                        <li>
+                            <a class="nav-link text-white" href="{{ path('accueil') }}"><img class="mr-auto ml-auto pt-1 pb-1" src="{{asset('img/Calque4.png')}}"></a>
+                        </li>
+                        <li class="col-2" id="padding_nom_fin"><p id="nom_site_fin">Heur</p></li>
+                        <li class="nav-item col-4" style="text-align:right">
+                            <a class="nav-link text-white" href="{{ path('security_login') }}">Espace client</a>
+                        </li>
+                </ul>
+            </nav>
 
-{% block main %}
+        {% endblock %}
+    </header>
 
-    <div id="bandeau">Lieu / <strong>Heure, Personne et Prestation(s)</strong></div>
+    <main id="main_resultats">
+        {% block main %}
+        
+            <div id="bandeau">Lieu / <strong>Heure, Personne et Prestation(s)</strong></div>
 
     <span id="retour">
         <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
     
     <div id="choix_prestation">
-        <form method="" action="">
-            <div id="heure" class="row">
+        <form method="" action="" id="form_personne">
+            <div id="heure">
                 <h5 id="titre_heure">Heure :</h5>
                 <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
             </div>
-            <div id='contenu' class="container">
-                
+            <div id='contenu' class="container">  
             </div>
             <input type='hidden' id='nbrPersonnes' value='1'>
-            <input type='button' value='plus' id='plus'>
+            <div id="ajouter_personne">
+            <input type='button' value='Ajouter une personne' id='plus'>
+            </div>
         </form>
     </div>
 
 
     <div class="bouton_rechercher">
-        <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg" id="bouton_suivant">Rechercher</button></a>
+        <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg">Rechercher</button></a>
     </div>
-{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
+        {% endblock %}
+    </main>
+
+    <footer class="row footer bg-dark" id="footer_resultats">
+        {% block footer %}
+                <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block">FAQ</div>
+                <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block">CGV</div>
+                <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block">Crédits</div>
+                <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block">Contact</div>
+                <div class="offset-sm-4 col-sm-1"><i class="fab fa-facebook-square"></i></div>
+                <div class="col-sm-1"><i class="fab fa-twitter"></i></div>
+                <div class="col-sm-1"><i class="fab fa-instagram"></i></div>
+                <div class="col-sm-1"><i class="fab fa-google-plus-g"></i>
+                </div>
+        {% endblock %}
+    </footer>
+
+
+        {% block javascripts %}
+           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+            <script src="{{asset('js/script.js')}}"></script>
 
     <script>
 
@@ -39,7 +92,7 @@
             nbr=$('#nbrPersonnes').val();
             i=nbr--;
 
-            $('#contenu').append("<div id='ligne"+i+"' class='row'><div id='personne"+i+"' class='col-sm-12 col-md-2'><h5>Personne :</h5><select id='inputGenre"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+i+"' class='col-sm-12 col-md-3'><h5>Type de cheveux :</h5><select id='inputType"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+i+"' class='col-sm-12 col-md-5'><h5>Prestation(s) :</h5><select multiple id='inputPrestas"+i+"' class='form-control'></select></div><input type='button' id='moins"+i+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>");
+            $('#contenu').append("<div id='ligne"+i+"' class='row'><div id='personne"+i+"' class='col-sm-12 col-md-6'><h5>Personne :</h5><select id='inputGenre"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+i+"' class='col-sm-12 col-md-6'><h5>Type de cheveux :</h5><select id='inputType"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+i+"' class='col-sm-12 col-md-12'><h5>Prestation(s) :</h5><select multiple id='inputPrestas"+i+"' class='form-control'></select></div><input type='button' id='moins"+i+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>");
 
             majPrestas(i);
 
@@ -98,6 +151,8 @@
                     var genre=$(idgenre).val();
                     var type=$(idtype).val();
 
+                    
+
                 
                 //tri des prestas a afficher
 
@@ -118,4 +173,6 @@
 
 
     </script>
-{% endblock %}
+        {% endblock %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</html>
