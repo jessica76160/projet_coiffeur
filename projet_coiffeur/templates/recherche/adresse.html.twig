@@ -9,7 +9,7 @@
     </span>
     <form method="POST">
       <div id="adresse">
-          <img src="{{asset('img/localisation.png')}}" id="icone_localisation">{{ form_widget(form.adresse) }}
+          <a href="#" data-toggle="tooltip" title="Cliquer pour se géolocaliser"><img src="{{asset('img/localisation.png')}}" id="icone_localisation"></a>{{ form_widget(form.adresse) }}
       </div>
       <div id="perimetre">
           <img src="{{asset('img/radar.png')}}" id="icone_radar">{{ form_widget(form.perimetre) }}

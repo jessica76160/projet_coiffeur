@@ -100,6 +100,20 @@ img {
     text-align: center;
 }
 
+#connexion {
+    color: white;
+    font-family: 'Bad Script', sans-serif;
+    line-height: 10vh;
+    text-align: right;
+    font-size: x-small;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1179px) {
+    #connexion {
+        font-size: small;
+    }
+}
+
 @media screen and (min-width: 1180px) {
     #nom_site_debut {
         font-size: xx-large;
@@ -107,6 +121,9 @@ img {
     }
     #nom_site_fin {
         font-size: xx-large;
+    }
+    #connexion {
+        font-size: medium;
     }
 }
 
