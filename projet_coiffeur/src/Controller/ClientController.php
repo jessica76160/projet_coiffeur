@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use App\Form\UserType;
 use App\Entity\PrestationClient;
+use App\Entity\PrestationComposee;
 use App\Form\ClientType;
 use App\Form\PrestationClientType;
 use App\Entity\User;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class ClientController extends Controller
 {
@@ -35,6 +37,8 @@ class ClientController extends Controller
      */
     public function accueil()
     {
+        //dump($this->getUser());
+        //die();
         return $this->render('accueil.html.twig');
     }
 
@@ -45,7 +49,7 @@ class ClientController extends Controller
     {
         $form = $this->createFormBuilder()
         ->add('perimetre', TextType::class, array('attr' => array('placeholder' => 'Indiquez un périmètre en km')))
-        ->add('adresse', TextType::class, array('attr' => array('placeholder' => 'Indiquez une adresse')))
+        ->add('adresse', TextType::class, array('attr' => array('placeholder' => 'Indiquez une adresse'), 'required'=>false))
         ->add('lat', HiddenType::class)
         ->add('lng', HiddenType::class)
         ->getForm();
@@ -72,9 +76,211 @@ class ClientController extends Controller
     /**
      * @Route("/recherche/personne", name="personne")
      */
-    public function personne()
+    public function personne(Request $request,SessionInterface $session, ObjectManager $manager)
     {
-        return $this->render('recherche/personne.html.twig');
+        $content=[];
+        $liste=[];
+        $html=[];
+        $liste_id=[];
+        $tab=[];
+        $presta="";
+        $iPresta=0;
+        $array2=[];
+
+
+        // apres submit
+        if($request->request->get('rechercher')!= null){
+
+            // traitement si submit general => sauvegarder les infos
+
+            // sauvegarder heure
+
+                $session->set('heure', $request->request->get('appt-time'));
+
+            // recuperer les données et les mettres sous forme de tableau asso.
+                
+
+                $content = $request->getContent();
+
+                $content2=explode ( '&' , $content );
+                $nb_variable = count($content2);
+                
+                for ( $i=0; $i< $nb_variable; $i++)
+                {
+                    $contenu = explode("=", $content2[$i]);
+                    
+                    if($contenu[0]!=""){
+                        $arrayFinal[$contenu[0]]=$contenu[1];
+                    }else{
+                        $arrayFinal=[];
+                    }
+                    
+                }
+                $tab=$arrayFinal;
+
+            // creer une prestaclient par personne
+
+            foreach($arrayFinal as $key=>$value){
+
+                if(preg_match('/inputPrestas/',$key,$num)){
+
+                    // recuperer id
+                    
+                        preg_match('/[0-9]/',$key,$numero);
+                        $id=$numero[0];
+                        $liste_id[]=$id;
+
+                    // creer un nouvel objet prestaclient
+
+                        $prestation[$iPresta]=new prestationClient;
+
+
+                    // recuperer la valeur du select multiple
+
+                        $select='inputPrestas'.$id;
+                        $selectValeurs[]=$request->request->get($select);
+
+                    // pour chaque id selectionné, recuperer objet
+
+                            for ( $i=0; $i< count($selectValeurs[0]); $i++){
+
+                                $id=$selectValeurs[0][$i];
+
+                                // appel a la fonction
+
+                                    $presta=$this->getDoctrine()
+                                    ->getManager()
+                                    ->getRepository(PrestationComposee::class)
+                                    ->findOneById($id);
+    
+                                // insertions dans l'objet
+
+                                    $prestation[$iPresta]->addPrestationsComposee($presta);
+                                    $manager->persist($prestation[$iPresta]);
+
+                                    $pres[$iPresta][$i]=$presta->getNom();
+
+                                // sauvegarde de l'objet dans session
+
+                                    $session->set('prestation['.$iPresta.']', $prestation[$iPresta]);
+                        
+                            }
+                        
+
+                }
+
+               
+             $iPresta++;   
+            }
+                  
+            return $this->redirectToRoute('resultats');
+
+        }else{
+
+            // apres rafraichissement
+
+            if(isset($request) and !empty($request->getContent()))
+            {
+                $liste=['a'];
+
+                // recuperer les données et les mettres sous forme de tableau asso.
+
+                $content = $request->getContent();
+
+                $content2=explode ( '&' , $content );
+                $nb_variable = count($content2);
+                
+                for ( $i=0; $i< $nb_variable; $i++)
+                {
+                    $contenu = explode("=", $content2[$i]);
+                    
+                    if($contenu[0]!=""){
+                        $arrayFinal[$contenu[0]]=$contenu[1];
+                    }else{
+                        $arrayFinal=[];
+                    }
+                    
+                }
+                $tab=$arrayFinal;
+                foreach($arrayFinal as $key=>$value){
+
+
+                    if(preg_match('/inputGenre/',$key,$num)){
+
+                        $array2[$key]=$value;
+
+                        // recuperer id
+                        
+                        preg_match('/[0-9]/',$key,$numero);
+                        $id=$numero[0];
+                        $liste_id[]=$id;
+        
+                        // recuperer les valeurs des 2 champs correspondants
+                        $typeGenre='inputGenre'.$id;
+                        $typeType='inputType'.$id;
+                        $genre=$arrayFinal[$typeGenre]??"";
+                        $type=$arrayFinal[$typeType]??"";
+        
+        
+                        // appel a la fonction
+        
+                        $liste['inputPrestas'.$id]=$this->getDoctrine()
+                        ->getManager()
+                        ->getRepository(PrestationComposee::class)
+                        ->findByGenreType($genre,$type);
+
+                    }elseif(preg_match('/inputPrestas/',$key,$num)){
+
+                        //remplacer les caractere speciaux
+
+                            $newKey=str_replace('%5B%5D','',$key);
+
+                        //modifier dans le tableau
+
+                             $array2[$newKey]=$value;
+
+                            
+
+                    }elseif(preg_match('/appt-time/',$key,$num)){
+
+                        // remplacer les caracteres speciaux
+
+                            $newValue=str_replace('%3A',':',$value);
+
+                        //modifier dans le tableau
+
+                            $array2[$key]=$newValue;
+
+                    }else{
+
+                        $array2[$key]=$value;
+                    }
+                }
+            
+                
+            }else{
+
+                 // si demarrage de la page
+
+                    $genre="homme";
+                    $type="court";
+
+                    // appel a la fonction
+                    
+                    $liste['inputPrestas0']=$this->getDoctrine()
+                    ->getManager()
+                    ->getRepository(PrestationComposee::class)
+                    ->findByGenreType($genre,$type);
+            }
+        }
+       
+
+    
+
+
+        return $this->render('recherche/personne.html.twig',['contenu'=>$array2,'listeId'=>$liste_id,'liste'=>$liste,'presta'=>$presta]);
+
+       
     }
 
     /**
@@ -88,9 +294,13 @@ class ClientController extends Controller
     /**
      * @Route("/recherche/resultats", name="resultats")
      */
-    public function resultats()
+    public function resultats(Request $request ,SessionInterface $session)
     {
-        return $this->render('recherche/resultats.html.twig');
+        $lat = $session->get("lat");
+        $lon = $session->get("lng");
+        $perimetre = $session->get("perimetre");
+
+        return $this->render('recherche/resultats.html.twig',["lat"=>$lat, "lng"=>$lon,"perimetre"=>$perimetre]);
     }
 
     /**
@@ -228,10 +438,14 @@ class ClientController extends Controller
     {
         // generer les formulaires
 
-            $user = new User();
+            $user = $this->getUser();
             $form1 = $this->createForm(UserType::class, $user);
-
-            $client = new Client();
+         
+            $client=$this->getDoctrine()
+                ->getManager()
+                ->getRepository(Client::class)
+                ->findOneByUser($user);
+            
             $form2 = $this->createForm(ClientType::class, $client);
 
             $form1->handleRequest($request);
@@ -272,6 +486,37 @@ class ClientController extends Controller
             'client/compte.html.twig',
             array('form1' => $form1->createView(),'form2' => $form2->createView(),'erreursClient'=>$erreursClient,'erreursUser'=>$erreursUser)
         );
+    }
+
+    /**
+     * @Route("/email", name="email")
+     */
+
+    public function email(Request $request, \Swift_Mailer $mailer)
+    {
+    $message = (new \Swift_Message('Hello Email'))
+        ->setFrom('guillaume.queste84@gmail.com')
+        ->setTo('guillaume.queste84@gmail.com')
+        ->setBody(
+            $this->renderView(
+                // templates/email.html.twig
+                'email.html.twig'
+            ),
+            'text/html'
+        )
+        /*
+         * If you also want to include a plaintext version of the message
+        ->addPart(
+            $this->renderView(
+                'emails/registration.txt.twig',
+                array('name' => $name)
+            ),
+            'text/plain'
+        )
+        */
+    ;
+    $mailer->send($message);
+    return $this->render('accueil.html.twig');
     }
 
 }

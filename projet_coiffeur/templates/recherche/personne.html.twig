@@ -22,15 +22,9 @@
                             <a class="nav-link text-white" href="{{ path('accueil') }}"><img class="mr-auto ml-auto pt-1 pb-1" src="{{asset('img/Calque4.png')}}"></a>
                         </li>
                         <li class="col-2" id="padding_nom_fin"><p id="nom_site_fin">Heur</p></li>
-                        
-                        {% if app.user %}
-                            <li id="connexion">Bonjour / <a href="{{ path('compte_client') }}">Mon Compte</a> / <a href="{{ path('security_logout') }}">Déconnexion</a></li>
-                        {% else %}
-                            <li class="nav-item col-4" id="style_client">
-                                <a class="nav-link text-white" href="{{ path('security_login') }}">Espace client</a>
-                            </li>
-                        {% endif %}
-                        
+                        <li class="nav-item col-4" style="text-align:right">
+                            <a class="nav-link text-white" href="{{ path('security_login') }}">Espace client</a>
+                        </li>
                 </ul>
             </nav>
 
@@ -38,37 +32,40 @@
     </header>
 
     <main id="main_resultats">
-        {% block main %}
-        
-            <div id="bandeau">Lieu / <strong>Heure, Personne et Prestation(s)</strong></div>
+
+{% block main %}
+
+    <div id="bandeau">Lieu / <strong>Heure, Personne et Prestation(s)</strong></div>
 
     <span id="retour">
         <a href="/recherche/adresse"><img src="{{asset('img/fleche.png')}}" id="fleche"></a>
     </span>
     
     <div id="choix_prestation">
-        <form method="" action="" id="form_personne">
-            <div id="heure">
+        <form method="POST" action="" id="form_personne">
+            </br></br></br>
+            <div id="heure" class="row">
                 <h5 id="titre_heure">Heure :</h5>
                 <input type="time" id="appt-time" name="appt-time" min="9:00" max="18:00" required />
             </div>
-            <div id='contenu' class="container">  
+            <div id='contenu' class="container">
+                
             </div>
-            <input type='hidden' id='nbrPersonnes' value='1'>
-            <div id="ajouter_personne">
-            <input type='button' value='Ajouter une personne' id='plus'>
-            </div>
-        </form>
+            <input type="hidden" id="num" name="num">
+            <input type='hidden' id='nbrPersonnes' value='1' name="nbrPersonnes">
+            <input type='button' value='plus' id='plus'>
+        
     </div>
 
 
     <div class="bouton_rechercher">
-        <a href="/recherche/resultats"><button type="button" class="btn btn-secondary btn-lg">Rechercher</button></a>
+       <input type="submit" class="btn btn-secondary btn-lg" id="bouton_suivant" value="rechercher" name="rechercher" >
     </div>
-        {% endblock %}
-    </main>
+    </form>
+{% endblock %}
+</main>
 
-    <footer class="row footer bg-dark" id="footer_resultats">
+<footer class="row footer bg-dark" id="footer_resultats">
         {% block footer %}
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block">FAQ</div>
                 <div class="col-md-1 d-none d-md-block d-lg-none d-lg-block d-xl-none d-xl-block">CGV</div>
@@ -82,31 +79,21 @@
         {% endblock %}
     </footer>
 
-
-        {% block javascripts %}
-           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
             <script src="{{asset('js/script.js')}}"></script>
 
     <script>
 
-        // generer formulaire
+    console.log({{presta}});
+        function genererLigne(num){
 
-        function genererLigne(){
-
-            nbr=$('#nbrPersonnes').val();
-            i=nbr--;
-
-            $('#contenu').append("<div id='ligne"+i+"' class='row'><div id='personne"+i+"' class='col-sm-12 col-md-6'><h5>Personne :</h5><select id='inputGenre"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+i+"' class='col-sm-12 col-md-6'><h5>Type de cheveux :</h5><select id='inputType"+i+"' class='form-control' onchange='majPrestas(this.getAttribute(\"id\"))'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+i+"' class='col-sm-12 col-md-12'><h5>Prestation(s) :</h5><select multiple id='inputPrestas"+i+"' class='form-control'></select></div><input type='button' id='moins"+i+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>");
-
-            majPrestas(i);
-
+            html="<div id='ligne"+num+"' class='row'><div id='personne"+num+"' class='col-sm-12 col-md-2'><h5>Personne :</h5><select name='inputGenre"+num+"' id='inputGenre"+num+"' class='form-control inputGenre' onchange='majPrestas()'><option value='homme'>homme</option><option value='femme'>femme</option><option value='enfant'>enfant</option></select></div><div id='type_cheveux"+num+"' class='col-sm-12 col-md-3'><h5>Type de cheveux :</h5><select name='inputType"+num+"'  id='inputType"+num+"' class='form-control inputType' onchange='majPrestas()'><option value='court'>court</option><option value='long'>long</option></select></div><div id='prestation"+num+"' class='col-sm-12 col-md-5'><h5>Prestation(s) :</h5><select multiple name='inputPrestas"+num+"[]'  id='inputPrestas"+num+"' class='form-control'></select></div><input type='button' id='moins"+num+"' value='supprimer' style='height:30%' onclick='supprimerLigne(this.getAttribute(\"id\"))'></div>";
+            $('#contenu').append(html);
         }
 
-        //node.removeChild(child);
-
-        // sur clic sur - => supprimer une personne
 
         function supprimerLigne(id){
 
@@ -128,55 +115,104 @@
             nbr--;
             $('#nbrPersonnes').val(nbr);
         }
+
+
         // sur clic sur + => ajouter une personne
 
             $('#plus').on('click', function(e) {
+
                 nbr=$('#nbrPersonnes').val();
                 nbr++;
                 $('#nbrPersonnes').val(nbr);
-                genererLigne();
+
+                nb=$('#num').val();
+                nb++;
+                genererLigne(nb);
+                
+                $('#num').val(nb);
+
+                $('#form_personne').submit();
+
 
             });
 
 
+        // sur changement genre ou type => submit
 
+            function majPrestas(){
 
-        // sur changement personne =>tri 
+                $('#form_personne').submit();
 
-            function majPrestas(id){
-
-                //recuperer le numero de la ligne
-
-                    var nbr=/([0-9]+)/.exec(id)[0];
-
-                // recupere les valeurs des champs
-
-                    idgenre='#inputGenre'+nbr;
-                    idtype='#inputType'+nbr;
-
-                    var genre=$(idgenre).val();
-                    var type=$(idtype).val();
-
-                
-                //tri des prestas a afficher
-
-                
             }
 
-        // sur changement type cheveux=>tri si pas valeur par def
 
-            $('#type_cheveux').on('change', function(e) {
-
-                
-            });
-
+        // au chargement de la page:
+            // structure
+            
+        {% if contenu is not empty %}
         
-        genererLigne();
+            {% if listeId is defined and listeId is not empty %}
+
+                {% for id in listeId %}
+                    
+                    genererLigne({{id}});
+
+                {% endfor %}
+
+            {% endif %}
+
+            
+
+            // generer liste
+            
+            {% for nameInput,value in liste %}
+
+                nameInput={{nameInput}};
+                html=[];
+
+                {% for element in value %}
+
+                    html+='<option value="{{element['id']}}">{{element['nom']}}</option>';
+
+                {% endfor %}
+
+                $('#{{nameInput}}').html(html);
+
+            {% endfor %}
+
+            //remplir
+
+            {% for element,valeur in contenu %}
+
+                    $('#{{element}}').val('{{valeur}}');
+
+            {% endfor %}
+
+        {% else %}
         
-    
+            genererLigne(0);
 
+            // generer liste
+            
+            {% for nameInput,value in liste %}
 
+                nameInput={{nameInput}};
+                html=[];
+
+                {% for element in value %}
+
+                    html+='<option value="{{element['id']}}">{{element['nom']}}</option>';
+
+                {% endfor %}
+
+                $('#{{nameInput}}').html(html);
+
+            {% endfor %}
+
+            $('#num').val(0);
+            $('#nbrPersonnes').val(1);
+        {% endif %}
     </script>
-        {% endblock %}
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+{% endblock %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </html>

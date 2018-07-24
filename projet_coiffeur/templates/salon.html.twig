@@ -22,9 +22,14 @@
                             <a class="nav-link text-white" href="{{ path('accueil') }}"><img class="mr-auto ml-auto pt-1 pb-1" src="{{asset('img/Calque4.png')}}"></a>
                         </li>
                         <li class="col-2" id="padding_nom_fin"><p id="nom_site_fin">Heur</p></li>
-                        <li class="nav-item col-4" style="text-align:right">
-                            <a class="nav-link text-white" href="{{ path('security_login') }}">Espace client</a>
-                        </li>
+
+                        {% if app.user %}
+                            <li id="connexion">Bonjour / <a href="{{ path('compte_client') }}">Mon Compte</a> / <a href="{{ path('security_logout') }}">Déconnexion</a></li>
+                        {% else %}
+                            <li class="nav-item col-4" id="style_client">
+                                <a class="nav-link text-white" href="{{ path('security_login') }}">Espace client</a>
+                            </li>
+                        {% endif %}
                 </ul>
             </nav>
         {% endblock %}

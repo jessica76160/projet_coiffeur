@@ -32,7 +32,7 @@ class Fixtures extends Fixture
         // enregistrement salon ------------------------------------------------------------------------
 
             $user1=new User();
-            $user1->setUsername('salon1');
+            $user1->setUsername('jess11590@live.fr');
             $user1->setPassword($this->passwordEncoder->encodePassword($user1, 'alex181187'));
             $user1->setRoles(['SALON']);
 
@@ -40,15 +40,18 @@ class Fixtures extends Fixture
             $manager->flush();
 
             $salon1 = new Salon();
-            $salon1->setNom('salon1');
+            $salon1->setNom('jess11590@live.fr');
             $salon1->setEmail('jess11590@live.fr');
             $salon1->setTelephone('0783382525');
-            $salon1->setAdresse('50b rue victor hugo');
-            $salon1->setCodePostale('76520');
-            $salon1->setVille('franqueville-saint-pierre');
+            $salon1->setAdresse('10 rue de la paix');
+            $salon1->setCodePostale('60000');
+            $salon1->setVille('beauvais');
             $salon1->setNote(0);
             $salon1->setHoraire('du lundi au vendredi de 9h à 18h');
             $salon1->SetUser($user1);
+            $salon1->setLatitude(49.41666799999999);
+            $salon1->setLongitude(2.100671899999952);
+            
 
             
 
@@ -980,7 +983,7 @@ class Fixtures extends Fixture
 
 
             $user3=new User();
-            $user3->setUsername('salon2');
+            $user3->setUsername('jean@live.fr');
             $user3->setPassword($this->passwordEncoder->encodePassword($user3, 'jeansalon'));
             $user3->setRoles(['SALON']);
 
@@ -988,7 +991,7 @@ class Fixtures extends Fixture
             $manager->flush();
 
             $salon2 = new Salon();
-            $salon2->setNom('salon2');
+            $salon2->setNom('jean@live.fr');
             $salon2->setEmail('jean@live.fr');
             $salon2->setTelephone('0783382525');
             $salon2->setAdresse('5 rue villiers de l\'isle adam');
@@ -997,6 +1000,8 @@ class Fixtures extends Fixture
             $salon2->setNote(0);
             $salon2->setHoraire('du mardi au samedi de 9h à 18h');
             $salon2->SetUser($user2);
+            $salon2->setLatitude(49.4284634);
+            $salon2->setLongitude(2.083540800000037);
 
             
 
@@ -1844,7 +1849,7 @@ class Fixtures extends Fixture
 
 
         $user5=new User();
-        $user5->setUsername('salon3');
+        $user5->setUsername('guillaume@live.fr');
         $user5->setPassword($this->passwordEncoder->encodePassword($user5, 'guillaumesalon'));
         $user5->setRoles(['SALON']);
 
@@ -1852,7 +1857,7 @@ class Fixtures extends Fixture
         $manager->flush();
 
         $salon3 = new Salon();
-        $salon3->setNom('salon3');
+        $salon3->setNom('guillaume@live.fr');
         $salon3->setEmail('guillaume@live.fr');
         $salon3->setTelephone('0783382525');
         $salon3->setAdresse('52 rue de gevres');
@@ -1861,6 +1866,8 @@ class Fixtures extends Fixture
         $salon3->setNote(0);
         $salon3->setHoraire('du mardi au samedi de 10h à 19h');
         $salon3->SetUser($user4);
+        $salon3->setLatitude(49.4340421);
+        $salon3->setLongitude(2.0881197999999586);
 
         
 

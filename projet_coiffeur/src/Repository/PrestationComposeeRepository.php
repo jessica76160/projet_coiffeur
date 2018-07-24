@@ -23,7 +23,7 @@ class PrestationComposeeRepository extends ServiceEntityRepository
 //     * @return PrestationComposee[] Returns an array of PrestationComposee objects
 //     */
     /*
-    public function findByExampleField($value)
+    public function findById($id)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
@@ -35,16 +35,58 @@ class PrestationComposeeRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    /*
-    public function findOneBySomeField($value): ?PrestationComposee
+    
+    public function findOneById($id): ?PrestationComposee
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.id = :val')
+            ->setParameter('val', $id)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
+
+    public function findByGenreType($genre,$type)
+    {
+        if($genre!="" and $type!=""){
+
+            return $this->createQueryBuilder('p')
+                ->select('p.id')
+                ->addSelect('p.nom')
+                ->andWhere('p.genre = :genre or p.genre= :commun')
+                ->andWhere('p.type_cheveux = :type or p.type_cheveux= :commun')
+                ->setParameter('genre', $genre)
+                ->setParameter('type', $type)
+                ->setParameter('commun', 'commun')
+                ->getQuery()
+                ->getResult()
+            ;
+
+        }elseif($genre=="" and $type!=""){
+
+            return $this->createQueryBuilder('p')
+                ->select('p.id')
+                ->addSelect('p.nom')
+                ->andWhere('p.type_cheveux = :type or p.type_cheveux= :commun')
+                ->setParameter('type', $type)
+                ->setParameter('commun', 'commun')
+                ->getQuery()
+                ->getResult()
+            ;
+
+        }elseif($genre!="" and $type==""){
+
+            return $this->createQueryBuilder('p')
+                ->select('p.id')
+                ->addSelect('p.nom')
+                ->andWhere('p.genre = :genre  or p.genre= :commun')
+                ->setParameter('genre', $genre)
+                ->setParameter('commun', 'commun')
+                ->getQuery()
+                ->getResult()
+            ;
+
+        }
+    }
 }
