@@ -24,7 +24,13 @@
                         <li class="col-2" id="padding_nom_fin"><p id="nom_site_fin">Heur</p></li>
                         
                         {% if app.user %}
+                            
+                            {% if app.user.roles[0]=="ROLE_CLIENT" %}
                             <li id="connexion">Bonjour {{app.user.username}} / <a href="{{ path('compte_client') }}">Mon Compte</a> / <a href="{{ path('security_logout') }}">Déconnexion</a></li>
+                            
+                            {% elseif app.user.roles[0]=="ROLE_ADMIN" %}
+                            <li id="connexion">Bonjour {{app.user.username}} / <a href="{{ path('prestation_client_index') }}">Admin prestation client</a> / <a href="{{ path('security_logout') }}">Déconnexion</a></li>
+                            {% endif %}
                         {% else %}
                             <li class="nav-item col-4" id="style_client">
                                 <a class="nav-link text-white" href="{{ path('security_login') }}">Espace client</a>

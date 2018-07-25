@@ -20,14 +20,14 @@ class AdminController extends Controller
      */
      //----------------------------------------------------------- SALON ---------------------------------------------
     /**
-     * @Route("/salon/", name="salon_index", methods="GET")
+     * @Route("/admin/salon/", name="salon_index", methods="GET")
      */
     public function indexsalon(SalonRepository $salonRepository): Response
     {
         return $this->render('admin/salon/index.html.twig', ['salons' => $salonRepository->findAll()]);
     }
     /**
-     * @Route("/salon/new", name="salon_new", methods="GET|POST")
+     * @Route("/admin/salon/new", name="salon_new", methods="GET|POST")
      */
     public function newsalon(Request $request): Response
     {
@@ -46,14 +46,14 @@ class AdminController extends Controller
         ]);
     }
     /**
-     * @Route("/salon/{id}", name="salon_show", methods="GET")
+     * @Route("/admin/salon/{id}", name="salon_show", methods="GET")
      */
     public function showsalon(Salon $salon): Response
     {
         return $this->render('admin/salon/show.html.twig', ['salon' => $salon]);
     }
     /**
-     * @Route("/salon/{id}/edit", name="salon_edit", methods="GET|POST")
+     * @Route("/admin/salon/{id}/edit", name="salon_edit", methods="GET|POST")
      */
     public function editsalon(Request $request, Salon $salon): Response
     {
@@ -69,7 +69,7 @@ class AdminController extends Controller
         ]);
     }
     /**
-     * @Route("/salon/{id}", name="salon_delete", methods="DELETE")
+     * @Route("/admin/salon/{id}", name="salon_delete", methods="DELETE")
      */
     public function deletesalon(Request $request, Salon $salon): Response
     {
@@ -83,14 +83,14 @@ class AdminController extends Controller
     //------------------------------------------------ PRESTATION CLIENT ------------------------------------------
     
     /**
-     * @Route("/prestation/client/", name="prestation_client_index", methods="GET")
+     * @Route("/admin/prestation/client/", name="prestation_client_index", methods="GET")
      */
     public function indexprestation_client(PrestationClientRepository $prestationClientRepository): Response
     {
         return $this->render('admin/prestation_client/index.html.twig', ['prestation_clients' => $prestationClientRepository->findAll()]);
     }
     /**
-     * @Route("/prestation/client/new", name="prestation_client_new", methods="GET|POST")
+     * @Route("/admin/prestation/client/new", name="prestation_client_new", methods="GET|POST")
      */
     public function newprestation_client(Request $request): Response
     {
@@ -109,14 +109,14 @@ class AdminController extends Controller
         ]);
     }
     /**
-     * @Route("/prestation/client/{id}", name="prestation_client_show", methods="GET")
+     * @Route("/admin/prestation/client/{id}", name="prestation_client_show", methods="GET")
      */
     public function showprestation_client(PrestationClient $prestationClient): Response
     {
         return $this->render('admin/prestation_client/show.html.twig', ['prestation_client' => $prestationClient]);
     }
     /**
-     * @Route("/prestation/client/{id}/edit", name="prestation_client_edit", methods="GET|POST")
+     * @Route("/admin/prestation/client/{id}/edit", name="prestation_client_edit", methods="GET|POST")
      */
     public function editprestation_client(Request $request, PrestationClient $prestationClient): Response
     {
@@ -132,7 +132,7 @@ class AdminController extends Controller
         ]);
     }
     /**
-     * @Route("/prestation/client/{id}", name="prestation_client_delete", methods="DELETE")
+     * @Route("/admin/prestation/client/{id}", name="prestation_client_delete", methods="DELETE")
      */
     public function deleteprestation_client(Request $request, PrestationClient $prestationClient): Response
     {
@@ -145,14 +145,14 @@ class AdminController extends Controller
     }
     //------------------------------------------ PRESTATION COMPOSEE -----------------------------------------------
     /**
-     * @Route("/prestation/composee/", name="prestation_composee_index", methods="GET")
+     * @Route("/admin/prestation/composee/", name="prestation_composee_index", methods="GET")
      */
     public function indexprestation_composee(PrestationComposeeRepository $prestationComposeeRepository): Response
     {
         return $this->render('admin/prestation_composee/index.html.twig', ['prestation_composees' => $prestationComposeeRepository->findAll()]);
     }
     /**
-     * @Route("/prestation/composee/new", name="prestation_composee_new", methods="GET|POST")
+     * @Route("/admin/prestation/composee/new", name="prestation_composee_new", methods="GET|POST")
      */
     public function newprestation_composee(Request $request): Response
     {
@@ -171,14 +171,14 @@ class AdminController extends Controller
         ]);
     }
     /**
-     * @Route("/prestation/composee/{id}", name="prestation_composee_show", methods="GET")
+     * @Route("/admin/prestation/composee/{id}", name="prestation_composee_show", methods="GET")
      */
     public function showprestation_composee(PrestationComposee $prestationComposee): Response
     {
         return $this->render('admin/prestation_composee/show.html.twig', ['prestation_composee' => $prestationComposee]);
     }
     /**
-     * @Route("/prestation/composee/{id}/edit", name="prestation_composee_edit", methods="GET|POST")
+     * @Route("/admin/prestation/composee/{id}/edit", name="prestation_composee_edit", methods="GET|POST")
      */
     public function editprestation_composee(Request $request, PrestationComposee $prestationComposee): Response
     {
@@ -194,7 +194,7 @@ class AdminController extends Controller
         ]);
     }
     /**
-     * @Route("/prestation/composee/{id}", name="prestation_composee_delete", methods="DELETE")
+     * @Route("/admin/prestation/composee/{id}", name="prestation_composee_delete", methods="DELETE")
      */
     public function deleteprestation_composee(Request $request, PrestationComposee $prestationComposee): Response
     {

@@ -2,10 +2,10 @@
 
 {% block title %}New PrestationClient{% endblock %}
 
-{% block body %}
+{% block main %}
     <h1>Create new PrestationClient</h1>
 
-    {{ include('prestation_client/_form.html.twig') }}
+    {{ include('admin/prestation_client/_form.html.twig') }}
 
     <a href="{{ path('prestation_client_index') }}">back to list</a>
 {% endblock %}

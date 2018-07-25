@@ -469,7 +469,7 @@ class ClientController extends Controller
         return $this->render('a_domicile/coiffeurs_disponibles.html.twig');
     }
 
-    /**
+     /**
      * @Route("/inscription/client", name="client_inscription")
      */
 
@@ -485,13 +485,13 @@ class ClientController extends Controller
 
             $form1->handleRequest($request);
             $form2->handleRequest($request);
-            $erreursClient=[];
-            $erreursUser=[];
+            $erreurs="";
+
 
 
         // apres submit :
 
-            if ($form1->isSubmitted() && $form1->isValid() && $form2->isSubmitted() && $form2->isValid()) {
+            if ($form1->isSubmitted() && $form2->isSubmitted()) {
 
 
                     $password = $passwordEncoder->encodePassword($user, $user->getPassword());
@@ -511,15 +511,13 @@ class ClientController extends Controller
                     $em->persist($client);
                     $em->flush();
 
-                    return $this->redirectToRoute('connexion');
-
+                    return $this->redirectToRoute('security_login');
             }
-
         // renvoyer la page d'inscription
 
         return $this->render(
             'client/inscription.html.twig',
-            array('form1' => $form1->createView(),'form2' => $form2->createView(),'erreursClient'=>$erreursClient,'erreursUser'=>$erreursUser)
+            array('form1' => $form1->createView(),'form2' => $form2->createView(),'erreurs'=>$erreurs)
         );
     }
 

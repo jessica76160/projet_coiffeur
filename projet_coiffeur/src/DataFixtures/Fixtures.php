@@ -34,7 +34,7 @@ class Fixtures extends Fixture
             $user10=new User();
             $user10->setUsername('admin');
             $user10->setPassword($this->passwordEncoder->encodePassword($user10, 'admin'));
-            $user10->setRoles(['ADMIN']);
+            $user10->setRoles(['ROLE_ADMIN']);
 
             $manager->persist($user10);
             $manager->flush();
@@ -50,7 +50,7 @@ class Fixtures extends Fixture
             $manager->flush();
 
             $salon1 = new Salon();
-            $salon1->setNom('coif coif');
+            $salon1->setNom('profil');
             $salon1->setEmail('jess11590@live.fr');
             $salon1->setTelephone('0783382525');
             $salon1->setAdresse('10 rue de la paix');
@@ -914,7 +914,7 @@ class Fixtures extends Fixture
             $user2=new User();
             $user2->setUsername('client1@live.fr');
             $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'client1'));
-            $user2->setRoles(['CLIENT']);
+            $user2->setRoles(['ROLE_CLIENT']);
 
             $manager->persist($user2);
             $manager->flush();
