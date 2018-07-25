@@ -79,12 +79,12 @@ class Salon
     private $user;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="string", length=50)
      */
     private $longitude;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="string", length=50)
      */
     private $latitude;
 

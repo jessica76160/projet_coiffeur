@@ -29,6 +29,16 @@ class Fixtures extends Fixture
     public function load(ObjectManager $manager)
     {
 
+        // user admin
+
+            $user10=new User();
+            $user10->setUsername('admin');
+            $user10->setPassword($this->passwordEncoder->encodePassword($user10, 'admin'));
+            $user10->setRoles(['ADMIN']);
+
+            $manager->persist($user10);
+            $manager->flush();
+
         // enregistrement salon ------------------------------------------------------------------------
 
             $user1=new User();
@@ -40,7 +50,7 @@ class Fixtures extends Fixture
             $manager->flush();
 
             $salon1 = new Salon();
-            $salon1->setNom('jess11590@live.fr');
+            $salon1->setNom('coif coif');
             $salon1->setEmail('jess11590@live.fr');
             $salon1->setTelephone('0783382525');
             $salon1->setAdresse('10 rue de la paix');
@@ -902,8 +912,8 @@ class Fixtures extends Fixture
         // enregistrement des clients ------------------
            
             $user2=new User();
-            $user2->setUsername('client1');
-            $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'alex181187'));
+            $user2->setUsername('client1@live.fr');
+            $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'client1'));
             $user2->setRoles(['CLIENT']);
 
             $manager->persist($user2);
@@ -912,7 +922,7 @@ class Fixtures extends Fixture
             $client1=new Client;
             $client1->SetNom('rolland');
             $client1->SetPrenom('jessica');
-            $client1->SetEmail('jess11590@live.fr');
+            $client1->SetEmail('client1@live.fr');
             $client1->SetTelephone('0783382525');
             $client1->SetAdresse('50b rue victor hugo');
             $client1->SetCodePostale('76520');
@@ -991,7 +1001,7 @@ class Fixtures extends Fixture
             $manager->flush();
 
             $salon2 = new Salon();
-            $salon2->setNom('jean@live.fr');
+            $salon2->setNom('tchip');
             $salon2->setEmail('jean@live.fr');
             $salon2->setTelephone('0783382525');
             $salon2->setAdresse('5 rue villiers de l\'isle adam');
@@ -1857,7 +1867,7 @@ class Fixtures extends Fixture
         $manager->flush();
 
         $salon3 = new Salon();
-        $salon3->setNom('guillaume@live.fr');
+        $salon3->setNom('franck provost');
         $salon3->setEmail('guillaume@live.fr');
         $salon3->setTelephone('0783382525');
         $salon3->setAdresse('52 rue de gevres');

@@ -47,4 +47,15 @@ class SalonRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findSalons()
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s.id')
+            ->addSelect('s.nom')
+            ->addSelect('s.coiffeurs')
+            ->addSelect('s.longitude')
+            ->addSelect('s.latitude')
+            ->getQuery()
+            ->getResult();
+    }
 }

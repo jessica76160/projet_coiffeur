@@ -12,6 +12,7 @@ use App\Form\ClientType;
 use App\Form\PrestationClientType;
 use App\Entity\User;
 use App\Entity\Client;
+use App\Entity\Salon;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -296,11 +297,100 @@ class ClientController extends Controller
      */
     public function resultats(Request $request ,SessionInterface $session)
     {
-        $lat = $session->get("lat");
-        $lon = $session->get("lng");
+        $latInit = $session->get("lat");
+        $lonInit = $session->get("lng");
         $perimetre = $session->get("perimetre");
+        $heure = $session->get("heure");
 
-        return $this->render('recherche/resultats.html.twig',["lat"=>$lat, "lng"=>$lon,"perimetre"=>$perimetre]);
+        // recuperer les objets salons
+
+            $liste[]=$this->getDoctrine()
+                ->getManager()
+                ->getRepository(Salon::class)
+                ->findAll();
+
+            
+
+        // tests
+            $coiffeurs=[];
+            $prestas=[];
+            $prestasC=[];
+            $dispos=[];
+            $idCoiffeurs=[];
+            $salons=[];
+            $i=0;
+
+            foreach($liste[0] as $salon){
+                // pour chaque salon 
+                $long=$salon->getLongitude();
+                $lat=$salon->getLatitude();
+                $idSalon=$salon->getId();
+                $nom=$salon->getNom();
+                $coiffeurs=$salon->getCoiffeurs();
+
+                // verifier si rentre dans le perimetre
+
+                    $unit = 'k';
+                    $earth_radius = 6378137;   // Terre = sphère de 6378km de rayon
+                    $rlo1 = deg2rad($lonInit);
+                    $rla1 = deg2rad($latInit);
+                    $rlo2 = deg2rad($long);
+                    $rla2 = deg2rad($lat);
+                    $dlo = ($rlo2 - $rlo1) / 2;
+                    $dla = ($rla2 - $rla1) / 2;
+                    $a = (sin($dla) * sin($dla)) + cos($rla1) * cos($rla2) * (sin($dlo) * sin($dlo));
+                    $d = 2 * atan2(sqrt($a), sqrt(1 - $a));
+                    
+                    $meter = ($earth_radius * $d);
+                    $km=$meter / 1000;
+
+                    if($km<$perimetre){
+                        
+                        /*foreach($coiffeurs as $coiffeur){
+                            // pour chaque coiffeur
+                            $idCoiffeur=$coiffeur->getId();
+                            $dispos=$coiffeur->getDisponibilites();
+
+                            foreach($dispos as $dispo){
+
+                                // pour chaque dispo
+
+                                $idDispo=$dispo->getId();
+                                $date=$dispo->getDate();
+                                $heureDebut=$dispo->getHeureDebut();
+                                $heureFin=$dispo->getHeureFin();
+                                $etat=$dispo->getEtat();
+                                $coiffeur=$dispo->getCoiffeur();
+
+                            }
+
+                            $prestasC=$coiffeur->getPrestationsComposee();
+
+                            foreach($prestasC as $prestaC){
+
+                                // pour chaque presta compo
+
+                                $idPrestaC=$prestaC->getId();
+                                $tarif=$prestaC->getTarif();
+                                $prestas=$prestaC->getPrestations();
+
+                                foreach($prestas as $presta){
+
+                                    // pour chaque presta
+
+                                    $idPresta=$presta->getId();
+                                    $duree=$presta->getDuree();
+
+                                }
+
+                            }
+                        }*/
+                        $salons[$i]=['id'=>$idSalon,'nom'=>$nom,'lon'=>$long,'lat'=>$lat];
+                        $i++;
+                    }
+            }
+
+        return $this->render('recherche/resultats.html.twig',["salons"=>$salons,"liste"=>$liste,"lat"=>$latInit, "lng"=>$lonInit,"perimetre"=>$perimetre]);
     }
 
     /**
